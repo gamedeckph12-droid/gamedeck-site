@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GameDeck PH</title>
+<link rel="icon" type="image/png" href="logo.png">
+
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Syne:wght@400;600;700;800&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg:#080808;
+  --card:#111;
+  --border:#222;
+  --text:#e8e8e8;
+  --muted:#aaa;
+  --red:#ff1a4b;
+  --glow:rgba(255,26,75,.4);
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+
+body{
+  background: radial-gradient(circle at top, #111 0%, #080808 60%);
+  color:var(--text);
+  font-family:'Syne',sans-serif;
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding:20px;
+}
+
+/* BACK BUTTON */
+.back-btn{
+  position:fixed;
+  top:20px;
+  left:20px;
+  background:rgba(255,255,255,.05);
+  border:1px solid var(--border);
+  color:#fff;
+  padding:10px 14px;
+  border-radius:10px;
+  cursor:pointer;
+  font-size:13px;
+  transition:.3s;
+}
+.back-btn:hover{
+  border-color:var(--red);
+  background:rgba(255,26,75,.1);
+}
+
+/* CONTAINER */
+.container{
+  width:100%;
+  max-width:480px;
+  animation:fadeIn .6s ease;
+}
+
+@keyframes fadeIn{
+  from{opacity:0; transform:translateY(20px)}
+  to{opacity:1; transform:translateY(0)}
+}
+
+/* CARD */
+.card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:20px;
+  padding:28px;
+  text-align:center;
+  position:relative;
+}
+
+/* TITLE */
+.title{
+  font-family:'Bebas Neue';
+  font-size:34px;
+  letter-spacing:2px;
+}
+
+/* SUBTEXT */
+.sub{
+  color:var(--muted);
+  font-size:14px;
+  margin:10px 0 20px;
+  line-height:1.6;
+}
+
+/* QR */
+.qr-box{
+  background:#000;
+  padding:15px;
+  border-radius:16px;
+  border:1px solid var(--border);
+  margin-bottom:20px;
+  transition:.3s;
+}
+
+.qr-box:hover{
+  border-color:var(--red);
+  transform:scale(1.02);
+}
+
+.qr-box img{
+  width:100%;
+  border-radius:10px;
+  cursor:zoom-in;
+}
+
+/* DETAILS */
+.details{
+  text-align:left;
+  background:#0d0d0d;
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:18px;
+  margin-bottom:20px;
+}
+
+.row{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:10px;
+}
+
+.label{
+  color:var(--muted);
+  font-size:13px;
+}
+
+/* 🔥 FONT FIX HERE ONLY */
+.value{
+  font-family:'Inter', sans-serif;
+  font-weight:700;
+  font-size:15px;
+  letter-spacing:.5px;
+}
+
+.value.red{
+  color:var(--red);
+  font-size:16px;
+}
+
+/* COPY */
+.copy{
+  font-size:12px;
+  color:var(--red);
+  cursor:pointer;
+  margin-left:8px;
+}
+
+/* BUTTON */
+.btn{
+  width:100%;
+  padding:15px;
+  border:none;
+  border-radius:12px;
+  background:var(--red);
+  color:#fff;
+  font-weight:700;
+  letter-spacing:1px;
+  cursor:pointer;
+  transition:.3s;
+}
+
+.btn:hover{
+  box-shadow:0 0 25px var(--glow);
+  transform:translateY(-2px);
+}
+
+/* NOTE */
+.note{
+  margin-top:14px;
+  font-size:12px;
+  color:var(--muted);
+}
+
+.success{
+  display:none;
+  margin-top:12px;
+  color:#00ff9c;
+  font-size:13px;
+}
+
+/* QR MODAL */
+.qr-modal{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.95);
+  justify-content:center;
+  align-items:center;
+  z-index:9999;
+}
+
+.qr-modal.active{
+  display:flex;
+}
+
+.qr-modal img{
+  max-width:90%;
+  max-height:90%;
+  border-radius:12px;
+}
+
+.close{
+  position:absolute;
+  top:20px;
+  right:30px;
+  font-size:40px;
+  color:white;
+  cursor:pointer;
+}
+
+/* RESPONSIVE */
+@media(max-width:480px){
+  .card{padding:22px}
+  .title{font-size:28px}
+}
+</style>
+</head>
+
+<body>
+
+<button class="back-btn" onclick="goBack()">← Back</button>
+
+<div class="container">
+  <div class="card">
+
+    <div class="title">GCASH PAYMENT</div>
+
+    <div class="sub">
+      Send your payment via GCash.<br>
+      <b>Screenshot or download your receipt</b> as proof.
+    </div>
+
+    <div class="qr-box">
+      <img src="payment.png" id="qrImg">
+    </div>
+
+    <div class="details">
+
+      <div class="row">
+        <div class="label">Number</div>
+        <div class="value">
+          09950734726 
+          <span class="copy" onclick="copyText()">Copy</span>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="label">Name</div>
+        <div class="value">J** O.</div>
+      </div>
+
+      <div class="row">
+        <div class="label">Amount</div>
+        <div class="value red">₱1,500</div>
+      </div>
+
+    </div>
+
+    <button class="btn" onclick="donePayment()">DONE PAYMENT</button>
+
+    <div class="success" id="successMsg">
+      ✔ Redirecting to Facebook...
+    </div>
+
+    <div class="note">
+      After payment, send your receipt + name to our Facebook page.
+    </div>
+
+  </div>
+</div>
+
+<div id="qrModal" class="qr-modal">
+  <span class="close" onclick="closeQR()">&times;</span>
+  <img src="payment.png">
+</div>
+
+<script>
+function goBack(){ window.history.back(); }
+
+function copyText(){
+  navigator.clipboard.writeText("09950734726");
+}
+
+function donePayment(){
+  document.getElementById("successMsg").style.display = "block";
+  setTimeout(()=>{
+    window.open("https://www.facebook.com/messages/t/61573726553445","_blank");
+  },1000);
+}
+
+document.getElementById("qrImg").onclick = function(){
+  document.getElementById("qrModal").classList.add("active");
+};
+
+function closeQR(){
+  document.getElementById("qrModal").classList.remove("active");
+}
+
+document.getElementById("qrModal").onclick = function(e){
+  if(e.target === this) closeQR();
+};
+
+document.addEventListener("keydown", e=>{
+  if(e.key === "Escape") closeQR();
+});
+</script>
+
+</body>
+</html>

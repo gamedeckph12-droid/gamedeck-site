@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GameDeck PH</title>
+<link rel="icon" type="image/png" href="logo.png">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Syne:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --red:#ff1a4b;
+}
+
+*{
+  box-sizing:border-box;
+}
+
+body{
+  margin:0;
+  background:#080808;
+  color:#e8e8e8;
+  font-family:'Syne',sans-serif;
+}
+
+/* 🔙 BACK BUTTON TOP LEFT */
+.back-btn{
+  position:fixed;
+  top:20px;
+  left:20px;
+  z-index:999;
+
+  background:rgba(255,255,255,0.05);
+  border:1px solid #1e1e20;
+  color:#fff;
+
+  padding:10px 14px;
+  border-radius:10px;
+  font-size:13px;
+  font-weight:600;
+
+  cursor:pointer;
+  backdrop-filter: blur(6px);
+  transition:.25s ease;
+}
+
+.back-btn:hover{
+  border-color:var(--red);
+  background:rgba(255,26,75,0.15);
+  box-shadow:0 0 12px rgba(255,26,75,.3);
+}
+
+/* container */
+.container{
+  width:100%;
+  max-width:1000px;
+  margin:auto;
+  padding:clamp(20px,5vw,50px) clamp(15px,4vw,30px);
+}
+
+/* banner */
+.banner img{
+  width:100%;
+  height:auto;
+  display:block;
+  border-radius:20px;
+  margin-bottom:20px;
+}
+
+/* title */
+.title{
+  font-family:'Bebas Neue';
+  font-size:clamp(36px,7vw,70px);
+  letter-spacing:2px;
+  line-height:1.1;
+}
+
+.price{
+  color:var(--red);
+  font-size:clamp(24px,5vw,40px);
+  margin-bottom:20px;
+}
+
+/* card */
+.card{
+  background:#0e0e0f;
+  border:1px solid #1e1e20;
+  border-radius:20px;
+  padding:clamp(18px,3vw,30px);
+  margin-top:20px;
+}
+
+/* section */
+.section-title{
+  color:var(--red);
+  font-weight:700;
+  margin-bottom:10px;
+  font-size:clamp(14px,2vw,18px);
+}
+
+/* list */
+ul{
+  padding-left:20px;
+  line-height:1.8;
+  font-size:clamp(13px,2.5vw,16px);
+}
+
+/* text */
+p{
+  font-size:clamp(13px,2.5vw,16px);
+  line-height:1.6;
+}
+
+/* link */
+a{
+  color:var(--red);
+  text-decoration:none;
+  font-weight:600;
+}
+
+a:hover{
+  text-decoration:underline;
+}
+
+/* button */
+.btn{
+  margin-top:30px;
+  background:var(--red);
+  border:none;
+  padding:14px 28px;
+  border-radius:12px;
+  color:white;
+  font-weight:700;
+  cursor:pointer;
+  transition:.3s;
+  width:fit-content;
+}
+
+.btn:hover{
+  box-shadow:0 0 20px rgba(255,26,75,.4);
+}
+
+/* center CTA */
+.btn-wrap{
+  display:flex;
+  justify-content:center;
+}
+
+/* mobile */
+@media(max-width:600px){
+  .title{
+    text-align:center;
+  }
+
+  .price{
+    text-align:center;
+  }
+
+  .btn{
+    width:100%;
+    text-align:center;
+  }
+
+  .back-btn{
+    top:15px;
+    left:15px;
+    padding:8px 12px;
+    font-size:12px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- 🔙 BACK BUTTON -->
+<button class="back-btn" onclick="goBack()">← Back</button>
+
+<div class="container">
+
+  <!-- IMAGE -->
+  <div class="banner">
+    <img src="package2.png" alt="GLX GDrive Package">
+  </div>
+
+  <!-- TITLE -->
+  <div class="title">GLX GDRIVE PACKAGE</div>
+  <div class="price">₱499</div>
+
+  <!-- PROMO -->
+  <div class="card">
+    <div class="section-title">🎮 PROMO</div>
+    <p>ALL-IN-ONE PACKAGE VIA GDRIVE WORTH 100TB OF FILES FOR ONLY ₱499!</p>
+    <p>Compatible with PC, Laptop, Android, Macbook, Smart TV.</p>
+  </div>
+
+  <!-- FEATURES -->
+  <div class="card">
+    <div class="section-title">⭐ FEATURES</div>
+    <ul>
+      <li>Lifetime Access & Weekly Updated Files</li>
+      <li>No Virus / Malware</li>
+      <li>Pre-installed & Activated Files</li>
+      <li>Offline / Online Viewing Supported</li>
+      <li>24/7 Tech Support</li>
+      <li>Free Remote Installation</li>
+    </ul>
+  </div>
+
+  <!-- CONTENT -->
+  <div class="card">
+    <div class="section-title">📦 INCLUDED CONTENT</div>
+    <ul>
+      <li>PC/Laptop Games & Software</li>
+      <li>Retro Games Collection</li>
+      <li>Operating Systems</li>
+      <li>Diskless Setup (Pisonet)</li>
+      <li>Adobe 2025</li>
+      <li>Microsoft Office 365</li>
+      <li>Anti-virus Software</li>
+      <li>Ebooks / Manga / Manhwa / Novels</li>
+      <li>Premium Courses</li>
+      <li>Movies & TV Shows</li>
+      <li>K-Drama</li>
+      <li>Anime</li>
+      <li>Cartoons</li>
+      <li>Vivamax</li>
+      <li>Karaoke</li>
+      <li>Android Apps</li>
+      <li>Graphic Resources</li>
+    </ul>
+  </div>
+
+  <!-- FILE LIST -->
+  <div class="card">
+    <div class="section-title">📂 FULL FILE LIST</div>
+    <a href="https://tinyurl.com/GLXListofFiles" target="_blank">
+      Click here to view complete file list →
+    </a>
+    <p style="margin-top:10px;font-size:13px;opacity:.7;">
+      Note: Newly released PC games are at the bottom.
+    </p>
+  </div>
+
+  <!-- NOTE -->
+  <div class="card">
+    <div class="section-title">📌 NOTE</div>
+    <p>If a file is not included, you can request it.</p>
+    <p>All files are hosted on Google Drive (100TB storage).</p>
+  </div>
+
+  <!-- 🔥 AVAIL BUTTON -->
+  <div class="btn-wrap">
+    <button class="btn" onclick="goPayment()">
+      WANT TO AVAIL?
+    </button>
+  </div>
+
+</div>
+
+<script>
+function goBack(){
+  window.history.back();
+}
+
+function goPayment(){
+  window.location.href = "payment.html";
+}
+</script>
+
+</body>
+</html>

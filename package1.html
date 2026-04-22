@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GameDeck PH</title>
+<link rel="icon" type="image/png" href="logo.png">
+
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Syne:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --bg:#080808;
+  --card:#0e0e0f;
+  --border:#1e1e20;
+  --text:#e8e8e8;
+  --muted:#6b6b6b;
+  --red:#ff1a4b;
+  --font-display:'Bebas Neue',sans-serif;
+}
+
+*{box-sizing:border-box;margin:0;padding:0;}
+
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:'Syne',sans-serif;
+}
+
+/* 🔙 BACK BUTTON TOP LEFT */
+.back-btn{
+  position:fixed;
+  top:20px;
+  left:20px;
+  z-index:999;
+
+  background:rgba(255,255,255,0.05);
+  border:1px solid var(--border);
+  color:var(--text);
+
+  padding:10px 14px;
+  border-radius:10px;
+  font-size:13px;
+  font-weight:600;
+
+  cursor:pointer;
+  backdrop-filter: blur(6px);
+  transition:.25s ease;
+}
+
+.back-btn:hover{
+  border-color:var(--red);
+  background:rgba(255,26,75,0.15);
+  box-shadow:0 0 12px rgba(255,26,75,.3);
+  transform:translateY(-1px);
+}
+
+/* container */
+.container{
+  max-width:900px;
+  margin:auto;
+  padding:40px 20px;
+}
+
+/* banner */
+.banner img{
+  width:100%;
+  border-radius:16px;
+  margin-bottom:20px;
+}
+
+/* title */
+.title{
+  font-family:var(--font-display);
+  font-size:clamp(32px,8vw,56px);
+  letter-spacing:2px;
+}
+
+.price{
+  color:var(--red);
+  font-size:clamp(24px,5vw,36px);
+  margin-bottom:20px;
+}
+
+/* card */
+.card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:20px;
+  padding:25px;
+  margin-top:20px;
+  transition:.3s;
+}
+
+.card:hover{
+  border-color:rgba(255,26,75,.4);
+}
+
+/* section */
+.section-title{
+  color:var(--red);
+  font-weight:700;
+  margin-bottom:10px;
+}
+
+/* list */
+ul{
+  padding-left:20px;
+  line-height:1.7;
+}
+
+/* HOW SECTION */
+.how-section{
+  margin-top:40px;
+}
+
+.how-section h2{
+  font-family:var(--font-display);
+  font-size:clamp(24px,5vw,32px);
+  letter-spacing:2px;
+  margin-bottom:20px;
+  text-align:center;
+}
+
+/* video */
+.video-block{
+  margin-bottom:30px;
+}
+
+.video-block h3{
+  color:var(--red);
+  margin-bottom:10px;
+}
+
+/* VIDEO RESPONSIVE */
+.video-wrapper{
+  position:relative;
+  width:100%;
+  padding-bottom:56.25%;
+}
+
+.video-wrapper iframe{
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  border:none;
+  border-radius:14px;
+  box-shadow:0 20px 60px rgba(0,0,0,.5);
+}
+
+/* link */
+a{
+  color:var(--red);
+  text-decoration:none;
+  font-weight:700;
+}
+
+a:hover{
+  text-decoration:underline;
+}
+
+/* button */
+.btn{
+  margin-top:30px;
+  background:var(--red);
+  border:none;
+  padding:14px 28px;
+  border-radius:10px;
+  color:white;
+  font-weight:700;
+  cursor:pointer;
+  width:100%;
+  max-width:220px;
+}
+
+.btn:first-child:hover{
+  box-shadow:0 0 25px rgba(255,26,75,.6);
+  transform:translateY(-2px) scale(1.02);
+}
+
+.btn:hover{
+  box-shadow:0 0 20px rgba(255,26,75,.4);
+}
+
+/* center button */
+.btn-wrap{
+  display:flex;
+  justify-content:center;
+}
+
+/* mobile */
+@media(max-width:600px){
+  .card{
+    padding:20px;
+  }
+
+  .back-btn{
+    top:15px;
+    left:15px;
+    padding:8px 12px;
+    font-size:12px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- 🔙 BACK BUTTON -->
+<button class="back-btn" onclick="goBack()">← Back</button>
+
+<div class="container">
+
+  <!-- BANNER -->
+  <div class="banner">
+    <img src="package1.png" alt="Steam Package">
+  </div>
+
+  <!-- TITLE -->
+  <div class="title">STEAM PACKAGE</div>
+  <div class="price">₱1,499</div>
+
+  <!-- PROMO -->
+  <div class="card">
+    <div class="section-title">🎮 PROMO</div>
+    <p>TAKE ALL STEAM GAMES (DIRECT TO YOUR ACCOUNT) FOR ONLY ₱1,499!</p>
+  </div>
+
+  <!-- DEVICE -->
+  <div class="card">
+    <div class="section-title">🖥️ DEVICE COMPATIBILITY</div>
+    <p>PC, Laptop, Handheld Devices</p>
+  </div>
+
+  <!-- HOW -->
+  <div class="how-section">
+    <h2>HOW DOES IT WORK?</h2>
+
+    <div class="video-block">
+      <h3>For Windows</h3>
+      <div class="video-wrapper">
+        <iframe src="https://drive.google.com/file/d/1ASHIf3aswOMltqlRQKHGcyUdgt8epyEQ/preview"></iframe>
+      </div>
+    </div>
+
+    <div class="video-block">
+      <h3>For SteamOS / Bazzite</h3>
+      <div class="video-wrapper">
+        <iframe src="https://drive.google.com/file/d/1KMph_uM6hlKAlZW_zpp_pKtDYdjwYeLb/preview"></iframe>
+      </div>
+    </div>
+  </div>
+
+  <!-- BENEFITS -->
+  <div class="card">
+    <div class="section-title">⭐ BENEFITS</div>
+    <ul>
+      <li>One-Time Payment, Lifetime Access</li>
+      <li>Save Progress</li>
+      <li>Works Worldwide</li>
+      <li>Safe & Undetected</li>
+      <li>Windows & Linux</li>
+      <li>Steam Achievements</li>
+      <li>Updated Games</li>
+      <li>Download & Play</li>
+    </ul>
+  </div>
+
+  <!-- GAME LIST -->
+  <div class="card">
+    <div class="section-title">🎮 GAME LIST</div>
+    <a href="https://tinyurl.com/5n6z5has" target="_blank">
+      Click To View Full Game List →
+    </a>
+  </div>
+
+  <!-- INSTALL -->
+  <div class="card">
+    <div class="section-title">🛠️ INSTALLATION</div>
+    <p>Free remote installation available.</p>
+  </div>
+
+  <!-- AVAIL BUTTON -->
+  <div class="btn-wrap">
+    <button class="btn" onclick="goPayment()" style="max-width:260px;">
+      WANT TO AVAIL?
+    </button>
+  </div>
+
+</div>
+
+<script>
+function goBack(){
+  window.history.back();
+}
+
+function goPayment(){
+  window.location.href = "payment.html";
+}
+</script>
+
+</body>
+</html>
