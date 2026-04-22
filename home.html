@@ -1,0 +1,1263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GameDeck PH – Home</title>
+<link rel="icon" type="image/png" href="logo.png">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Exo+2:wght@400;500;600;700;800&family=Syne:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:        #080808;
+  --bg-sec:    #0e0e10;
+  --bg-card:   #121214;
+  --bg-side:   #0a0a0c;
+  --border:    #1e1e22;
+  --border-lt: #252528;
+  --muted:     #606068;
+  --text:      #dcdce4;
+  --red:       #e8152a;
+  --red-glow:  rgba(232,21,42,.3);
+  --blue:      #6482dc;
+  --blue-glow: rgba(100,130,220,.3);
+  --sidebar-w: 220px;
+  --topbar-h:  62px;
+  --right-w:   270px;
+}
+
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html, body { height:100%; overflow:hidden; background:var(--bg); color:var(--text); font-family:'Syne',sans-serif; }
+
+body::after {
+  content:""; position:fixed; inset:0; z-index:9999; pointer-events:none;
+  opacity:.022;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size:180px;
+}
+
+::-webkit-scrollbar { width:4px; }
+::-webkit-scrollbar-track { background:transparent; }
+::-webkit-scrollbar-thumb { background:var(--border); border-radius:2px; }
+::-webkit-scrollbar-thumb:hover { background:var(--red); }
+::selection { background:var(--red); color:#fff; }
+
+/* ── TOPBAR ── */
+.topbar {
+  position:fixed; top:0; left:0; right:0; z-index:200;
+  height:var(--topbar-h);
+  background:rgba(8,8,8,.95);
+  backdrop-filter:blur(24px);
+  border-bottom:1px solid var(--border);
+  display:flex; align-items:center;
+  padding:0 16px 0 0; gap:12px;
+}
+
+.logo-area {
+  width:var(--sidebar-w); flex-shrink:0;
+  display:flex; align-items:center; gap:10px;
+  padding:0 16px;
+}
+.logo-img {
+  height:36px; width:auto; cursor:pointer;
+  transition:filter .25s, transform .25s;
+}
+.logo-img:hover { filter:drop-shadow(0 0 10px var(--red-glow)); transform:scale(1.04); }
+
+.search-wrap { flex:1; max-width:440px; position:relative; }
+.search-wrap svg { position:absolute; left:12px; top:50%; transform:translateY(-50%); color:var(--muted); pointer-events:none; }
+.search-input {
+  width:100%; background:var(--bg-card); border:1px solid var(--border-lt);
+  border-radius:9px; padding:9px 13px 9px 36px;
+  color:var(--text); font-family:'Syne',sans-serif; font-size:13px; outline:none;
+  transition:border-color .2s, box-shadow .2s;
+}
+.search-input::placeholder { color:var(--muted); }
+.search-input:focus { border-color:var(--red); box-shadow:0 0 0 3px rgba(232,21,42,.1); }
+
+.search-dropdown {
+  display:none; position:absolute; top:calc(100% + 6px); left:0; right:0;
+  background:var(--bg-card); border:1px solid var(--border-lt); border-radius:10px;
+  box-shadow:0 14px 48px rgba(0,0,0,.7); z-index:300; overflow:hidden;
+}
+.search-dropdown.active { display:block; animation:fadeIn .15s ease; }
+.s-item {
+  display:flex; align-items:center; gap:11px;
+  padding:10px 13px; cursor:pointer;
+  border-bottom:1px solid var(--border); transition:background .15s; font-size:13px;
+}
+.s-item:last-child { border-bottom:none; }
+.s-item:hover { background:var(--bg-sec); }
+.s-thumb { width:38px; height:38px; border-radius:7px; overflow:hidden; background:#111; flex-shrink:0; display:flex; align-items:center; justify-content:center; }
+.s-thumb img { width:100%; height:100%; object-fit:cover; }
+.s-name { font-weight:600; font-size:13px; }
+.s-meta { font-size:11px; color:var(--muted); margin-top:1px; }
+
+.topbar-right { margin-left:auto; display:flex; align-items:center; gap:6px; position:relative; }
+
+.user-btn {
+  display:flex; align-items:center; gap:8px;
+  padding:5px 10px; border-radius:9px; cursor:pointer;
+  border:1px solid transparent; transition:all .2s; user-select:none;
+}
+.user-btn:hover { background:var(--bg-card); border-color:var(--border-lt); }
+.user-avatar {
+  width:30px; height:30px; border-radius:50%;
+  background:linear-gradient(135deg,#2a2a2e,#3a3a42);
+  display:flex; align-items:center; justify-content:center;
+}
+.user-name { font-size:13px; font-weight:600; }
+.chevron { color:var(--muted); transition:transform .2s; }
+.user-btn.open .chevron { transform:rotate(180deg); }
+
+.user-dropdown {
+  display:none; position:absolute; top:calc(var(--topbar-h) + 4px); right:0;
+  background:var(--bg-card); border:1px solid var(--border-lt); border-radius:11px;
+  box-shadow:0 14px 48px rgba(0,0,0,.7); z-index:300; min-width:180px; overflow:hidden;
+}
+.user-dropdown.active { display:block; animation:fadeIn .15s ease; }
+.ud-header { padding:13px 15px; border-bottom:1px solid var(--border); }
+.ud-header strong { font-size:13.5px; }
+.ud-header p { font-size:11px; color:var(--muted); margin-top:2px; }
+.ud-item {
+  display:flex; align-items:center; gap:9px;
+  padding:11px 15px; font-size:13px; cursor:pointer; color:var(--muted);
+  transition:background .15s, color .15s;
+}
+.ud-item:hover { background:var(--bg-sec); color:var(--text); }
+.ud-item.danger:hover { color:var(--red); }
+
+/* ── LAYOUT ── */
+.layout { display:flex; padding-top:var(--topbar-h); height:100vh; }
+
+/* ── SIDEBAR ── */
+.sidebar {
+  width:var(--sidebar-w); flex-shrink:0;
+  background:var(--bg-side); border-right:1px solid var(--border);
+  height:calc(100vh - var(--topbar-h));
+  position:fixed; top:var(--topbar-h); left:0;
+  overflow-y:auto; overflow-x:hidden;
+  padding:14px 0; display:flex; flex-direction:column;
+}
+
+.sidebar-section-label {
+  font-size:10px; font-weight:700; letter-spacing:1.8px; text-transform:uppercase;
+  color:var(--muted); padding:10px 16px 6px;
+}
+
+.nav-item {
+  display:flex; align-items:center; gap:10px;
+  padding:10px 16px; cursor:pointer; font-size:13px; font-weight:600;
+  color:var(--muted); transition:all .17s;
+  border-left:2px solid transparent; white-space:nowrap;
+}
+.nav-item:hover { color:var(--text); background:rgba(255,255,255,.03); }
+.nav-item.active { color:#fff; background:rgba(232,21,42,.09); border-left-color:var(--red); }
+.nav-item svg { width:15px; height:15px; flex-shrink:0; }
+
+.sidebar-divider { height:1px; background:var(--border); margin:10px 0; }
+
+.sidebar-bottom { margin-top:auto; padding:14px 12px; }
+.help-card {
+  background:rgba(232,21,42,.08); border:1px solid rgba(232,21,42,.2);
+  border-radius:12px; padding:16px; text-align:center;
+}
+.help-card-icon { font-size:28px; margin-bottom:8px; }
+.help-card h4 { font-family:'Exo 2',sans-serif; font-size:13px; font-weight:700; color:#fff; margin-bottom:4px; }
+.help-card p { font-size:11px; color:var(--muted); margin-bottom:12px; line-height:1.5; }
+.help-btn {
+  display:flex; align-items:center; justify-content:center; gap:6px;
+  width:100%; padding:9px; border-radius:8px;
+  background:var(--red); border:none; color:#fff;
+  font-family:'Syne',sans-serif; font-size:12px; font-weight:700;
+  cursor:pointer; transition:box-shadow .2s; text-decoration:none;
+}
+.help-btn:hover { box-shadow:0 0 20px var(--red-glow); }
+
+.sidebar-footer { padding:12px 16px; font-size:11px; color:var(--muted); line-height:1.6; }
+.sidebar-footer-links { display:flex; gap:10px; margin-top:8px; }
+.sidebar-footer-links a { color:var(--muted); text-decoration:none; font-size:12px; transition:color .2s; }
+.sidebar-footer-links a:hover { color:var(--text); }
+
+/* ── MAIN ── */
+.main {
+  margin-left:var(--sidebar-w); flex:1;
+  height:calc(100vh - var(--topbar-h));
+  overflow-y:auto; overflow-x:hidden;
+  padding:22px 22px 48px;
+  scrollbar-width:thin; scrollbar-color:var(--border) transparent;
+  margin-right:var(--right-w);
+}
+
+/* ── RIGHT PANEL ── */
+.right-panel {
+  width:var(--right-w); flex-shrink:0;
+  background:var(--bg-side); border-left:1px solid var(--border);
+  height:calc(100vh - var(--topbar-h));
+  position:fixed; top:var(--topbar-h); right:0;
+  overflow-y:auto; overflow-x:hidden;
+  padding:18px 14px;
+  display:flex; flex-direction:column; gap:22px;
+}
+
+/* ── FEATURED BANNER ── */
+.featured-banner {
+  position:relative; border-radius:16px; overflow:hidden;
+  height:380px; margin-bottom:22px;
+  background:#0d0d14;
+  border:1px solid var(--border-lt);
+}
+
+/* Slides */
+.fb-slide {
+  position:absolute; inset:0;
+  opacity:0;
+  transition:opacity .9s ease;
+  pointer-events:none;
+}
+.fb-slide.active { opacity:1; pointer-events:auto; }
+
+.fb-slide img.fb-img {
+  position:absolute; inset:0;
+  width:100%; height:100%; object-fit:cover;
+  display:block;
+  transition:transform 8s ease;
+   object-fit:contain;
+  background:#000;
+}
+.fb-slide.active img.fb-img { transform:scale(1.04); }
+
+/* Cinematic overlay – stronger left fade, subtle vignette */
+.fb-overlay {
+  position:absolute; inset:0;
+  background:
+    linear-gradient(100deg, rgba(0,0,0,.92) 0%, rgba(0,0,0,.65) 40%, rgba(0,0,0,.2) 70%, transparent 100%),
+    linear-gradient(0deg, rgba(0,0,0,.6) 0%, transparent 50%);
+}
+
+/* Coming soon placeholder */
+.fb-placeholder {
+  position:absolute; inset:0;
+  display:flex; flex-direction:column; align-items:center; justify-content:center; gap:12px;
+}
+.fb-placeholder-icon {
+  width:72px; height:72px; border-radius:50%;
+  background:rgba(255,255,255,.04); border:1px solid var(--border-lt);
+  display:flex; align-items:center; justify-content:center;
+}
+.fb-placeholder span {
+  font-family:'Exo 2',sans-serif; font-size:11px; font-weight:700;
+  letter-spacing:2px; text-transform:uppercase; color:var(--muted);
+}
+
+.fb-badge {
+  position:absolute; top:18px; left:18px; z-index:2;
+  color:#fff;
+  font-family:'Exo 2',sans-serif; font-size:10px; font-weight:700;
+  letter-spacing:1.5px; text-transform:uppercase;
+  padding:5px 14px; border-radius:20px;
+  display:flex; align-items:center; gap:6px;
+}
+.fb-badge-dot {
+  width:5px; height:5px; border-radius:50%; background:#fff; flex-shrink:0;
+  animation:pulse 2s infinite;
+}
+@keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.35;transform:scale(.65)} }
+
+.fb-content {
+  position:absolute; bottom:0; left:0; right:0; padding:22px 26px 26px; z-index:2;
+}
+.fb-title {
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(36px,5vw,54px); letter-spacing:2.5px;
+  color:#fff; line-height:1;
+  text-shadow:0 2px 24px rgba(0,0,0,.5);
+}
+.fb-title em { font-style:normal; color:var(--red); text-shadow:0 0 40px rgba(232,21,42,.5); }
+.fb-subtitle {
+  font-size:11.5px; color:rgba(255,255,255,.5);
+  letter-spacing:.8px; text-transform:uppercase; margin-top:4px;
+}
+.fb-desc {
+  font-size:13px; color:rgba(255,255,255,.55);
+  margin-top:10px; line-height:1.6; max-width:360px;
+}
+
+/* Progress bar */
+.fb-progress {
+  position:absolute; bottom:0; left:0; right:0; height:2px;
+  background:rgba(255,255,255,.08); z-index:3;
+}
+.fb-progress-bar {
+  height:100%; background:var(--red); width:0%;
+  transition:width linear;
+}
+
+/* Dots */
+.fb-dots {
+  position:absolute; bottom:22px; right:20px; z-index:3;
+  display:flex; gap:6px; align-items:center;
+}
+.fb-dot {
+  height:6px; border-radius:3px;
+  background:rgba(255,255,255,.28); width:6px;
+  transition:all .35s ease; cursor:pointer;
+}
+.fb-dot.active { background:#fff; width:20px; }
+.fb-dot:hover:not(.active) { background:rgba(255,255,255,.5); }
+
+/* Slide counter */
+.fb-counter {
+  position:absolute; top:18px; right:20px; z-index:3;
+  font-family:'Exo 2',sans-serif; font-size:11px; font-weight:700;
+  color:rgba(255,255,255,.4); letter-spacing:1px;
+}
+
+/* ── PLATFORM CARDS ── */
+.platform-cards { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:22px; }
+.plat-card {
+  display:flex; align-items:center; gap:12px;
+  padding:14px 16px; border-radius:12px; border:1.5px solid;
+  cursor:pointer; transition:all .22s; position:relative; overflow:hidden;
+}
+.plat-card.win   { border-color:rgba(232,21,42,.35); background:rgba(232,21,42,.05); }
+.plat-card.win:hover   { border-color:var(--red); background:rgba(232,21,42,.09); transform:translateY(-2px); box-shadow:0 8px 28px rgba(232,21,42,.18); }
+.plat-card.steam { border-color:rgba(100,130,220,.35); background:rgba(100,130,220,.05); }
+.plat-card.steam:hover { border-color:var(--blue); background:rgba(100,130,220,.09); transform:translateY(-2px); box-shadow:0 8px 28px rgba(100,130,220,.18); }
+
+.plat-icon { width:44px; height:44px; border-radius:10px; flex-shrink:0; display:flex; align-items:center; justify-content:center; font-size:20px; }
+.plat-card.win .plat-icon   { background:rgba(232,21,42,.15); }
+.plat-card.steam .plat-icon { background:rgba(100,130,220,.15); }
+.plat-name { font-family:'Exo 2',sans-serif; font-size:13px; font-weight:700; text-transform:uppercase; letter-spacing:.3px; }
+.plat-desc { font-size:11px; color:var(--muted); margin-top:2px; }
+.plat-arrow { margin-left:auto; opacity:.4; transition:opacity .2s; }
+.plat-card:hover .plat-arrow { opacity:1; }
+.plat-card.win .plat-arrow { color:var(--red); }
+.plat-card.steam .plat-arrow { color:var(--blue); }
+
+/* ── SECTION HEADERS ── */
+.sec-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:12px; }
+.sec-title {
+  display:flex; align-items:center; gap:8px;
+  font-family:'Exo 2',sans-serif; font-size:14px; font-weight:700;
+  letter-spacing:.5px; text-transform:uppercase; color:#fff;
+}
+.sec-dot-red  { width:8px; height:8px; border-radius:50%; background:var(--red); flex-shrink:0; }
+.sec-dot-blue { width:8px; height:8px; border-radius:50%; background:var(--blue); flex-shrink:0; }
+
+.view-all {
+  display:flex; align-items:center; gap:4px; font-size:12px; font-weight:600;
+  cursor:pointer; transition:gap .2s; text-decoration:none; border:none; background:none;
+  font-family:'Syne',sans-serif;
+}
+.view-all.red  { color:var(--red); }
+.view-all.blue { color:var(--blue); }
+.view-all:hover { gap:8px; }
+
+/* ── GAMES SECTION / ROW ── */
+.games-section { margin-bottom:28px; }
+.row-wrap { position:relative; padding:4px 0; }
+.games-row {
+  display:flex; gap:12px; overflow-x:auto; padding-bottom:6px;
+  scroll-behavior:smooth; scrollbar-width:none;
+}
+.games-row::-webkit-scrollbar { display:none; }
+
+.scroll-btn {
+  position:absolute; top:50%; transform:translateY(-50%);
+  width:32px; height:32px; border-radius:50%;
+  border:1.5px solid var(--border-lt); background:var(--bg-card);
+  display:flex; align-items:center; justify-content:center;
+  cursor:pointer; z-index:10; transition:all .18s; color:var(--muted); opacity:0;
+}
+.row-wrap:hover .scroll-btn { opacity:1; }
+.scroll-btn:hover { border-color:var(--red); color:var(--red); background:rgba(232,21,42,.08); }
+.scroll-btn.left  { left:-14px; }
+.scroll-btn.right { right:-14px; }
+
+/* ── GAME CARD ── */
+.game-card { flex:0 0 148px; cursor:pointer; transition:transform .22s; }
+.game-card:hover { transform:translateY(-5px); }
+.game-card:hover .gc-inner { box-shadow:0 14px 36px rgba(0,0,0,.6); border-color:var(--border-lt); }
+
+.gc-inner {
+  border-radius:10px; overflow:hidden;
+  background:var(--bg-card); border:1px solid var(--border);
+  transition:box-shadow .22s, border-color .22s;
+}
+.gc-thumb {
+  width:100%; height:188px;
+  display:flex; align-items:center; justify-content:center;
+  background:linear-gradient(145deg,#131316,#0d0d10);
+  position:relative; overflow:hidden;
+}
+.gc-thumb img { width:100%; height:100%; object-fit:cover; display:block; transition:transform .3s; }
+.game-card:hover .gc-thumb img { transform:scale(1.06); }
+
+.gc-new-badge {
+  position:absolute; top:8px; right:8px;
+  background:var(--red); color:#fff;
+  font-family:'Exo 2',sans-serif; font-size:9px; font-weight:700; letter-spacing:1px;
+  padding:2px 7px; border-radius:4px;
+}
+
+.gc-soon-overlay {
+  position:absolute; inset:0;
+  background:rgba(0,0,0,.6);
+  display:flex; flex-direction:column; align-items:center; justify-content:center; gap:6px;
+}
+.gc-soon-badge {
+  background:var(--red); color:#fff;
+  font-family:'Exo 2',sans-serif; font-size:9px; font-weight:700; letter-spacing:1.5px;
+  padding:3px 10px; border-radius:20px;
+}
+
+.gc-info { padding:8px 10px 10px; }
+.gc-title { font-size:12px; font-weight:700; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.gc-tag {
+  display:inline-block; margin-top:5px;
+  font-size:10px; font-weight:600; padding:2px 8px; border-radius:20px;
+}
+.tag-red    { color:var(--red);  background:rgba(232,21,42,.12); }
+.tag-blue   { color:var(--blue); background:rgba(100,130,220,.12); }
+.tag-orange { color:#f97316;     background:rgba(249,115,22,.12); }
+.tag-green  { color:#22c55e;     background:rgba(34,197,94,.12); }
+.tag-yellow { color:#eab308;     background:rgba(234,179,8,.12); }
+.tag-cyan   { color:#06b6d4;     background:rgba(6,182,212,.12); }
+.tag-purple { color:#a855f7;     background:rgba(168,85,247,.12); }
+
+/* ── GRID (full page) ── */
+.games-grid { display:flex; flex-wrap:wrap; gap:14px; }
+
+/* ── TRENDING CARDS (with likes) ── */
+.game-card .gc-likes {
+  position:absolute; top:8px; left:8px;
+  background:rgba(0,0,0,.65); border:1px solid rgba(255,255,255,.1);
+  color:#fff; font-size:10px; font-weight:700;
+  padding:2px 8px; border-radius:20px;
+  display:flex; align-items:center; gap:4px;
+}
+.gc-likes-icon { color:#6482dc; }
+
+/* ── RIGHT PANEL WIDGETS ── */
+.rp-section-title {
+  display:flex; align-items:center; gap:8px;
+  font-family:'Exo 2',sans-serif; font-size:13px; font-weight:700;
+  letter-spacing:.5px; text-transform:uppercase; color:#fff;
+  margin-bottom:12px;
+}
+.rp-section-title svg { color:var(--red); }
+
+/* Announcements */
+.announce-list { display:flex; flex-direction:column; gap:8px; }
+.announce-item {
+  display:flex; gap:10px; align-items:flex-start;
+  padding:10px 12px; border-radius:10px;
+  background:rgba(255,255,255,.03); border:1px solid var(--border);
+  transition:border-color .2s, background .2s; cursor:pointer;
+}
+.announce-item:hover { border-color:rgba(232,21,42,.3); background:rgba(232,21,42,.04); }
+.announce-icon {
+  width:34px; height:34px; border-radius:8px; flex-shrink:0;
+  display:flex; align-items:center; justify-content:center; font-size:15px;
+}
+.announce-icon.red   { background:rgba(232,21,42,.15); }
+.announce-icon.blue  { background:rgba(100,130,220,.15); }
+.announce-icon.yellow{ background:rgba(234,179,8,.12); }
+.announce-text h5 { font-size:12px; font-weight:700; color:#fff; line-height:1.3; margin-bottom:2px; }
+.announce-text p  { font-size:11px; color:var(--muted); line-height:1.4; }
+.announce-time { font-size:10px; color:var(--red); margin-top:3px; display:flex; align-items:center; gap:3px; }
+.announce-time::before { content:''; width:4px; height:4px; border-radius:50%; background:var(--red); }
+
+.view-all-announcements {
+  display:flex; align-items:center; justify-content:space-between;
+  padding:9px 0 0; font-size:12px; font-weight:600; color:var(--red);
+  cursor:pointer; border-top:1px solid var(--border); margin-top:6px;
+  transition:gap .2s; text-decoration:none;
+}
+.view-all-announcements:hover { opacity:.8; }
+
+/* Quick Links */
+.quick-links { display:flex; flex-direction:column; gap:1px; }
+.ql-item {
+  display:flex; align-items:center; justify-content:space-between;
+  padding:10px 11px; border-radius:8px; cursor:pointer;
+  font-size:12.5px; color:var(--muted); font-weight:600;
+  transition:all .15s;
+}
+.ql-item:hover { background:rgba(255,255,255,.04); color:var(--text); }
+.ql-item-left { display:flex; align-items:center; gap:9px; }
+.ql-item svg.ql-icon { width:14px; height:14px; }
+.ql-arrow { color:var(--border-lt); }
+
+/* Bottom Help */
+.rp-help {
+  background:rgba(232,21,42,.08); border:1px solid rgba(232,21,42,.2);
+  border-radius:12px; padding:16px; margin-top:4px;
+}
+.rp-help-top { display:flex; align-items:center; gap:10px; margin-bottom:10px; }
+.rp-help-icon { font-size:26px; }
+.rp-help h4 { font-family:'Exo 2',sans-serif; font-size:13px; font-weight:700; color:#fff; }
+.rp-help p  { font-size:11px; color:var(--muted); line-height:1.5; margin-bottom:10px; }
+.rp-help-btn {
+  display:flex; align-items:center; justify-content:center; gap:6px;
+  width:100%; padding:9px; border-radius:8px;
+  background:var(--red); border:none; color:#fff;
+  font-family:'Syne',sans-serif; font-size:12px; font-weight:700;
+  cursor:pointer; transition:box-shadow .2s; text-decoration:none;
+}
+.rp-help-btn:hover { box-shadow:0 0 20px var(--red-glow); }
+
+/* ── PAGE HEADER ── */
+.page-header { margin-bottom:20px; }
+.page-title { font-family:'Exo 2',sans-serif; font-size:32px; font-weight:800; letter-spacing:-0.3px; line-height:1; color:#fff; }
+.page-sub { color:var(--muted); font-size:12.5px; margin-top:4px; }
+
+/* ── PAGES ── */
+.page { display:none; }
+.page.active { display:block; }
+
+/* ── MODAL ── */
+.modal-overlay {
+  display:none; position:fixed; inset:0; z-index:400;
+  background:rgba(0,0,0,.8); backdrop-filter:blur(8px);
+  align-items:center; justify-content:center;
+}
+.modal-overlay.active { display:flex; animation:fadeIn .2s ease; }
+@keyframes fadeIn { from{opacity:0} to{opacity:1} }
+@keyframes slideUp { from{transform:translateY(18px);opacity:0} to{transform:translateY(0);opacity:1} }
+
+.modal {
+  background:var(--bg-card); border:1px solid var(--border-lt);
+  border-radius:18px; width:500px; max-width:94vw;
+  overflow:hidden; animation:slideUp .22s ease;
+  max-height:88vh; display:flex; flex-direction:column;
+}
+.modal-hero { height:200px; position:relative; flex-shrink:0; overflow:hidden; }
+.modal-hero img { width:100%; height:100%; object-fit:cover; }
+.modal-hero-ph {
+  width:100%; height:100%;
+  display:flex; align-items:center; justify-content:center;
+  background:linear-gradient(135deg,#131320,#0a0a12); font-size:68px;
+}
+.modal-hero::after {
+  content:''; position:absolute; bottom:0; left:0; right:0;
+  height:70px; background:linear-gradient(transparent,var(--bg-card));
+}
+.modal-x {
+  position:absolute; top:12px; right:12px; z-index:1;
+  width:28px; height:28px; border-radius:50%;
+  background:rgba(0,0,0,.65); border:1px solid rgba(255,255,255,.1);
+  display:flex; align-items:center; justify-content:center;
+  cursor:pointer; color:#fff; transition:background .18s; font-size:13px;
+}
+.modal-x:hover { background:var(--red); }
+
+.modal-body { padding:14px 22px 22px; overflow-y:auto; }
+.modal-title { font-family:'Exo 2',sans-serif; font-size:22px; font-weight:800; }
+.modal-tags  { display:flex; gap:6px; margin:7px 0 13px; flex-wrap:wrap; }
+.modal-meta  { display:flex; gap:14px; flex-wrap:wrap; margin-bottom:14px; }
+.mm-item { display:flex; flex-direction:column; gap:2px; }
+.mm-label { font-size:10px; color:var(--muted); text-transform:uppercase; letter-spacing:.8px; }
+.mm-val   { font-size:13.5px; font-weight:700; }
+.modal-desc { font-size:13px; color:#9090a0; line-height:1.7; }
+.modal-actions { display:flex; gap:9px; margin-top:16px; }
+.btn-play {
+  flex:1; padding:11px; border-radius:9px;
+  background:var(--red); border:none; color:#fff;
+  font-family:'Exo 2',sans-serif; font-size:13px; font-weight:700;
+  cursor:pointer; transition:all .18s; display:flex; align-items:center; justify-content:center; gap:6px;
+}
+.btn-play:hover { background:#ff2035; box-shadow:0 0 20px var(--red-glow); }
+.btn-guide {
+  padding:11px 18px; border-radius:9px;
+  background:rgba(255,255,255,.07); border:1px solid var(--border-lt); color:var(--text);
+  font-family:'Exo 2',sans-serif; font-size:13px; font-weight:700;
+  cursor:pointer; transition:all .18s; display:flex; align-items:center; gap:6px;
+}
+.btn-guide:hover { background:rgba(255,255,255,.11); }
+
+/* ── EMPTY STATE ── */
+.empty-state {
+  width:100%; text-align:center; padding:40px 20px;
+  color:var(--muted); font-size:14px;
+  border:1px dashed var(--border); border-radius:12px;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width:1200px) {
+  :root { --right-w: 0px; }
+  .right-panel { display:none; }
+  .main { margin-right:0; }
+}
+@media (max-width:860px) {
+  :root { --sidebar-w:54px; }
+  .nav-item span, .sidebar-section-label, .sidebar-bottom, .sidebar-footer { display:none; }
+  .nav-item { justify-content:center; padding:12px; }
+  .logo-area { justify-content:center; padding:0 8px; }
+  .platform-cards { grid-template-columns:1fr; }
+  .featured-banner { height:280px; }
+}
+
+.nav-icon {
+  width:16px; height:16px; object-fit:contain; flex-shrink:0;
+}
+
+.fb-nav {
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  width:42px;
+  height:42px;
+  border-radius:50%;
+  border:1px solid rgba(255,255,255,.2);
+  background:rgba(0,0,0,.4);
+  color:#fff;
+  font-size:18px;
+  cursor:pointer;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  z-index:10;
+}
+
+.fb-nav.prev { left:10px; }
+.fb-nav.next { right:10px; }
+
+.fb-nav:hover {
+  background:var(--red);
+}
+
+  .fb-slide {
+  position:relative;
+  width:100%;
+  height:100%;
+  display:flex;
+  align-items:center;
+}
+
+.fb-slide img.fb-img {
+  position:absolute;
+  top:0;
+  left:0;
+
+  width:100%;
+  height:100%;
+
+  object-fit:cover;
+  object-position:center right; /* 🔥 IMPORTANT */
+}
+
+</style>
+</head>
+<body>
+
+<!-- ── TOPBAR ── -->
+<header class="topbar">
+  <div class="logo-area">
+    <img class="logo-img" src="logo.png" alt="GameDeck PH" onclick="navigateTo('home')">
+  </div>
+  <div class="search-wrap">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+    <input class="search-input" id="searchInput" type="text" placeholder="Search games..." autocomplete="off">
+    <div class="search-dropdown" id="searchDropdown"></div>
+  </div>
+  <div class="topbar-right">
+    <div class="user-btn" id="userBtn">
+      <div class="user-avatar">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      </div>
+      <span class="user-name">Gamer</span>
+      <svg class="chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+    <div class="user-dropdown" id="userDropdown">
+      <div class="ud-header">
+        <strong>Gamer</strong>
+        <p>GameDeckPH Member</p>
+      </div>
+      <div class="ud-item danger" onclick="signOut()">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+        Sign Out
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ── LAYOUT ── -->
+<div class="layout">
+
+  <!-- ── SIDEBAR ── -->
+  <nav class="sidebar">
+    <p class="sidebar-section-label">Library</p>
+    <div class="nav-item active" data-page="home">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+      <span>All Games</span>
+    </div>
+    <div class="nav-item" data-page="windows">
+      <img src="windows.png" class="nav-icon" alt="">
+      <span>Windows Games</span>
+    </div>
+    <div class="nav-item" data-page="steamos">
+      <img src="steamos.png" class="nav-icon" alt="">
+      <span>SteamOS / Bazzite</span>
+    </div>
+
+    <div class="sidebar-bottom">
+      <div class="help-card">
+        <div class="help-card-icon">🎧</div>
+        <h4>NEED HELP?</h4>
+        <p>Our support team is here to help you!</p>
+        <a class="help-btn" href="https://www.facebook.com/profile.php?id=61573726553445" target="_blank">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          Message Us
+        </a>
+      </div>
+      <div class="sidebar-footer">
+        <p>© 2025 GameDeck PH</p>
+        <div class="sidebar-footer-links">
+          <a href="https://www.facebook.com/profile.php?id=61573726553445" target="_blank">Facebook</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ── MAIN ── -->
+  <main class="main" id="mainContent">
+
+    <!-- ── HOME PAGE ── -->
+    <div class="page active" id="page-home">
+
+      <!-- ── FEATURED BANNER ── -->
+      <div class="featured-banner" id="featuredBanner">
+
+        <!-- ═══════════════════════════════════════════════════
+             SLIDE 1 — Resident Evil Requiem (real game)
+             To change: update src, title, subtitle, desc
+        ════════════════════════════════════════════════════ -->
+        <div class="fb-slide active" id="fb-slide-0">
+          <img class="fb-img" src="bannerr9.png" alt="Resident Evil Requiem"
+               onerror="this.style.display='none'">
+          <div class="fb-overlay"></div>
+          <div class="fb-badge" style="background:var(--red);">
+            <span class="fb-badge-dot"></span>Featured Game
+          </div>
+          <div class="fb-content">
+            <div class="fb-title">RESIDENT EVIL<br><em>REQUIEM</em></div>
+            <div class="fb-subtitle">Capcom &nbsp;·&nbsp; 2025 &nbsp;·&nbsp; Action / Horror</div>
+            <div class="fb-desc">Survive the nightmare. Uncover the truth. A new chapter in the legendary survival horror series.</div>
+          </div>
+        </div>
+
+        <!-- ═══════════════════════════════════════════════════
+             SLIDE 2 — Coming Soon placeholder
+             Replace img src + text when ready
+        ════════════════════════════════════════════════════ -->
+        <div class="fb-slide" id="fb-slide-1">
+          <div class="fb-placeholder">
+            <div class="fb-placeholder-icon">
+              <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#606068" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+            </div>
+            <span>Coming Soon</span>
+          </div>
+          <div class="fb-overlay" style="background:linear-gradient(100deg,rgba(0,0,0,.7) 0%,rgba(0,0,0,.4) 50%,transparent 100%)"></div>
+          <div class="fb-badge" style="background:#444;">
+            <span class="fb-badge-dot" style="background:rgba(255,255,255,.4);animation:none;"></span>Coming Soon
+          </div>
+          <div class="fb-content">
+            <div class="fb-title" style="opacity:.35;">NEXT GAME<br><em style="color:var(--muted);">TITLE</em></div>
+            <div class="fb-subtitle" style="opacity:.4;">Stay tuned for more updates</div>
+            <div class="fb-desc" style="opacity:.35;">This slot will be filled with a new featured game soon. Follow our Facebook page for the latest announcements.</div>
+          </div>
+        </div>
+
+        <!-- ═══════════════════════════════════════════════════
+             SLIDE 3 — Coming Soon placeholder
+             Replace img src + text when ready
+        ════════════════════════════════════════════════════ -->
+        <div class="fb-slide" id="fb-slide-2">
+          <div class="fb-placeholder">
+            <div class="fb-placeholder-icon">
+              <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#606068" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+            </div>
+            <span>Coming Soon</span>
+          </div>
+          <div class="fb-overlay" style="background:linear-gradient(100deg,rgba(0,0,0,.7) 0%,rgba(0,0,0,.4) 50%,transparent 100%)"></div>
+          <div class="fb-badge" style="background:#444;">
+            <span class="fb-badge-dot" style="background:rgba(255,255,255,.4);animation:none;"></span>Coming Soon
+          </div>
+          <div class="fb-content">
+            <div class="fb-title" style="opacity:.35;">COMING<br><em style="color:var(--muted);">SOON</em></div>
+            <div class="fb-subtitle" style="opacity:.4;">More games dropping soon</div>
+            <div class="fb-desc" style="opacity:.35;">We're adding more featured titles to GameDeck PH. Check back soon or follow us for updates.</div>
+          </div>
+        </div>
+
+        <!-- Slide counter -->
+        <div class="fb-counter" id="fbCounter">1 / 3</div>
+
+        <!-- Dots -->
+        <div class="fb-dots" id="fbDots">
+          <div class="fb-dot active" onclick="bannerGoTo(0)"></div>
+          <div class="fb-dot" onclick="bannerGoTo(1)"></div>
+          <div class="fb-dot" onclick="bannerGoTo(2)"></div>
+        </div>
+
+        <!-- Progress bar -->
+        <div class="fb-progress">
+          <div class="fb-progress-bar" id="fbProgressBar"></div>
+        </div>
+
+        <!-- NAV BUTTONS -->
+<button class="fb-nav prev" onclick="bannerGoTo(bannerCur - 1)">❮</button>
+<button class="fb-nav next" onclick="bannerGoTo(bannerCur + 1)">❯</button>
+
+      </div>
+      <!-- END FEATURED BANNER -->
+
+      <!-- Platform Cards -->
+      <div class="platform-cards">
+        <div class="plat-card win" data-page="windows">
+          <div class="plat-icon">
+            <img src="windows.png" style="width:100%;height:100%;object-fit:contain;" alt="">
+          </div>
+          <div>
+            <div class="plat-name">Windows Games</div>
+            <div class="plat-desc">Explore all Windows compatible games</div>
+          </div>
+          <div class="plat-arrow">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+          </div>
+        </div>
+        <div class="plat-card steam" data-page="steamos">
+          <div class="plat-icon">
+            <img src="steamos.png" style="width:100%;height:100%;object-fit:contain;" alt="">
+          </div>
+          <div>
+            <div class="plat-name">SteamOS / Bazzite</div>
+            <div class="plat-desc">Explore all SteamOS & Bazzite compatible games</div>
+          </div>
+          <div class="plat-arrow">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- Windows Row -->
+      <div class="games-section">
+        <div class="sec-header">
+          <div class="sec-title">
+            <div class="sec-dot-red"></div>
+            Windows Games
+          </div>
+          <button class="view-all red" data-page="windows">View All
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+          </button>
+        </div>
+        <div class="row-wrap">
+          <button class="scroll-btn left"  onclick="scrollRow(this,-1)"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg></button>
+          <div class="games-row" id="winRow"></div>
+          <button class="scroll-btn right" onclick="scrollRow(this,1)"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg></button>
+        </div>
+      </div>
+
+      <!-- SteamOS Row -->
+      <div class="games-section">
+        <div class="sec-header">
+          <div class="sec-title">
+            <div class="sec-dot-blue"></div>
+            SteamOS / Bazzite Games
+          </div>
+          <button class="view-all blue" data-page="steamos">View All
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+          </button>
+        </div>
+        <div class="row-wrap">
+          <button class="scroll-btn left"  onclick="scrollRow(this,-1)"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg></button>
+          <div class="games-row" id="steamRow"></div>
+          <button class="scroll-btn right" onclick="scrollRow(this,1)"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── WINDOWS PAGE ── -->
+    <div class="page" id="page-windows">
+      <div class="page-header">
+        <h1 class="page-title">WINDOWS GAMES</h1>
+        <p class="page-sub">All Windows compatible games</p>
+      </div>
+      <div class="games-grid" id="winGrid"></div>
+    </div>
+
+    <!-- ── STEAMOS PAGE ── -->
+    <div class="page" id="page-steamos">
+      <div class="page-header">
+        <h1 class="page-title">STEAMOS / BAZZITE</h1>
+        <p class="page-sub">All SteamOS & Bazzite compatible games</p>
+      </div>
+      <div class="games-grid" id="steamGrid"></div>
+    </div>
+
+  </main>
+
+  <!-- ── RIGHT PANEL ── -->
+  <aside class="right-panel">
+    <div>
+      <div class="rp-section-title">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 17H2a3 3 0 0 0 3-3V9a7 7 0 0 1 14 0v5a3 3 0 0 0 3 3zm-8.27 4a2 2 0 0 1-3.46 0"/></svg>
+        Announcements
+      </div>
+      <div class="announce-list">
+        <div class="announce-item">
+          <div class="announce-icon red">🎁</div>
+          <div class="announce-text">
+            <h5>We're updating the library with more games soon!</h5>
+            <p>Stay tuned and follow our page for updates.</p>
+          </div>
+        </div>
+      </div>
+      <a class="view-all-announcements" href="https://www.facebook.com/profile.php?id=61573726553445" target="_blank"></a>
+    </div>
+
+    <div>
+      <div class="rp-section-title">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+        Quick Links
+        </div>
+        <div class="ql-item" onclick="window.open('https://www.systemrequirementslab.com','_blank')">
+          <div class="ql-item-left">
+            <svg class="ql-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="2" y="3" width="20" height="14" rx="2"/>
+              <line x1="8" y1="21" x2="16" y2="21"/>
+              <line x1="12" y1="17" x2="12" y2="21"/>
+            </svg>
+            System Requirements
+          </div>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+</div>
+
+<!-- ── GAME MODAL ── -->
+<div class="modal-overlay" id="gameModal">
+  <div class="modal">
+    <div class="modal-hero">
+      <div class="modal-hero-ph" id="mHero">🎮</div>
+      <button class="modal-x" onclick="closeModal()">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="modal-title" id="mTitle"></div>
+      <div class="modal-tags"  id="mTags"></div>
+      <div class="modal-meta"  id="mMeta"></div>
+      <div class="modal-desc"  id="mDesc"></div>
+      <div class="modal-actions" id="mActions"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ─── GAME DATA ────────────────────────────────────────────────────────────────
+// HOW TO ADD A GAME:
+//   name, img, genre, tagClass, platform, page (optional), isNew (true/false),
+//   likes (number, optional), desc, rating, year, dev
+//
+// tagClass options: tag-red / tag-blue / tag-orange / tag-green / tag-yellow / tag-cyan / tag-purple
+
+const WIN_GAMES = [
+  {
+    id: 1,
+    name: "Resident Evil Requiem",
+    img: "r9.jpg",
+    genre: "Action / Horror",
+    tagClass: "tag-red",
+    platform: "Windows",
+    page: "r9.html",
+    isNew: true,
+    desc: "Survive the nightmare. Uncover the truth. A new chapter in the legendary survival horror series.",
+    rating: "18+",
+    year: "2025",
+    dev: "Capcom"
+  },
+  // ── ADD MORE WINDOWS GAMES BELOW ──────────────────────────────────────────
+  // { id:2, name:"Forza Horizon 5", img:"fh5.jpg", genre:"Racing", tagClass:"tag-orange", platform:"Windows", page:"fh5.html", isNew:true, desc:"...", rating:"E", year:"2021", dev:"Playground Games" },
+];
+
+const STEAM_GAMES = [
+  // ── ADD STEAMOS / BAZZITE GAMES BELOW ─────────────────────────────────────
+  // { id:101, name:"Elden Ring", img:"er.jpg", genre:"Action RPG", tagClass:"tag-yellow", platform:"SteamOS / Bazzite", likes:2400, desc:"...", rating:"M", year:"2022", dev:"FromSoftware" },
+];
+
+const ALL_GAMES = [...WIN_GAMES, ...STEAM_GAMES];
+
+// ─── CARD BUILDER ────────────────────────────────────────────────────────────
+function createCard(g) {
+  const div = document.createElement('div');
+  div.className = 'game-card';
+
+  const hasImg = g.img && g.img.trim() !== '';
+  let thumbHTML;
+
+  if (hasImg) {
+    thumbHTML = `
+      <div class="gc-thumb">
+        <img src="${g.img}" alt="${g.name}" loading="lazy"
+             onerror="this.parentElement.innerHTML='<div class=gc-soon-overlay><div class=gc-soon-badge>COMING SOON</div></div>'">
+        ${g.isNew ? `<div class="gc-new-badge">NEW</div>` : ''}
+        ${g.likes ? `<div class="gc-likes"><span class="gc-likes-icon">👍</span>${(g.likes/1000).toFixed(1)}K</div>` : ''}
+      </div>`;
+  } else {
+    thumbHTML = `
+      <div class="gc-thumb">
+        <div class="gc-soon-overlay">
+          <div class="gc-soon-badge">COMING SOON</div>
+        </div>
+      </div>`;
+  }
+
+  const dispName = g.name || 'COMING SOON';
+
+  div.innerHTML = `
+    <div class="gc-inner">
+      ${thumbHTML}
+      <div class="gc-info">
+        <div class="gc-title">${dispName}</div>
+        <span class="gc-tag ${g.tagClass}">${g.genre}</span>
+      </div>
+    </div>
+  `;
+
+  div.addEventListener('click', () => {
+    if (g.page) { window.location.href = g.page; }
+    else if (g.name) { openGameModal(g); }
+  });
+
+  return div;
+}
+
+function populateRow(id, games) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  el.innerHTML = '';
+  const real = games.filter(g => g.name && g.name.trim() !== '');
+  if (real.length === 0) {
+    el.innerHTML = `<div class="empty-state">🎮 No games yet — check back soon!</div>`;
+    return;
+  }
+  real.forEach(g => el.appendChild(createCard(g)));
+}
+
+function populateGrid(id, games) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  el.innerHTML = '';
+  const real = games.filter(g => g.name && g.name.trim() !== '');
+  if (real.length === 0) {
+    el.innerHTML = `<div class="empty-state" style="width:100%;">🎮 No games yet — check back soon!</div>`;
+    return;
+  }
+  real.forEach(g => el.appendChild(createCard(g)));
+}
+
+function init() {
+  populateRow('winRow',   WIN_GAMES);
+  populateRow('steamRow', STEAM_GAMES);
+  populateGrid('winGrid',   WIN_GAMES);
+  populateGrid('steamGrid', STEAM_GAMES);
+}
+
+// ─── FEATURED BANNER CAROUSEL ────────────────────────────────────────────────
+const BANNER_INTERVAL = 6000; // ms per slide
+const TOTAL_SLIDES = 3;
+
+let bannerCur = 0;
+let bannerTimer = null;
+let progressTimer = null;
+
+function bannerGoTo(n) {
+  // Remove active from current
+  document.getElementById('fb-slide-' + bannerCur).classList.remove('active');
+  document.querySelectorAll('#fbDots .fb-dot')[bannerCur].classList.remove('active');
+
+  bannerCur = (n + TOTAL_SLIDES) % TOTAL_SLIDES;
+
+  // Add active to new
+  document.getElementById('fb-slide-' + bannerCur).classList.add('active');
+  document.querySelectorAll('#fbDots .fb-dot')[bannerCur].classList.add('active');
+
+  // Update counter
+  document.getElementById('fbCounter').textContent = (bannerCur + 1) + ' / ' + TOTAL_SLIDES;
+
+  // Reset progress bar
+  startProgress();
+}
+
+function startProgress() {
+  const bar = document.getElementById('fbProgressBar');
+  bar.style.transition = 'none';
+  bar.style.width = '0%';
+  // force reflow
+  void bar.offsetWidth;
+  bar.style.transition = 'width ' + BANNER_INTERVAL + 'ms linear';
+  bar.style.width = '100%';
+}
+
+function startBannerAuto() {
+  if (bannerTimer) clearInterval(bannerTimer);
+  bannerTimer = setInterval(() => {
+    bannerGoTo(bannerCur + 1);
+  }, BANNER_INTERVAL);
+  startProgress();
+}
+
+// Pause on hover
+document.getElementById('featuredBanner').addEventListener('mouseenter', () => {
+  if (bannerTimer) clearInterval(bannerTimer);
+  const bar = document.getElementById('fbProgressBar');
+  bar.style.transition = 'none';
+  // Freeze bar width visually
+  const computed = getComputedStyle(bar).width;
+  const parent = bar.parentElement.offsetWidth;
+  const pct = (parseFloat(computed) / parent * 100).toFixed(1);
+  bar.style.width = pct + '%';
+});
+
+document.getElementById('featuredBanner').addEventListener('mouseleave', () => {
+  startBannerAuto();
+});
+
+// ─── MODAL ───────────────────────────────────────────────────────────────────
+function openGameModal(g) {
+  const overlay = document.getElementById('gameModal');
+  const mHero   = document.getElementById('mHero');
+  const mTitle  = document.getElementById('mTitle');
+  const mTags   = document.getElementById('mTags');
+  const mMeta   = document.getElementById('mMeta');
+  const mDesc   = document.getElementById('mDesc');
+  const mActions= document.getElementById('mActions');
+
+  if (g.img) {
+    mHero.innerHTML = `<img src="${g.img}" alt="${g.name}" style="width:100%;height:100%;object-fit:cover;" onerror="this.parentElement.innerHTML='<div class=modal-hero-ph>🎮</div>'">`;
+  } else {
+    mHero.innerHTML = `<div class="modal-hero-ph">🎮</div>`;
+  }
+
+  mTitle.textContent = g.name || 'Coming Soon';
+  mTags.innerHTML = `<span class="gc-tag ${g.tagClass}">${g.genre}</span><span class="gc-tag tag-blue">${g.platform}</span>`;
+  mMeta.innerHTML = `
+    ${g.rating ? `<div class="mm-item"><div class="mm-label">Rating</div><div class="mm-val">${g.rating}</div></div>` : ''}
+    ${g.year   ? `<div class="mm-item"><div class="mm-label">Year</div><div class="mm-val">${g.year}</div></div>` : ''}
+    ${g.dev    ? `<div class="mm-item"><div class="mm-label">Developer</div><div class="mm-val">${g.dev}</div></div>` : ''}
+  `;
+  mDesc.textContent = g.desc || 'No description available.';
+
+  mActions.innerHTML = '';
+  if (g.page) {
+    const playBtn = document.createElement('button');
+    playBtn.className = 'btn-play';
+    playBtn.innerHTML = '▶ Play Now';
+    playBtn.onclick = () => window.location.href = g.page;
+    mActions.appendChild(playBtn);
+  }
+  const guideBtn = document.createElement('button');
+  guideBtn.className = 'btn-guide';
+  guideBtn.innerHTML = '📖 View Guide';
+  guideBtn.onclick = () => window.open('https://www.facebook.com/profile.php?id=61573726553445','_blank');
+  mActions.appendChild(guideBtn);
+
+  overlay.classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  document.getElementById('gameModal').classList.remove('active');
+  document.body.style.overflow = '';
+}
+document.getElementById('gameModal').addEventListener('click', function(e) {
+  if (e.target === this) closeModal();
+});
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+// ─── NAVIGATION ──────────────────────────────────────────────────────────────
+function navigateTo(pageId) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  document.getElementById(`page-${pageId}`)?.classList.add('active');
+  document.querySelector(`.nav-item[data-page="${pageId}"]`)?.classList.add('active');
+  document.getElementById('mainContent').scrollTop = 0;
+}
+
+document.querySelectorAll('.nav-item[data-page]').forEach(el => {
+  el.addEventListener('click', () => navigateTo(el.dataset.page));
+});
+document.querySelectorAll('[data-page]').forEach(el => {
+  if (!el.classList.contains('nav-item')) {
+    el.addEventListener('click', () => navigateTo(el.dataset.page));
+  }
+});
+
+// ─── SEARCH ──────────────────────────────────────────────────────────────────
+const searchInput    = document.getElementById('searchInput');
+const searchDropdown = document.getElementById('searchDropdown');
+
+searchInput.addEventListener('input', () => {
+  const q = searchInput.value.trim().toLowerCase();
+  if (!q) { searchDropdown.classList.remove('active'); return; }
+
+  const res = ALL_GAMES.filter(g => g.name && g.name.toLowerCase().includes(q)).slice(0, 6);
+  if (!res.length) { searchDropdown.classList.remove('active'); return; }
+
+  searchDropdown.innerHTML = res.map(g => `
+    <div class="s-item" data-id="${g.id}">
+      <div class="s-thumb">
+        ${g.img ? `<img src="${g.img}" alt="${g.name}" onerror="this.style.display='none'">` : '🎮'}
+      </div>
+      <div>
+        <div class="s-name">${g.name}</div>
+        <div class="s-meta">${g.genre} • ${g.platform}</div>
+      </div>
+    </div>
+  `).join('');
+
+  searchDropdown.querySelectorAll('.s-item').forEach(item => {
+    item.addEventListener('click', () => {
+      const game = ALL_GAMES.find(g => g.id === +item.dataset.id);
+      searchDropdown.classList.remove('active');
+      searchInput.value = '';
+      if (game) {
+        if (game.page) window.location.href = game.page;
+        else openGameModal(game);
+      }
+    });
+  });
+  searchDropdown.classList.add('active');
+});
+
+document.addEventListener('click', e => {
+  if (!e.target.closest('.search-wrap')) searchDropdown.classList.remove('active');
+});
+
+// ─── USER DROPDOWN ───────────────────────────────────────────────────────────
+document.getElementById('userBtn').addEventListener('click', e => {
+  e.stopPropagation();
+  document.getElementById('userBtn').classList.toggle('open');
+  document.getElementById('userDropdown').classList.toggle('active');
+});
+document.addEventListener('click', () => {
+  document.getElementById('userBtn').classList.remove('open');
+  document.getElementById('userDropdown').classList.remove('active');
+});
+
+// ─── SIGN OUT ────────────────────────────────────────────────────────────────
+function signOut() { window.location.href = 'index.html'; }
+
+// ─── SCROLL ROWS ─────────────────────────────────────────────────────────────
+function scrollRow(btn, dir) {
+  btn.parentElement.querySelector('.games-row').scrollBy({ left: dir * 560, behavior: 'smooth' });
+}
+
+// ─── INIT ─────────────────────────────────────────────────────────────────────
+init();
+startBannerAuto();
+</script>
+</body>
+</html>
