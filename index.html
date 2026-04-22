@@ -1,0 +1,1891 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GameDeck PH</title>
+<link rel="icon" type="image/png" href="logo.png">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Syne:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --red:#ff1a4b;
+}
+
+*{
+  box-sizing:border-box;
+}
+
+body{
+  margin:0;
+  background:#080808;
+  color:#e8e8e8;
+  font-family:'Syne',sans-serif;
+}
+
+/* 🔙 BACK BUTTON TOP LEFT */
+.back-btn{
+  position:fixed;
+  top:20px;
+  left:20px;
+  z-index:999;
+
+  background:rgba(255,255,255,0.05);
+  border:1px solid #1e1e20;
+  color:#fff;
+
+  padding:10px 14px;
+  border-radius:10px;
+  font-size:13px;
+  font-weight:600;
+
+  cursor:pointer;
+  backdrop-filter: blur(6px);
+  transition:.25s ease;
+}
+
+.back-btn:hover{
+  border-color:var(--red);
+  background:rgba(255,26,75,0.15);
+  box-shadow:0 0 12px rgba(255,26,75,.3);
+}
+
+/* container */
+.container{
+  width:100%;
+  max-width:1000px;
+  margin:auto;
+  padding:clamp(20px,5vw,50px) clamp(15px,4vw,30px);
+}
+
+/* banner */
+.banner img{
+  width:100%;
+  height:auto;
+  display:block;
+  border-radius:20px;
+  margin-bottom:20px;
+}
+
+/* title */
+.title{
+  font-family:'Bebas Neue';
+  font-size:clamp(36px,7vw,70px);
+  letter-spacing:2px;
+  line-height:1.1;
+}
+
+.price{
+  color:var(--red);
+  font-size:clamp(24px,5vw,40px);
+  margin-bottom:20px;
+}
+
+/* card */
+.card{
+  background:#0e0e0f;
+  border:1px solid #1e1e20;
+  border-radius:20px;
+  padding:clamp(18px,3vw,30px);
+  margin-top:20px;
+}
+
+/* section */
+.section-title{
+  color:var(--red);
+  font-weight:700;
+  margin-bottom:10px;
+  font-size:clamp(14px,2vw,18px);
+}
+
+/* list */
+ul{
+  padding-left:20px;
+  line-height:1.8;
+  font-size:clamp(13px,2.5vw,16px);
+}
+
+/* text */
+p{
+  font-size:clamp(13px,2.5vw,16px);
+  line-height:1.6;
+}
+
+/* link */
+a{
+  color:var(--red);
+  text-decoration:none;
+  font-weight:600;
+}
+
+a:hover{
+  text-decoration:underline;
+}
+
+/* button */
+.btn{
+  margin-top:30px;
+  background:var(--red);
+  border:none;
+  padding:14px 28px;
+  border-radius:12px;
+  color:white;
+  font-weight:700;
+  cursor:pointer;
+  transition:.3s;
+  width:fit-content;
+}
+
+.btn:hover{
+  box-shadow:0 0 20px rgba(255,26,75,.4);
+}
+
+/* center CTA */
+.btn-wrap{
+  display:flex;
+  justify-content:center;
+}
+
+/* mobile */
+@media(max-width:600px){
+  .title{
+    text-align:center;
+  }
+
+  .price{
+    text-align:center;
+  }
+
+  .btn{
+    width:100%;
+    text-align:center;
+  }
+
+  .back-btn{
+    top:15px;
+    left:15px;
+    padding:8px 12px;
+    font-size:12px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- 🔙 BACK BUTTON -->
+<button class="back-btn" onclick="goBack()">← Back</button>
+
+<div class="container">
+
+  <!-- IMAGE -->
+  <div class="banner">
+    <img src="package2.png" alt="GLX GDrive Package">
+  </div>
+
+  <!-- TITLE -->
+  <div class="title">GLX GDRIVE PACKAGE</div>
+  <div class="price">₱499</div>
+
+  <!-- PROMO -->
+  <div class="card">
+    <div class="section-title">🎮 PROMO</div>
+    <p>ALL-IN-ONE PACKAGE VIA GDRIVE WORTH 100TB OF FILES FOR ONLY ₱499!</p>
+    <p>Compatible with PC, Laptop, Android, Macbook, Smart TV.</p>
+  </div>
+
+  <!-- FEATURES -->
+  <div class="card">
+    <div class="section-title">⭐ FEATURES</div>
+    <ul>
+      <li>Lifetime Access & Weekly Updated Files</li>
+      <li>No Virus / Malware</li>
+      <li>Pre-installed & Activated Files</li>
+      <li>Offline / Online Viewing Supported</li>
+      <li>24/7 Tech Support</li>
+      <li>Free Remote Installation</li>
+    </ul>
+  </div>
+
+  <!-- CONTENT -->
+  <div class="card">
+    <div class="section-title">📦 INCLUDED CONTENT</div>
+    <ul>
+      <li>PC/Laptop Games & Software</li>
+      <li>Retro Games Collection</li>
+      <li>Operating Systems</li>
+      <li>Diskless Setup (Pisonet)</li>
+      <li>Adobe 2025</li>
+      <li>Microsoft Office 365</li>
+      <li>Anti-virus Software</li>
+      <li>Ebooks / Manga / Manhwa / Novels</li>
+      <li>Premium Courses</li>
+      <li>Movies & TV Shows</li>
+      <li>K-Drama</li>
+      <li>Anime</li>
+      <li>Cartoons</li>
+      <li>Vivamax</li>
+      <li>Karaoke</li>
+      <li>Android Apps</li>
+      <li>Graphic Resources</li>
+    </ul>
+  </div>
+
+  <!-- FILE LIST -->
+  <div class="card">
+    <div class="section-title">📂 FULL FILE LIST</div>
+    <a href="https://tinyurl.com/GLXListofFiles" target="_blank">
+      Click here to view complete file list →
+    </a>
+    <p style="margin-top:10px;font-size:13px;opacity:.7;">
+      Note: Newly released PC games are at the bottom.
+    </p>
+  </div>
+
+  <!-- NOTE -->
+  <div class="card">
+    <div class="section-title">📌 NOTE</div>
+    <p>If a file is not included, you can request it.</p>
+    <p>All files are hosted on Google Drive (100TB storage).</p>
+  </div>
+
+  <!-- 🔥 AVAIL BUTTON -->
+  <div class="btn-wrap">
+    <button class="btn" onclick="goPayment()">
+      WANT TO AVAIL?
+    </button>
+  </div>
+
+</div>
+
+<script>
+function goBack(){
+  window.history.back();
+}
+
+function goPayment(){
+  window.location.href = "payment.html";
+}
+</script>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GameDeck PH</title>
+<link rel="icon" type="image/png" href="logo.png">
+
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Syne:wght@400;600;700;800&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg:#080808;
+  --card:#111;
+  --border:#222;
+  --text:#e8e8e8;
+  --muted:#aaa;
+  --red:#ff1a4b;
+  --glow:rgba(255,26,75,.4);
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+
+body{
+  background: radial-gradient(circle at top, #111 0%, #080808 60%);
+  color:var(--text);
+  font-family:'Syne',sans-serif;
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding:20px;
+}
+
+/* BACK BUTTON */
+.back-btn{
+  position:fixed;
+  top:20px;
+  left:20px;
+  background:rgba(255,255,255,.05);
+  border:1px solid var(--border);
+  color:#fff;
+  padding:10px 14px;
+  border-radius:10px;
+  cursor:pointer;
+  font-size:13px;
+  transition:.3s;
+}
+.back-btn:hover{
+  border-color:var(--red);
+  background:rgba(255,26,75,.1);
+}
+
+/* CONTAINER */
+.container{
+  width:100%;
+  max-width:480px;
+  animation:fadeIn .6s ease;
+}
+
+@keyframes fadeIn{
+  from{opacity:0; transform:translateY(20px)}
+  to{opacity:1; transform:translateY(0)}
+}
+
+/* CARD */
+.card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:20px;
+  padding:28px;
+  text-align:center;
+  position:relative;
+}
+
+/* TITLE */
+.title{
+  font-family:'Bebas Neue';
+  font-size:34px;
+  letter-spacing:2px;
+}
+
+/* SUBTEXT */
+.sub{
+  color:var(--muted);
+  font-size:14px;
+  margin:10px 0 20px;
+  line-height:1.6;
+}
+
+/* QR */
+.qr-box{
+  background:#000;
+  padding:15px;
+  border-radius:16px;
+  border:1px solid var(--border);
+  margin-bottom:20px;
+  transition:.3s;
+}
+
+.qr-box:hover{
+  border-color:var(--red);
+  transform:scale(1.02);
+}
+
+.qr-box img{
+  width:100%;
+  border-radius:10px;
+  cursor:zoom-in;
+}
+
+/* DETAILS */
+.details{
+  text-align:left;
+  background:#0d0d0d;
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:18px;
+  margin-bottom:20px;
+}
+
+.row{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:10px;
+}
+
+.label{
+  color:var(--muted);
+  font-size:13px;
+}
+
+/* 🔥 FONT FIX HERE ONLY */
+.value{
+  font-family:'Inter', sans-serif;
+  font-weight:700;
+  font-size:15px;
+  letter-spacing:.5px;
+}
+
+.value.red{
+  color:var(--red);
+  font-size:16px;
+}
+
+/* COPY */
+.copy{
+  font-size:12px;
+  color:var(--red);
+  cursor:pointer;
+  margin-left:8px;
+}
+
+/* BUTTON */
+.btn{
+  width:100%;
+  padding:15px;
+  border:none;
+  border-radius:12px;
+  background:var(--red);
+  color:#fff;
+  font-weight:700;
+  letter-spacing:1px;
+  cursor:pointer;
+  transition:.3s;
+}
+
+.btn:hover{
+  box-shadow:0 0 25px var(--glow);
+  transform:translateY(-2px);
+}
+
+/* NOTE */
+.note{
+  margin-top:14px;
+  font-size:12px;
+  color:var(--muted);
+}
+
+.success{
+  display:none;
+  margin-top:12px;
+  color:#00ff9c;
+  font-size:13px;
+}
+
+/* QR MODAL */
+.qr-modal{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.95);
+  justify-content:center;
+  align-items:center;
+  z-index:9999;
+}
+
+.qr-modal.active{
+  display:flex;
+}
+
+.qr-modal img{
+  max-width:90%;
+  max-height:90%;
+  border-radius:12px;
+}
+
+.close{
+  position:absolute;
+  top:20px;
+  right:30px;
+  font-size:40px;
+  color:white;
+  cursor:pointer;
+}
+
+/* RESPONSIVE */
+@media(max-width:480px){
+  .card{padding:22px}
+  .title{font-size:28px}
+}
+</style>
+</head>
+
+<body>
+
+<button class="back-btn" onclick="goBack()">← Back</button>
+
+<div class="container">
+  <div class="card">
+
+    <div class="title">GCASH PAYMENT</div>
+
+    <div class="sub">
+      Send your payment via GCash.<br>
+      <b>Screenshot or download your receipt</b> as proof.
+    </div>
+
+    <div class="qr-box">
+      <img src="payment.png" id="qrImg">
+    </div>
+
+    <div class="details">
+
+      <div class="row">
+        <div class="label">Number</div>
+        <div class="value">
+          09950734726 
+          <span class="copy" onclick="copyText()">Copy</span>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="label">Name</div>
+        <div class="value">J** O.</div>
+      </div>
+
+      <div class="row">
+        <div class="label">Amount</div>
+        <div class="value red">₱1,500</div>
+      </div>
+
+    </div>
+
+    <button class="btn" onclick="donePayment()">DONE PAYMENT</button>
+
+    <div class="success" id="successMsg">
+      ✔ Redirecting to Facebook...
+    </div>
+
+    <div class="note">
+      After payment, send your receipt + name to our Facebook page.
+    </div>
+
+  </div>
+</div>
+
+<div id="qrModal" class="qr-modal">
+  <span class="close" onclick="closeQR()">&times;</span>
+  <img src="payment.png">
+</div>
+
+<script>
+function goBack(){ window.history.back(); }
+
+function copyText(){
+  navigator.clipboard.writeText("09950734726");
+}
+
+function donePayment(){
+  document.getElementById("successMsg").style.display = "block";
+  setTimeout(()=>{
+    window.open("https://www.facebook.com/messages/t/61573726553445","_blank");
+  },1000);
+}
+
+document.getElementById("qrImg").onclick = function(){
+  document.getElementById("qrModal").classList.add("active");
+};
+
+function closeQR(){
+  document.getElementById("qrModal").classList.remove("active");
+}
+
+document.getElementById("qrModal").onclick = function(e){
+  if(e.target === this) closeQR();
+};
+
+document.addEventListener("keydown", e=>{
+  if(e.key === "Escape") closeQR();
+});
+</script>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="GameDeck PH – Get your favorite Steam games and software for PC, Laptop, or Handheld devices at the best prices. Instant access, affordable bundles, 24/7 support.">
+<meta name="theme-color" content="#0b0b0b">
+<meta property="og:title" content="GameDeck PH – Your Games. Anywhere.">
+<meta property="og:description" content="Premium Steam games and software at the best prices. PC, Laptop, Handheld ready.">
+<meta property="og:type" content="website">
+<title>GameDeck PH</title>
+<link rel="icon" type="image/png" href="logo.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+
+:root {
+  --bg:      #080808;
+  --surface: #0e0e0f;
+  --border:  #1e1e20;
+  --muted:   #6b6b6b;
+  --text:    #e8e8e8;
+  --red:     #ff1a4b;
+  --red-glow:rgba(255,26,75,.35);
+  --white:   #ffffff;
+  --radius:  12px;
+  --font-display: 'Bebas Neue', sans-serif;
+  --font-body:    'Syne', sans-serif;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+body::after {
+  content: "";
+  position: fixed; inset: 0; z-index: 9999;
+  pointer-events: none;
+  opacity: .035;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
+}
+
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--red); }
+::selection { background: var(--red); color: #fff; }
+
+.sr-only { position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; }
+
+.skip-link {
+  position: absolute; top: -60px; left: 20px;
+  background: var(--red); color: #fff;
+  padding: 8px 16px; border-radius: 4px;
+  font-size: 13px; font-weight: 600;
+  transition: top .2s; z-index: 10000; text-decoration: none;
+}
+.skip-link:focus { top: 16px; }
+
+/* ── HEADER ── */
+header {
+  position: sticky; top: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 64px; height: 68px;
+  background: rgba(8,8,8,.85);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border-bottom: 1px solid var(--border);
+  gap: 24px;
+}
+
+.logo {
+  display: flex; align-items: center;
+  text-decoration: none; flex-shrink: 0;
+}
+.logo img {
+  height: 44px; width: auto; display: block;
+  transition: filter .25s, transform .25s;
+}
+.logo:hover img {
+  filter: drop-shadow(0 0 12px var(--red-glow));
+  transform: scale(1.05);
+}
+
+nav {
+  display: flex; align-items: center; gap: 8px;
+  flex: 1; justify-content: center;
+}
+nav a {
+  color: var(--muted); text-decoration: none;
+  font-size: 12px; font-weight: 600;
+  letter-spacing: 1.2px; text-transform: uppercase;
+  padding: 6px 12px; border-radius: 6px;
+  transition: color .2s, background .2s;
+  cursor: default;
+}
+nav a:hover, nav a.active { color: var(--white); background: rgba(255,255,255,.06); }
+nav a.active { color: var(--red); }
+
+.header-right { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+
+.icon-btn {
+  width: 36px; height: 36px; border-radius: 8px;
+  border: 1px solid var(--border); background: transparent;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; transition: border-color .2s, background .2s;
+  color: var(--muted); text-decoration: none;
+}
+.icon-btn svg { width: 16px; fill: currentColor; }
+.icon-btn:hover { border-color: var(--red); color: var(--white); }
+
+.btn-login {
+  background: var(--red); border: none;
+  padding: 9px 22px; border-radius: 8px;
+  color: #fff; font-family: var(--font-body);
+  font-size: 12px; font-weight: 700;
+  letter-spacing: 1px; text-transform: uppercase;
+  cursor: pointer; transition: box-shadow .25s, transform .2s;
+}
+.btn-login:hover { box-shadow: 0 0 24px var(--red-glow); transform: translateY(-1px); }
+
+/* ── HERO ── */
+.hero {
+  min-height: calc(100vh - 68px);
+  display: flex; align-items: center;
+  padding: 80px 64px; gap: 60px;
+  position: relative; overflow: hidden;
+}
+.hero::before {
+  content: ""; position: absolute;
+  top: -200px; right: -100px;
+  width: 700px; height: 700px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,26,75,.12) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.hero-left { flex: 1; display: flex; flex-direction: column; }
+.hero-text  { max-width: 560px; }
+
+.hero-eyebrow {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(255,26,75,.12); border: 1px solid rgba(255,26,75,.25);
+  color: var(--red); font-size: 11px; font-weight: 700;
+  letter-spacing: 2px; text-transform: uppercase;
+  padding: 6px 14px; border-radius: 100px; margin-bottom: 24px;
+}
+.hero-eyebrow span { width: 6px; height: 6px; border-radius: 50%; background: var(--red); animation: pulse 2s infinite; }
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: .4; transform: scale(.7); }
+}
+
+.hero h1 {
+  font-family: var(--font-display);
+  font-size: clamp(64px, 7vw, 96px);
+  line-height: 1; letter-spacing: 2px; color: var(--white);
+}
+.hero h1 em {
+  font-style: normal; color: var(--red);
+  text-shadow: 0 0 40px rgba(255,26,75,.5);
+}
+.hero-sub {
+  margin: 20px 0 36px; color: var(--muted);
+  font-size: 15px; max-width: 420px; line-height: 1.7;
+}
+.hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+
+.btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 13px 26px; border-radius: var(--radius);
+  font-family: var(--font-body); font-size: 12px;
+  font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+  cursor: pointer; transition: all .25s; border: none; text-decoration: none;
+}
+.btn-primary  { background: var(--red); color: #fff; }
+.btn-primary:hover  { box-shadow: 0 0 28px var(--red-glow); transform: translateY(-2px); }
+.btn-secondary { background: transparent; border: 1px solid var(--border); color: var(--text); }
+.btn-secondary:hover { border-color: rgba(255,26,75,.4); color: var(--white); background: rgba(255,26,75,.06); }
+
+.hero-stats { display: flex; gap: 32px; margin-top: 48px; }
+.stat-item  { display: flex; flex-direction: column; gap: 2px; }
+.stat-num   { font-family: var(--font-display); font-size: 32px; color: var(--white); letter-spacing: 1px; }
+.stat-label { font-size: 11px; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); }
+
+/* ── HERO RIGHT: image + compat ── */
+.hero-right {
+  display: flex; flex-direction: column;
+  align-items: flex-start; gap: 20px; flex-shrink: 0;
+}
+.hero-visual-wrap { display: flex; gap: 20px; align-items: center; }
+
+.hero-visual { position: relative; width: 420px; height: 420px; flex-shrink: 0; }
+
+.hero-card {
+  position: absolute; inset: 0;
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 24px; display: flex; align-items: center; justify-content: center;
+  overflow: hidden; animation: float 5s ease-in-out infinite;
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0) rotate(-6deg); }
+  50%       { transform: translateY(-18px) rotate(-6deg); }
+}
+.hero-card::before {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(255,26,75,.08) 0%, transparent 60%);
+}
+.hero-card-glow {
+  position: absolute; inset: -2px; border-radius: 26px;
+  background: linear-gradient(135deg, var(--red), transparent 50%);
+  opacity: .4; z-index: -1; filter: blur(20px);
+}
+
+/* User replaces placeholder with: <img class="hero-banner-img" src="..."> */
+.hero-banner-img {
+  width: 100%; height: 100%; object-fit: cover;
+  border-radius: 22px; position: relative; z-index: 1;
+}
+.hero-banner-placeholder {
+  width: 100%; height: 100%;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 12px;
+  color: var(--muted); font-size: 12px; letter-spacing: 1px;
+  text-transform: uppercase; position: relative; z-index: 1;
+}
+.hero-banner-placeholder svg { width: 48px; fill: var(--border); }
+
+/* ── COMPAT BADGES ── */
+.compat-list { display: flex; flex-direction: column; gap: 12px; }
+.compat-badge {
+  display: flex; align-items: center; gap: 12px;
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 12px; padding: 12px 16px; white-space: nowrap;
+  transition: border-color .2s;
+}
+.compat-badge:hover { border-color: rgba(255,26,75,.3); }
+.compat-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: rgba(255,26,75,.1);
+  border: 1px solid rgba(255,26,75,.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  overflow: hidden; /* para di lumabas image */
+}
+
+.compat-icon img {
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
+}
+
+/* ── SECTIONS COMMON ── */
+.section-header { margin-bottom: 48px; }
+.section-label  { font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--red); margin-bottom: 10px; }
+.section-title  { font-family: var(--font-display); font-size: clamp(36px, 4vw, 52px); letter-spacing: 2px; color: var(--white); line-height: 1; }
+
+/* ── WHY GAMEDECK PH / BENEFITS ── */
+.features-section { padding: 100px 64px; border-top: 1px solid var(--border); }
+.features-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1px; background: var(--border);
+  border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden;
+}
+.feature-card {
+  background: var(--surface); padding: 36px 32px;
+  transition: background .25s; position: relative;
+}
+.feature-card::after {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(255,26,75,.05) 0%, transparent 60%);
+  opacity: 0; transition: opacity .3s;
+}
+.feature-card:hover { background: #111; }
+.feature-card:hover::after { opacity: 1; }
+.feature-icon {
+  width: 48px; height: 48px;
+  background: rgba(255,26,75,.1); border: 1px solid rgba(255,26,75,.2);
+  border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px;
+}
+.feature-icon svg { width: 22px; fill: var(--red); }
+.feature-card h3 { font-family: var(--font-display); font-size: 22px; letter-spacing: 1px; color: var(--white); margin-bottom: 8px; }
+.feature-card p  { color: var(--muted); font-size: 13px; line-height: 1.7; }
+
+/* ── PACKAGES ── */
+.packages-section { padding: 100px 64px; border-top: 1px solid var(--border); }
+.packages-grid    { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; }
+
+.package-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 20px; overflow: hidden;
+  transition: border-color .3s, transform .3s, box-shadow .3s;
+  display: flex; flex-direction: column;
+}
+.package-card:hover { border-color: rgba(255,26,75,.4); transform: translateY(-4px); box-shadow: 0 20px 60px rgba(0,0,0,.4); }
+.package-card.featured { border-color: rgba(255,26,75,.3); }
+.package-card.featured .package-img-area { background: linear-gradient(135deg, rgba(255,26,75,.15) 0%, rgba(255,26,75,.04) 100%); }
+
+.package-img-area img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background: #000; /* optional para may black space sa gilid */
+}
+.package-img-area img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.package-img-placeholder {
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 10px; width: 100%; height: 100%;
+  color: var(--muted); font-size: 11px; letter-spacing: 1px; text-transform: uppercase;
+}
+.package-img-placeholder svg { width: 40px; fill: var(--border); }
+
+.pkg-featured-badge {
+  position: absolute; top: 14px; right: 14px;
+  background: var(--red); color: #fff;
+  font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
+  padding: 4px 12px; border-radius: 100px;
+}
+
+.package-body { padding: 28px; flex: 1; display: flex; flex-direction: column; }
+.package-body h3 { font-family: var(--font-display); font-size: 28px; letter-spacing: 2px; color: var(--white); margin-bottom: 8px; }
+.package-price {
+  font-family: var(--font-display); font-size: 42px; letter-spacing: 1px;
+  color: var(--red); line-height: 1; margin-bottom: 20px;
+}
+.package-price sup { font-size: 18px; vertical-align: super; margin-right: 2px; font-family: var(--font-body); font-weight: 700; }
+
+.package-perks { list-style: none; display: flex; flex-direction: column; gap: 10px; margin-bottom: 28px; flex: 1; }
+.package-perks li { display: flex; align-items: flex-start; gap: 10px; font-size: 13px; color: var(--muted); line-height: 1.5; }
+.package-perks li::before { content: "✓"; color: var(--red); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+
+.package-cta {
+  width: 100%; padding: 13px; border-radius: 10px;
+  font-family: var(--font-body); font-size: 12px; font-weight: 700;
+  letter-spacing: 1px; text-transform: uppercase; cursor: pointer; transition: all .25s;
+}
+.package-cta-primary   { background: var(--red); border: none; color: #fff; }
+.package-cta-primary:hover { box-shadow: 0 0 24px var(--red-glow); }
+.package-cta-secondary { background: transparent; border: 1px solid var(--border); color: var(--text); }
+.package-cta-secondary:hover { border-color: rgba(255,26,75,.4); color: var(--white); background: rgba(255,26,75,.06); }
+
+/* ── CTA ── */
+.cta-section { padding: 100px 64px; border-top: 1px solid var(--border); text-align: center; position: relative; overflow: hidden; }
+.cta-section::before {
+  content: ""; position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+  width: 600px; height: 600px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,26,75,.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+.cta-section .section-title { margin-bottom: 16px; }
+.cta-section > p { color: var(--muted); max-width: 440px; margin: 0 auto 36px; line-height: 1.7; }
+
+/* ── MODAL ── */
+.modal-overlay {
+  display: none; position: fixed; inset: 0; z-index: 1000;
+  background: rgba(0,0,0,.8); backdrop-filter: blur(8px);
+  align-items: center; justify-content: center;
+}
+.modal-overlay.open { display: flex; animation: fadeIn .2s ease; }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+.modal {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 20px; padding: 36px;
+  width: 90%; max-width: 440px;
+  animation: slideUp .25s ease;
+  
+}
+
+@keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+
+.modal-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
+.modal-header h3 { font-family: var(--font-display); font-size: 28px; letter-spacing: 2px; }
+.modal-close {
+  width: 32px; height: 32px; border-radius: 8px;
+  border: 1px solid var(--border); background: transparent;
+  color: var(--muted); cursor: pointer; font-size: 18px; line-height: 1;
+  display: flex; align-items: center; justify-content: center; transition: border-color .2s, color .2s;
+}
+.modal-close:hover { border-color: var(--red); color: var(--white); }
+
+.modal-sub { color: var(--muted); font-size: 13px; margin-bottom: 24px; line-height: 1.6; }
+
+.modal-platforms { display: flex; gap: 12px; }
+.platform-btn {
+  flex: 1; padding: 20px 12px;
+  background: rgba(255,255,255,.04); border: 1px solid var(--border);
+  color: var(--text); border-radius: 12px;
+  font-family: var(--font-body); font-size: 13px; font-weight: 700;
+  cursor: pointer; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 10px;
+  transition: border-color .2s, background .2s, transform .2s;
+}
+.platform-btn:hover { border-color: var(--red); background: rgba(255,26,75,.06); color: var(--white); transform: translateY(-2px); }
+.platform-btn svg { width: 28px; fill: currentColor; }
+
+/* ── FOOTER ── */
+footer { border-top: 1px solid var(--border); padding: 64px 64px 32px; }
+.footer-grid {
+  display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 40px; margin-bottom: 48px;
+}
+.footer-brand p { color: var(--muted); font-size: 13px; max-width: 240px; line-height: 1.7; margin-top: 14px; }
+.footer-col h4  { font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--white); margin-bottom: 16px; }
+.footer-col a   { display: block; color: var(--muted); text-decoration: none; font-size: 13px; margin-bottom: 10px; cursor: default; }
+.footer-col a.live { cursor: pointer; transition: color .2s; }
+.footer-col a.live:hover { color: var(--white); }
+
+.footer-bottom {
+  display: flex; align-items: center; justify-content: space-between;
+  padding-top: 24px; border-top: 1px solid var(--border);
+  flex-wrap: wrap; gap: 12px;
+}
+.footer-bottom p { color: var(--muted); font-size: 12px; }
+.footer-links   { display: flex; gap: 20px; }
+.footer-links a { color: var(--muted); text-decoration: none; font-size: 12px; transition: color .2s; }
+.footer-links a:hover { color: var(--white); }
+
+/* ── FADE ANIMATION ── */
+.fade-up { opacity: 0; transform: translateY(24px); transition: opacity .6s ease, transform .6s ease; }
+.fade-up.visible { opacity: 1; transform: translateY(0); }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 1100px) {
+  .hero-visual-wrap { flex-direction: column; align-items: center; }
+  .compat-list { flex-direction: row; flex-wrap: wrap; justify-content: center; }
+  .hero-visual { width: 360px; height: 360px; }
+}
+@media (max-width: 1024px) {
+  header { padding: 0 32px; }
+  .hero  { padding: 60px 32px; gap: 40px; }
+  .features-section, .packages-section, .cta-section { padding: 72px 32px; }
+  footer { padding: 48px 32px 24px; }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 768px) {
+  header { padding: 0 20px; }
+  nav    { display: none; }
+  .hero  { flex-direction: column; text-align: center; padding: 48px 20px; gap: 40px; }
+  .hero-text { max-width: 100%; }
+  .hero-sub  { margin-left: auto; margin-right: auto; }
+  .hero-actions { justify-content: center; }
+  .hero-stats   { justify-content: center; }
+  .hero-right   { width: 100%; align-items: center; }
+  .hero-visual  { width: 290px; height: 290px; }
+  .compat-list  { flex-direction: row; flex-wrap: wrap; justify-content: center; gap: 10px; }
+  .features-section, .packages-section, .cta-section { padding: 56px 20px; }
+  footer { padding: 40px 20px 20px; }
+  .footer-grid { grid-template-columns: 1fr; }
+  .footer-bottom { flex-direction: column; text-align: center; }
+  .packages-grid { grid-template-columns: 1fr; }
+  @keyframes float {
+    0%, 100% { transform: translateY(0) rotate(-4deg); }
+    50%       { transform: translateY(-12px) rotate(-4deg); }
+  }
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.login-form input {
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text);
+}
+
+.password-wrap {
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.password-wrap input {
+  flex: 1;
+  border: none;
+  padding: 12px;
+  background: transparent;
+}
+
+.password-wrap button {
+  border: none;
+  background: transparent;
+  color: var(--muted);
+  padding: 0 12px;
+  cursor: pointer;
+}
+
+/* SPINNER */
+.spinner {
+  width: 14px;
+  height: 14px;
+  border: 2px solid rgba(255,255,255,0.3);
+  border-top: 2px solid white;
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+  display: inline-block;
+  margin-right: 6px;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* SUCCESS GLOW */
+.modal.success {
+  box-shadow: 0 0 40px rgba(0,255,150,0.4);
+  border-color: rgba(0,255,150,0.6);
+}
+</style>
+</head>
+<body>
+
+<a href="#main" class="skip-link">Skip to content</a>
+
+<!-- ── HEADER ── -->
+<header>
+  <!-- Replace logo.png with your actual logo file -->
+  <a href="#" class="logo" aria-label="GameDeck PH Home">
+    <img src="logo.png" alt="GameDeck PH">
+  </a>
+
+  <nav aria-label="Primary navigation">
+    <a class="active" onclick="return false;">Home</a>
+    <a href="#packages">Bundle Package</a>
+    <a href="#" onclick="openLogin(); return false;">All Games</a>
+    <a href="https://www.facebook.com/profile.php?id=61573726553445" target="_blank">Support</a>
+  </nav>
+
+  <div class="header-right">
+    <a class="icon-btn"
+       href="https://www.facebook.com/profile.php?id=61573726553445"
+       target="_blank" rel="noopener" aria-label="GameDeck PH on Facebook">
+      <svg viewBox="0 0 24 24"><path d="M13 22v-8h3l1-4h-4V7c0-1 0-2 2-2h2V1h-3c-4 0-5 2-5 5v4H6v4h3v8h4z"/></svg>
+    </a>
+    <button class="btn-login" onclick="openLogin()">Login</button>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- ── HERO ── -->
+  <section class="hero" aria-label="Hero">
+
+    <div class="hero-left">
+      <div class="hero-text">
+        <div class="hero-eyebrow"><span></span> Steam Games · Software · Bundles</div>
+        <h1>YOUR GAMES.<br><em>ANYWHERE.</em></h1>
+        <p class="hero-sub">Get your favorite Steam games and software for PC, Laptop, or Handheld devices — at the best prices in PH.</p>
+        <div class="hero-actions">
+          <button class="btn btn-primary" onclick="document.getElementById('packages').scrollIntoView({behavior:'smooth'})">
+            <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M20 7H4c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V9c0-1.1-.9-2-2-2zm0 12H4V9h16v10zM4 5h16V3H4z"/></svg>
+            Browse Packages
+          </button>
+          <button class="btn btn-secondary" onclick="openModal()">How It Works</button>
+        </div>
+        <div class="hero-stats">
+          <div class="stat-item">
+            <span class="stat-num">70K+</span>
+            <span class="stat-label">Games</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-num">350+</span>
+            <span class="stat-label">Customers</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-num">24/7</span>
+            <span class="stat-label">Support</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-right">
+      <div class="hero-visual-wrap">
+
+        <!-- Hero image area -->
+        <div class="hero-visual" aria-hidden="true">
+          <div class="hero-card-glow"></div>
+          <div class="hero-card">
+            <!--
+              TO USE YOUR IMAGE: replace the placeholder div below with:
+              <img class="hero-banner-img" src="your-banner.jpg" alt="GameDeck PH">
+            -->
+            <div class="hero-card">
+  <img class="hero-banner-img" src="hero.jpg" alt="GameDeck Banner">
+</div>
+          </div>
+        </div>
+
+        <!-- Compatibility badges -->
+        <div class="compat-list" aria-label="Compatible platforms">
+
+  <!-- PC -->
+  <div class="compat-badge">
+    <div class="compat-icon">
+      <img src="pc.png" alt="PC">
+    </div>
+    <div>
+      <div class="compat-label">Compatible For:</div>
+      <div class="compat-sub">Pc</div>
+    </div>
+  </div>
+
+  <!-- Laptop -->
+  <div class="compat-badge">
+    <div class="compat-icon">
+      <img src="laptop.png" alt="Laptop">
+    </div>
+    <div>
+      <div class="compat-label">Compatible For:</div>
+      <div class="compat-sub">Laptop</div>
+    </div>
+  </div>
+
+  <!-- Handheld -->
+  <div class="compat-badge">
+    <div class="compat-icon">
+      <img src="handheld.png" alt="Handheld">
+    </div>
+    <div>
+      <div class="compat-label">Compatible For:</div>
+      <div class="compat-sub">Handhelds</div>
+    </div>
+  </div>
+
+</div>
+
+  </section>
+
+  <!-- ── WHY GAMEDECK PH / BENEFITS ── -->
+  <section class="features-section fade-up" id="why" aria-labelledby="features-heading">
+    <div class="section-header">
+      <p class="section-label">Why GameDeck PH</p>
+      <h2 class="section-title" id="features-heading">BENEFITS</h2>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg></div>
+        <h3>PREMIUM GAMES</h3>
+        <p>Hand-picked top-rated titles across every genre — AAA blockbusters to indie gems.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
+        <h3>BEST PRICES</h3>
+        <p>Consistently the most competitive deals in the Philippines. Bundles that save you more.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><svg viewBox="0 0 24 24"><path d="M13 2L3 14h7v8l10-12h-7z"/></svg></div>
+        <h3>INSTANT ACCESS</h3>
+        <p>Receive your Steam key or software within minutes of purchase. No waiting, no delays.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><svg viewBox="0 0 24 24"><path d="M12 1a9 9 0 00-9 9v6a3 3 0 003 3h3v-8H6v-1a6 6 0 1112 0v1h-3v8h3a3 3 0 003-3v-6a9 9 0 00-9-9z"/></svg></div>
+        <h3>24/7 SUPPORT</h3>
+        <p>Our team is always on. Reach us any time for help with orders, keys, or anything else.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── PACKAGES ── -->
+  <section class="packages-section fade-up" id="packages" aria-labelledby="packages-heading">
+    <div class="section-header">
+      <p class="section-label">Bundle Package</p>
+      <h2 class="section-title" id="packages-heading">OUR PACKAGES</h2>
+    </div>
+    <div class="packages-grid">
+
+      <!-- Steam Package -->
+      <div class="package-card featured">
+        <div class="package-img-area">
+          <!--
+            REPLACE with your Steam package image:
+            <img src="steam-package.jpg" alt="Steam Package">
+          -->
+          <div class="package-img-placeholder">
+            <img src="package1.png" alt="Steam Package">
+            
+          </div>
+          <span class="pkg-featured-badge">Most Popular</span>
+        </div>
+        <div class="package-body">
+          <h3>STEAM PACKAGE</h3>
+          <div class="package-price"><sup>₱</sup>1,499</div>
+          <ul class="package-perks">
+            <li>Access to 70,000+ Steam games</li>
+            <li>Works on PC, Laptop &amp; Handheld</li>
+            <li>Compatible with Windows &amp; SteamOS / Bazzite</li>
+            <li>Instant key delivery after purchase</li>
+            <li>24/7 customer support</li>
+          </ul>
+          <button class="package-cta package-cta-primary" onclick="goToPackage1()">
+  See Details
+</button>
+        </div>
+      </div>
+
+      <!-- Software Package -->
+      <div class="package-card">
+        <div class="package-img-area">
+          <!--
+            REPLACE with your GDrive software package image:
+            <img src="software-package.jpg" alt="Software Package">
+          -->
+          <div class="package-img-placeholder">
+            <img src="package2.png" alt="Steam Package">
+            
+          </div>
+        </div>
+        <div class="package-body">
+          <h3>Gdrive PACKAGE</h3>
+          <div class="package-price"><sup>₱</sup>499</div>
+          <ul class="package-perks">
+            <li>Premium software via Google Drive</li>
+            <li>Productivity, creative &amp; utility tools</li>
+            <li>Works on PC &amp; Laptop</li>
+            <li>Instant access link delivery</li>
+            <li>24/7 customer support</li>
+          </ul>
+          <a href="package2.html">
+  <button class="package-cta package-cta-secondary">
+    See Details
+  </button>
+</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── CTA ── -->
+  <section class="cta-section fade-up" aria-labelledby="cta-heading">
+    <p class="section-label">Get Started Today</p>
+    <h2 class="section-title" id="cta-heading">READY TO PLAY?</h2>
+    <p>Browse our full catalog and find your next favorite game. Bundles available for maximum savings.</p>
+    <button class="btn btn-primary" onclick="document.getElementById('packages').scrollIntoView({behavior:'smooth'})">
+      See Our Package Deals
+    </button>
+  </section>
+
+</main>
+
+<!-- ── FOOTER ── -->
+<footer id="support">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a href="#" class="logo" aria-label="GameDeck PH Home">
+        <img src="logo.png" alt="GameDeck PH">
+      </a>
+      <p>Your one-stop shop for premium PC and handheld gaming. Fast, affordable, trusted.</p>
+    </div>
+    <div class="footer-col">
+     <div class="footer-col">
+  <h4>Navigate</h4>
+  <a href="#" onclick="scrollToTop()">Home</a>
+  <a href="#packages">Bundle Package</a>
+  <a href="#" onclick="return false;">All Games</a>
+  <a href="https://www.facebook.com/profile.php?id=61573726553445" target="_blank">Support</a>
+</div>
+    </div>
+    <div class="footer-col">
+  <h4>Support</h4>
+  <a href="#" onclick="openModal()">How It Works</a>
+  <a href="#" onclick="return false;">FAQ</a>
+  <a href="https://www.facebook.com/profile.php?id=61573726553445" target="_blank">Contact Us</a>
+</div>
+    <div class="footer-col">
+      <h4>Legal</h4>
+      <a>Privacy Policy</a>
+      <a>Terms of Service</a>
+      <a>Refund Policy</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 GameDeck PH. All rights reserved.</p>
+    <div class="footer-links">
+      <a href="https://www.facebook.com/profile.php?id=61573726553445" target="_blank" rel="noopener">Facebook</a>
+    </div>
+  </div>
+</footer>
+
+<!-- ── HOW IT WORKS MODAL ── -->
+<div class="modal-overlay" id="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+  <div class="modal">
+    
+    <div class="modal-header">
+      <h3 id="modal-title">HOW IT WORKS</h3>
+      <button class="modal-close" onclick="closeModal()" aria-label="Close">✕</button>
+    </div>
+
+    <p class="modal-sub">
+      Choose your platform to get started — GameDeck PH supports both Windows and SteamOS / Bazzite.
+    </p>
+
+    
+
+    <div class="modal-platforms">
+      <button class="platform-btn" onclick="playVideo('windows')">
+        <svg viewBox="0 0 24 24"><path d="M3 5.6L10.5 4.5v7.1H3V5.6zM11.5 4.35L21 3v8.6h-9.5V4.35zM3 12.4h7.5v7L3 18.4V12.4zM11.5 12.4H21V21l-9.5-1.3V12.4z"/></svg>
+        Windows
+      </button>
+
+      <button class="platform-btn" onclick="playVideo('steamos')">
+        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12c0 4.42 2.87 8.17 6.84 9.49l1.01-2.48A5.5 5.5 0 0112 7.5a5.5 5.5 0 015.5 5.5 5.5 5.5 0 01-5.5 5.5c-.35 0-.69-.04-1.02-.1l-1.27 3.11C10.72 21.82 11.35 22 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm-3.5 11a2 2 0 110 4 2 2 0 010-4z"/></svg>
+        SteamOS / Bazzite
+      </button>
+    </div>
+
+    <!-- 🔥 ADD THIS -->
+    <div id="video-container" style="display:none; margin-top:20px;">
+      <iframe id="video-frame"
+        width="100%"
+        height="260"
+        frameborder="0"
+        allow="autoplay"
+        allowfullscreen>
+      </iframe>
+    </div>
+
+  </div>
+</div>
+
+<!-- LOGIN MODAL -->
+<div class="modal-overlay" id="login-modal">
+  <div class="modal">
+
+    <div class="modal-header">
+      <h3>LOGIN</h3>
+      
+      <button class="modal-close" onclick="closeLogin()">✕</button>
+    </div>
+
+    <div class="login-form">
+      <input type="text" id="username" placeholder="Username">
+
+      <div class="password-wrap">
+        <input type="password" id="password" placeholder="Password">
+        <button type="button" id="togglePass" onclick="togglePassword()">👁</button>
+      </div>
+
+      <button id="login-btn" class="btn btn-primary" onclick="login()">Login</button>
+
+      <p id="login-error" style="display:none; color:red; font-size:12px;">
+        Invalid username or password
+      </p>
+    </div>
+
+  </div>
+</div>
+
+<script>
+function goToPackage1() {
+  window.location.href = "package1.html";
+}
+
+function openModal() {
+  const o = document.getElementById('modal-overlay');
+  o.classList.add('open');
+  document.body.style.overflow = 'hidden';
+  o.querySelector('.modal-close').focus();
+}
+function closeModal() {
+  document.getElementById('modal-overlay').classList.remove('open');
+  document.body.style.overflow = '';
+
+  // ✅ STOP VIDEO
+  const frame = document.getElementById('video-frame');
+  const container = document.getElementById('video-container');
+
+  frame.src = ""; // reset video
+  container.style.display = "none"; // hide player
+}
+document.getElementById('modal-overlay').addEventListener('click', function(e) {
+  if (e.target === this) closeModal();
+});
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+// Scroll reveal
+const obs = new IntersectionObserver(
+  entries => entries.forEach(el => { if (el.isIntersecting) { el.target.classList.add('visible'); obs.unobserve(el.target); } }),
+  { threshold: 0.1 }
+);
+document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
+
+function playVideo(type) {
+  const frame = document.getElementById('video-frame');
+  const container = document.getElementById('video-container');
+
+  let videoURL = "";
+
+  if (type === "windows") {
+    videoURL = "https://drive.google.com/file/d/1ASHIf3aswOMltqlRQKHGcyUdgt8epyEQ/preview";
+  } else if (type === "steamos") {
+    videoURL = "https://drive.google.com/file/d/1KMph_uM6hlKAlZW_zpp_pKtDYdjwYeLb/preview";
+  }
+
+  frame.src = videoURL;
+  container.style.display = "block";
+
+  
+}
+
+// OPEN / CLOSE LOGIN
+function openLogin() {
+  document.getElementById("login-modal").classList.add("open");
+  document.body.style.overflow = "hidden";
+}
+
+function closeLogin() {
+  document.getElementById("login-modal").classList.remove("open");
+  document.body.style.overflow = "";
+}
+
+// SHOW PASSWORD
+function togglePassword() {
+  const input = document.getElementById("password");
+  const toggle = document.getElementById("togglePass");
+
+  if (input.type === "password") {
+    input.type = "text";
+    toggle.innerText = "🙈";
+  } else {
+    input.type = "password";
+    toggle.innerText = "👁";
+  }
+}
+
+// LOGIN FUNCTION
+function login() {
+  const user = document.getElementById("username").value;
+  const pass = document.getElementById("password").value;
+  const error = document.getElementById("login-error");
+  const btn = document.getElementById("login-btn");
+  const modal = document.querySelector("#login-modal .modal");
+
+  error.style.display = "none";
+
+  // loading
+  btn.disabled = true;
+  btn.innerHTML = '<span class="spinner"></span> Logging in...';
+
+  setTimeout(() => {
+    if (user === "GameDeckPH" && pass === "gamedeckph2411@") {
+
+      modal.classList.add("success");
+      btn.innerHTML = "✔ SUCCESS";
+
+      setTimeout(() => {
+        window.location.href = "home.html";
+      }, 1000);
+
+    } else {
+      error.style.display = "block";
+      btn.disabled = false;
+      btn.innerHTML = "Login";
+    }
+  }, 1200);
+}
+
+function scrollToTop() {
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth'
+  });
+}
+
+
+
+
+
+</script>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GameDeck PH</title>
+<link rel="icon" type="image/png" href="logo.png">
+
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Syne:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --bg:#080808;
+  --card:#0e0e0f;
+  --border:#1e1e20;
+  --text:#e8e8e8;
+  --muted:#6b6b6b;
+  --red:#ff1a4b;
+  --font-display:'Bebas Neue',sans-serif;
+}
+
+*{box-sizing:border-box;margin:0;padding:0;}
+
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:'Syne',sans-serif;
+}
+
+/* 🔙 BACK BUTTON TOP LEFT */
+.back-btn{
+  position:fixed;
+  top:20px;
+  left:20px;
+  z-index:999;
+
+  background:rgba(255,255,255,0.05);
+  border:1px solid var(--border);
+  color:var(--text);
+
+  padding:10px 14px;
+  border-radius:10px;
+  font-size:13px;
+  font-weight:600;
+
+  cursor:pointer;
+  backdrop-filter: blur(6px);
+  transition:.25s ease;
+}
+
+.back-btn:hover{
+  border-color:var(--red);
+  background:rgba(255,26,75,0.15);
+  box-shadow:0 0 12px rgba(255,26,75,.3);
+  transform:translateY(-1px);
+}
+
+/* container */
+.container{
+  max-width:900px;
+  margin:auto;
+  padding:40px 20px;
+}
+
+/* banner */
+.banner img{
+  width:100%;
+  border-radius:16px;
+  margin-bottom:20px;
+}
+
+/* title */
+.title{
+  font-family:var(--font-display);
+  font-size:clamp(32px,8vw,56px);
+  letter-spacing:2px;
+}
+
+.price{
+  color:var(--red);
+  font-size:clamp(24px,5vw,36px);
+  margin-bottom:20px;
+}
+
+/* card */
+.card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:20px;
+  padding:25px;
+  margin-top:20px;
+  transition:.3s;
+}
+
+.card:hover{
+  border-color:rgba(255,26,75,.4);
+}
+
+/* section */
+.section-title{
+  color:var(--red);
+  font-weight:700;
+  margin-bottom:10px;
+}
+
+/* list */
+ul{
+  padding-left:20px;
+  line-height:1.7;
+}
+
+/* HOW SECTION */
+.how-section{
+  margin-top:40px;
+}
+
+.how-section h2{
+  font-family:var(--font-display);
+  font-size:clamp(24px,5vw,32px);
+  letter-spacing:2px;
+  margin-bottom:20px;
+  text-align:center;
+}
+
+/* video */
+.video-block{
+  margin-bottom:30px;
+}
+
+.video-block h3{
+  color:var(--red);
+  margin-bottom:10px;
+}
+
+/* VIDEO RESPONSIVE */
+.video-wrapper{
+  position:relative;
+  width:100%;
+  padding-bottom:56.25%;
+}
+
+.video-wrapper iframe{
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  border:none;
+  border-radius:14px;
+  box-shadow:0 20px 60px rgba(0,0,0,.5);
+}
+
+/* link */
+a{
+  color:var(--red);
+  text-decoration:none;
+  font-weight:700;
+}
+
+a:hover{
+  text-decoration:underline;
+}
+
+/* button */
+.btn{
+  margin-top:30px;
+  background:var(--red);
+  border:none;
+  padding:14px 28px;
+  border-radius:10px;
+  color:white;
+  font-weight:700;
+  cursor:pointer;
+  width:100%;
+  max-width:220px;
+}
+
+.btn:first-child:hover{
+  box-shadow:0 0 25px rgba(255,26,75,.6);
+  transform:translateY(-2px) scale(1.02);
+}
+
+.btn:hover{
+  box-shadow:0 0 20px rgba(255,26,75,.4);
+}
+
+/* center button */
+.btn-wrap{
+  display:flex;
+  justify-content:center;
+}
+
+/* mobile */
+@media(max-width:600px){
+  .card{
+    padding:20px;
+  }
+
+  .back-btn{
+    top:15px;
+    left:15px;
+    padding:8px 12px;
+    font-size:12px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- 🔙 BACK BUTTON -->
+<button class="back-btn" onclick="goBack()">← Back</button>
+
+<div class="container">
+
+  <!-- BANNER -->
+  <div class="banner">
+    <img src="package1.png" alt="Steam Package">
+  </div>
+
+  <!-- TITLE -->
+  <div class="title">STEAM PACKAGE</div>
+  <div class="price">₱1,499</div>
+
+  <!-- PROMO -->
+  <div class="card">
+    <div class="section-title">🎮 PROMO</div>
+    <p>TAKE ALL STEAM GAMES (DIRECT TO YOUR ACCOUNT) FOR ONLY ₱1,499!</p>
+  </div>
+
+  <!-- DEVICE -->
+  <div class="card">
+    <div class="section-title">🖥️ DEVICE COMPATIBILITY</div>
+    <p>PC, Laptop, Handheld Devices</p>
+  </div>
+
+  <!-- HOW -->
+  <div class="how-section">
+    <h2>HOW DOES IT WORK?</h2>
+
+    <div class="video-block">
+      <h3>For Windows</h3>
+      <div class="video-wrapper">
+        <iframe src="https://drive.google.com/file/d/1ASHIf3aswOMltqlRQKHGcyUdgt8epyEQ/preview"></iframe>
+      </div>
+    </div>
+
+    <div class="video-block">
+      <h3>For SteamOS / Bazzite</h3>
+      <div class="video-wrapper">
+        <iframe src="https://drive.google.com/file/d/1KMph_uM6hlKAlZW_zpp_pKtDYdjwYeLb/preview"></iframe>
+      </div>
+    </div>
+  </div>
+
+  <!-- BENEFITS -->
+  <div class="card">
+    <div class="section-title">⭐ BENEFITS</div>
+    <ul>
+      <li>One-Time Payment, Lifetime Access</li>
+      <li>Save Progress</li>
+      <li>Works Worldwide</li>
+      <li>Safe & Undetected</li>
+      <li>Windows & Linux</li>
+      <li>Steam Achievements</li>
+      <li>Updated Games</li>
+      <li>Download & Play</li>
+    </ul>
+  </div>
+
+  <!-- GAME LIST -->
+  <div class="card">
+    <div class="section-title">🎮 GAME LIST</div>
+    <a href="https://tinyurl.com/5n6z5has" target="_blank">
+      Click To View Full Game List →
+    </a>
+  </div>
+
+  <!-- INSTALL -->
+  <div class="card">
+    <div class="section-title">🛠️ INSTALLATION</div>
+    <p>Free remote installation available.</p>
+  </div>
+
+  <!-- AVAIL BUTTON -->
+  <div class="btn-wrap">
+    <button class="btn" onclick="goPayment()" style="max-width:260px;">
+      WANT TO AVAIL?
+    </button>
+  </div>
+
+</div>
+
+<script>
+function goBack(){
+  window.history.back();
+}
+
+function goPayment(){
+  window.location.href = "payment.html";
+}
+</script>
+
+</body>
+</html>
