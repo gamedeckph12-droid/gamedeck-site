@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>GameDeck PH – Home</title>
-<link rel="icon" type="image/png" href="logo.png">
+<link rel="icon" type="image/png" href="../image/logo.png">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Exo+2:wght@400;500;600;700;800&family=Syne:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -654,7 +654,7 @@ body::after {
 <!-- ── TOPBAR ── -->
 <header class="topbar">
   <div class="logo-area">
-    <img class="logo-img" src="logo.png" alt="GameDeck PH" onclick="navigateTo('home')">
+    <img class="logo-img" src="../image/logo.png" alt="GameDeck PH" onclick="navigateTo('home')">
   </div>
   <div class="search-wrap">
     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
@@ -693,11 +693,11 @@ body::after {
       <span>All Games</span>
     </div>
     <div class="nav-item" data-page="windows">
-      <img src="windows.png" class="nav-icon" alt="">
+      <img src="../image/windows.png" class="nav-icon" alt="">
       <span>Windows Games</span>
     </div>
     <div class="nav-item" data-page="steamos">
-      <img src="steamos.png" class="nav-icon" alt="">
+      <img src="../image/steamos.png" class="nav-icon" alt="">
       <span>SteamOS / Bazzite</span>
     </div>
 
@@ -734,7 +734,7 @@ body::after {
              To change: update src, title, subtitle, desc
         ════════════════════════════════════════════════════ -->
         <div class="fb-slide active" id="fb-slide-0">
-          <img class="fb-img" src="bannerr9.png" alt="Resident Evil Requiem"
+          <img class="fb-img" src="../image/bannerr9.png" alt="Resident Evil Requiem"
                onerror="this.style.display='none'">
           <div class="fb-overlay"></div>
           <div class="fb-badge" style="background:var(--red);">
@@ -817,7 +817,7 @@ body::after {
       <div class="platform-cards">
         <div class="plat-card win" data-page="windows">
           <div class="plat-icon">
-            <img src="windows.png" style="width:100%;height:100%;object-fit:contain;" alt="">
+            <img src="../image/windows.png" style="width:100%;height:100%;object-fit:contain;" alt="">
           </div>
           <div>
             <div class="plat-name">Windows Games</div>
@@ -829,7 +829,7 @@ body::after {
         </div>
         <div class="plat-card steam" data-page="steamos">
           <div class="plat-icon">
-            <img src="steamos.png" style="width:100%;height:100%;object-fit:contain;" alt="">
+            <img src="../image/steamos.png" style="width:100%;height:100%;object-fit:contain;" alt="">
           </div>
           <div>
             <div class="plat-name">SteamOS / Bazzite</div>
@@ -968,11 +968,11 @@ const WIN_GAMES = [
   {
     id: 1,
     name: "Resident Evil Requiem",
-    img: "r9.jpg",
+    img: "../image/r9.jpg",
     genre: "Action / Horror",
     tagClass: "tag-red",
     platform: "Windows",
-    page: "r9.html",
+    page: "../windows/r9.html",
     isNew: true,
     desc: "Survive the nightmare. Uncover the truth. A new chapter in the legendary survival horror series.",
     rating: "18+",
@@ -983,11 +983,11 @@ const WIN_GAMES = [
   {
     id: 2,
     name: "Pragmata",
-    img: "pragmata.jpg",
+    img: "../image/pragmata.jpg",
     genre: "Action / Sci-fi",
     tagClass: "tag-blue",
     platform: "Windows",
-    page: "pragmata.html",
+    page: "../windows/pragmata.html",
     isNew: true,
     desc: "Survive the nightmare. Uncover the truth. A new chapter in the legendary survival horror series.",
     rating: "18+",
@@ -998,11 +998,26 @@ const WIN_GAMES = [
    {
     id: 3,
     name: "Stellar Blade",
-    img: "stellar.jpg",
+    img: "../image/stellar.jpg",
     genre: "Action / Sci-fi",
     tagClass: "tag-yellow",
     platform: "Windows",
-    page: "stellar.html",
+    page: "../windows/stellar.html",
+    isNew: true,
+    desc: "Survive the nightmare. Uncover the truth. A new chapter in the legendary survival horror series.",
+    rating: "18+",
+    year: "2025",
+    dev: "Capcom"
+  },
+
+  {
+    id: 4,
+    name: "Tekken 8",
+    img: "../image/Tekken 8.jpg",
+    genre: "Action / PVP",
+    tagClass: "tag-red",
+    platform: "Windows",
+    page: "../windows/tekken8.html",
     isNew: true,
     desc: "Survive the nightmare. Uncover the truth. A new chapter in the legendary survival horror series.",
     rating: "18+",

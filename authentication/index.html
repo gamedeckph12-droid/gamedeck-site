@@ -9,7 +9,7 @@
 <meta property="og:description" content="Premium Steam games and software at the best prices. PC, Laptop, Handheld ready.">
 <meta property="og:type" content="website">
 <title>GameDeck PH</title>
-<link rel="icon" type="image/png" href="logo.png">
+<link rel="icon" type="image/png" href="../image/logo.png">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -541,7 +541,7 @@ footer { border-top: 1px solid var(--border); padding: 64px 64px 32px; }
 <header>
   <!-- Replace logo.png with your actual logo file -->
   <a href="#" class="logo" aria-label="GameDeck PH Home">
-    <img src="logo.png" alt="GameDeck PH">
+    <img src="../image/logo.png" alt="GameDeck PH">
   </a>
 
   <nav aria-label="Primary navigation">
@@ -607,7 +607,7 @@ footer { border-top: 1px solid var(--border); padding: 64px 64px 32px; }
               <img class="hero-banner-img" src="your-banner.jpg" alt="GameDeck PH">
             -->
             <div class="hero-card">
-  <img class="hero-banner-img" src="hero.jpg" alt="GameDeck Banner">
+  <img class="hero-banner-img" src="../image/hero.jpg" alt="GameDeck Banner">
 </div>
           </div>
         </div>
@@ -618,7 +618,7 @@ footer { border-top: 1px solid var(--border); padding: 64px 64px 32px; }
   <!-- PC -->
   <div class="compat-badge">
     <div class="compat-icon">
-      <img src="pc.png" alt="PC">
+      <img src="../image/pc.png" alt="PC">
     </div>
     <div>
       <div class="compat-label">Compatible For:</div>
@@ -629,7 +629,7 @@ footer { border-top: 1px solid var(--border); padding: 64px 64px 32px; }
   <!-- Laptop -->
   <div class="compat-badge">
     <div class="compat-icon">
-      <img src="laptop.png" alt="Laptop">
+      <img src="../image/laptop.png" alt="Laptop">
     </div>
     <div>
       <div class="compat-label">Compatible For:</div>
@@ -640,7 +640,7 @@ footer { border-top: 1px solid var(--border); padding: 64px 64px 32px; }
   <!-- Handheld -->
   <div class="compat-badge">
     <div class="compat-icon">
-      <img src="handheld.png" alt="Handheld">
+      <img src="../image/handheld.png" alt="Handheld">
     </div>
     <div>
       <div class="compat-label">Compatible For:</div>
@@ -698,7 +698,7 @@ footer { border-top: 1px solid var(--border); padding: 64px 64px 32px; }
             <img src="steam-package.jpg" alt="Steam Package">
           -->
           <div class="package-img-placeholder">
-            <img src="package1.png" alt="Steam Package">
+            <img src="../image/package1.png" alt="Steam Package">
             
           </div>
           <span class="pkg-featured-badge">Most Popular</span>
@@ -713,7 +713,7 @@ footer { border-top: 1px solid var(--border); padding: 64px 64px 32px; }
             <li>Instant key delivery after purchase</li>
             <li>24/7 customer support</li>
           </ul>
-          <button class="package-cta package-cta-primary" onclick="goToPackage1()">
+          <button class="package-cta package-cta-primary" onclick="window.location.href='../windows/package1.html'">
   See Details
 </button>
         </div>
@@ -727,7 +727,7 @@ footer { border-top: 1px solid var(--border); padding: 64px 64px 32px; }
             <img src="software-package.jpg" alt="Software Package">
           -->
           <div class="package-img-placeholder">
-            <img src="package2.png" alt="Steam Package">
+            <img src="../image/package2.png" alt="Steam Package">
             
           </div>
         </div>
@@ -741,11 +741,9 @@ footer { border-top: 1px solid var(--border); padding: 64px 64px 32px; }
             <li>Instant access link delivery</li>
             <li>24/7 customer support</li>
           </ul>
-          <a href="package2.html">
-  <button class="package-cta package-cta-secondary">
-    See Details
-  </button>
-</a>
+          <button class="package-cta package-cta-secondary" onclick="window.location.href='../windows/package2.html'">
+  See Details
+</button>
         </div>
       </div>
 
@@ -769,7 +767,7 @@ footer { border-top: 1px solid var(--border); padding: 64px 64px 32px; }
   <div class="footer-grid">
     <div class="footer-brand">
       <a href="#" class="logo" aria-label="GameDeck PH Home">
-        <img src="logo.png" alt="GameDeck PH">
+        <img src="../image/logo.png" alt="GameDeck PH">
       </a>
       <p>Your one-stop shop for premium PC and handheld gaming. Fast, affordable, trusted.</p>
     </div>
@@ -978,7 +976,7 @@ function login() {
       btn.innerHTML = "✔ SUCCESS";
 
       setTimeout(() => {
-        window.location.href = "home.html";
+        window.location.href = "../home/home.html";
       }, 1000);
 
     } else {
