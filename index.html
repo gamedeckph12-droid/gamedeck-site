@@ -9,7 +9,7 @@
 <meta property="og:description" content="Premium Steam games and software at the best prices. PC, Laptop, Handheld ready.">
 <meta property="og:type" content="website">
 <title>GameDeck PH</title>
-<link rel="icon" type="image/png" href="../image/logo.png">
+<link rel="icon" type="image/png" href="image/logo.png">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -224,19 +224,10 @@ nav a.active { color: var(--red); }
   opacity: .4; z-index: -1; filter: blur(20px);
 }
 
-/* User replaces placeholder with: <img class="hero-banner-img" src="..."> */
 .hero-banner-img {
   width: 100%; height: 100%; object-fit: cover;
   border-radius: 22px; position: relative; z-index: 1;
 }
-.hero-banner-placeholder {
-  width: 100%; height: 100%;
-  display: flex; flex-direction: column;
-  align-items: center; justify-content: center; gap: 12px;
-  color: var(--muted); font-size: 12px; letter-spacing: 1px;
-  text-transform: uppercase; position: relative; z-index: 1;
-}
-.hero-banner-placeholder svg { width: 48px; fill: var(--border); }
 
 /* ── COMPAT BADGES ── */
 .compat-list { display: flex; flex-direction: column; gap: 12px; }
@@ -257,7 +248,7 @@ nav a.active { color: var(--red); }
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  overflow: hidden; /* para di lumabas image */
+  overflow: hidden;
 }
 
 .compat-icon img {
@@ -312,20 +303,11 @@ nav a.active { color: var(--red); }
 .package-card.featured { border-color: rgba(255,26,75,.3); }
 .package-card.featured .package-img-area { background: linear-gradient(135deg, rgba(255,26,75,.15) 0%, rgba(255,26,75,.04) 100%); }
 
-.package-img-area img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  background: #000; /* optional para may black space sa gilid */
+.package-img-area {
+  position: relative; height: 280px; overflow: hidden;
+  background: #000;
 }
 .package-img-area img { width: 100%; height: 100%; object-fit: cover; display: block; }
-.package-img-placeholder {
-  display: flex; flex-direction: column;
-  align-items: center; justify-content: center;
-  gap: 10px; width: 100%; height: 100%;
-  color: var(--muted); font-size: 11px; letter-spacing: 1px; text-transform: uppercase;
-}
-.package-img-placeholder svg { width: 40px; fill: var(--border); }
 
 .pkg-featured-badge {
   position: absolute; top: 14px; right: 14px;
@@ -381,7 +363,6 @@ nav a.active { color: var(--red); }
   border-radius: 20px; padding: 36px;
   width: 90%; max-width: 440px;
   animation: slideUp .25s ease;
-  
 }
 
 @keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
@@ -539,7 +520,6 @@ footer { border-top: 1px solid var(--border); padding: 64px 64px 32px; }
 
 <!-- ── HEADER ── -->
 <header>
-  <!-- Replace logo.png with your actual logo file -->
   <a href="#" class="logo" aria-label="GameDeck PH Home">
     <img src="image/logo.png" alt="GameDeck PH">
   </a>
@@ -602,53 +582,49 @@ footer { border-top: 1px solid var(--border); padding: 64px 64px 32px; }
         <div class="hero-visual" aria-hidden="true">
           <div class="hero-card-glow"></div>
           <div class="hero-card">
-            <!--
-              TO USE YOUR IMAGE: replace the placeholder div below with:
-              <img class="hero-banner-img" src="your-banner.jpg" alt="GameDeck PH">
-            -->
-            <div class="hero-card">
-  <img class="hero-banner-img" src="image/hero.jpg" alt="GameDeck Banner">
-</div>
+            <img class="hero-banner-img" src="image/hero.jpg" alt="GameDeck Banner">
           </div>
         </div>
 
         <!-- Compatibility badges -->
         <div class="compat-list" aria-label="Compatible platforms">
 
-  <!-- PC -->
-  <div class="compat-badge">
-    <div class="compat-icon">
-      <img src="image/pc.png" alt="PC">
-    </div>
-    <div>
-      <div class="compat-label">Compatible For:</div>
-      <div class="compat-sub">Pc</div>
-    </div>
-  </div>
+          <!-- PC -->
+          <div class="compat-badge">
+            <div class="compat-icon">
+              <img src="image/pc.png" alt="PC">
+            </div>
+            <div>
+              <div class="compat-label">Compatible For:</div>
+              <div class="compat-sub">Pc</div>
+            </div>
+          </div>
 
-  <!-- Laptop -->
-  <div class="compat-badge">
-    <div class="compat-icon">
-      <img src="image/laptop.png" alt="Laptop">
-    </div>
-    <div>
-      <div class="compat-label">Compatible For:</div>
-      <div class="compat-sub">Laptop</div>
-    </div>
-  </div>
+          <!-- Laptop -->
+          <div class="compat-badge">
+            <div class="compat-icon">
+              <img src="image/laptop.png" alt="Laptop">
+            </div>
+            <div>
+              <div class="compat-label">Compatible For:</div>
+              <div class="compat-sub">Laptop</div>
+            </div>
+          </div>
 
-  <!-- Handheld -->
-  <div class="compat-badge">
-    <div class="compat-icon">
-      <img src="image/handheld.png" alt="Handheld">
-    </div>
-    <div>
-      <div class="compat-label">Compatible For:</div>
-      <div class="compat-sub">Handhelds</div>
-    </div>
-  </div>
+          <!-- Handheld -->
+          <div class="compat-badge">
+            <div class="compat-icon">
+              <img src="image/handheld.png" alt="Handheld">
+            </div>
+            <div>
+              <div class="compat-label">Compatible For:</div>
+              <div class="compat-sub">Handhelds</div>
+            </div>
+          </div>
 
-</div>
+        </div>
+      </div>
+    </div>
 
   </section>
 
@@ -693,14 +669,7 @@ footer { border-top: 1px solid var(--border); padding: 64px 64px 32px; }
       <!-- Steam Package -->
       <div class="package-card featured">
         <div class="package-img-area">
-          <!--
-            REPLACE with your Steam package image:
-            <img src="steam-package.jpg" alt="Steam Package">
-          -->
-          <div class="package-img-placeholder">
-            <img src="image/package1.png" alt="Steam Package">
-            
-          </div>
+          <img src="image/package1.png" alt="Steam Package">
           <span class="pkg-featured-badge">Most Popular</span>
         </div>
         <div class="package-body">
@@ -713,23 +682,16 @@ footer { border-top: 1px solid var(--border); padding: 64px 64px 32px; }
             <li>Instant key delivery after purchase</li>
             <li>24/7 customer support</li>
           </ul>
-          <button class="package-cta package-cta-primary" onclick="window.location.href='../windows/package1.html'">
-  See Details
-</button>
+          <button class="package-cta package-cta-primary" onclick="window.location.href='windows/package1.html'">
+            See Details
+          </button>
         </div>
       </div>
 
       <!-- Software Package -->
       <div class="package-card">
         <div class="package-img-area">
-          <!--
-            REPLACE with your GDrive software package image:
-            <img src="software-package.jpg" alt="Software Package">
-          -->
-          <div class="package-img-placeholder">
-            <img src="image/package2.png" alt="Steam Package">
-            
-          </div>
+          <img src="image/package2.png" alt="GDrive Package">
         </div>
         <div class="package-body">
           <h3>Gdrive PACKAGE</h3>
@@ -741,9 +703,9 @@ footer { border-top: 1px solid var(--border); padding: 64px 64px 32px; }
             <li>Instant access link delivery</li>
             <li>24/7 customer support</li>
           </ul>
-          <button class="package-cta package-cta-secondary" onclick="window.location.href='../windows/package2.html'">
-  See Details
-</button>
+          <button class="package-cta package-cta-secondary" onclick="window.location.href='windows/package2.html'">
+            See Details
+          </button>
         </div>
       </div>
 
@@ -784,14 +746,11 @@ footer { border-top: 1px solid var(--border); padding: 64px 64px 32px; }
   <h4>Support</h4>
   <a href="#" onclick="openModal()">How It Works</a>
   <a href="#" onclick="return false;">FAQ</a>
-
-  <!-- ✅ ADD THIS -->
   <a href="https://www.systemrequirementslab.com/cyri" 
      target="_blank" 
      class="live">
      System Requirements
   </a>
-
   <a href="https://www.facebook.com/profile.php?id=61573726553445" target="_blank">Contact Us</a>
 </div>
     <div class="footer-col">
@@ -812,31 +771,23 @@ footer { border-top: 1px solid var(--border); padding: 64px 64px 32px; }
 <!-- ── HOW IT WORKS MODAL ── -->
 <div class="modal-overlay" id="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-title">
   <div class="modal">
-    
     <div class="modal-header">
       <h3 id="modal-title">HOW IT WORKS</h3>
       <button class="modal-close" onclick="closeModal()" aria-label="Close">✕</button>
     </div>
-
     <p class="modal-sub">
       Choose your platform to get started — GameDeck PH supports both Windows and SteamOS / Bazzite.
     </p>
-
-    
-
     <div class="modal-platforms">
       <button class="platform-btn" onclick="playVideo('windows')">
         <svg viewBox="0 0 24 24"><path d="M3 5.6L10.5 4.5v7.1H3V5.6zM11.5 4.35L21 3v8.6h-9.5V4.35zM3 12.4h7.5v7L3 18.4V12.4zM11.5 12.4H21V21l-9.5-1.3V12.4z"/></svg>
         Windows
       </button>
-
       <button class="platform-btn" onclick="playVideo('steamos')">
         <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12c0 4.42 2.87 8.17 6.84 9.49l1.01-2.48A5.5 5.5 0 0112 7.5a5.5 5.5 0 015.5 5.5 5.5 5.5 0 01-5.5 5.5c-.35 0-.69-.04-1.02-.1l-1.27 3.11C10.72 21.82 11.35 22 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm-3.5 11a2 2 0 110 4 2 2 0 010-4z"/></svg>
         SteamOS / Bazzite
       </button>
     </div>
-
-    <!-- 🔥 ADD THIS -->
     <div id="video-container" style="display:none; margin-top:20px;">
       <iframe id="video-frame"
         width="100%"
@@ -846,43 +797,31 @@ footer { border-top: 1px solid var(--border); padding: 64px 64px 32px; }
         allowfullscreen>
       </iframe>
     </div>
-
   </div>
 </div>
 
 <!-- LOGIN MODAL -->
 <div class="modal-overlay" id="login-modal">
   <div class="modal">
-
     <div class="modal-header">
       <h3>LOGIN</h3>
-      
       <button class="modal-close" onclick="closeLogin()">✕</button>
     </div>
-
     <div class="login-form">
       <input type="text" id="username" placeholder="Username">
-
       <div class="password-wrap">
         <input type="password" id="password" placeholder="Password">
         <button type="button" id="togglePass" onclick="togglePassword()">👁</button>
       </div>
-
       <button id="login-btn" class="btn btn-primary" onclick="login()">Login</button>
-
       <p id="login-error" style="display:none; color:red; font-size:12px;">
         Invalid username or password
       </p>
     </div>
-
   </div>
 </div>
 
 <script>
-function goToPackage1() {
-  window.location.href = "package1.html";
-}
-
 function openModal() {
   const o = document.getElementById('modal-overlay');
   o.classList.add('open');
@@ -892,13 +831,10 @@ function openModal() {
 function closeModal() {
   document.getElementById('modal-overlay').classList.remove('open');
   document.body.style.overflow = '';
-
-  // ✅ STOP VIDEO
   const frame = document.getElementById('video-frame');
   const container = document.getElementById('video-container');
-
-  frame.src = ""; // reset video
-  container.style.display = "none"; // hide player
+  frame.src = "";
+  container.style.display = "none";
 }
 document.getElementById('modal-overlay').addEventListener('click', function(e) {
   if (e.target === this) closeModal();
@@ -915,19 +851,14 @@ document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
 function playVideo(type) {
   const frame = document.getElementById('video-frame');
   const container = document.getElementById('video-container');
-
   let videoURL = "";
-
   if (type === "windows") {
     videoURL = "https://drive.google.com/file/d/1ASHIf3aswOMltqlRQKHGcyUdgt8epyEQ/preview";
   } else if (type === "steamos") {
     videoURL = "https://drive.google.com/file/d/1KMph_uM6hlKAlZW_zpp_pKtDYdjwYeLb/preview";
   }
-
   frame.src = videoURL;
   container.style.display = "block";
-
-  
 }
 
 // OPEN / CLOSE LOGIN
@@ -935,7 +866,6 @@ function openLogin() {
   document.getElementById("login-modal").classList.add("open");
   document.body.style.overflow = "hidden";
 }
-
 function closeLogin() {
   document.getElementById("login-modal").classList.remove("open");
   document.body.style.overflow = "";
@@ -945,7 +875,6 @@ function closeLogin() {
 function togglePassword() {
   const input = document.getElementById("password");
   const toggle = document.getElementById("togglePass");
-
   if (input.type === "password") {
     input.type = "text";
     toggle.innerText = "🙈";
@@ -964,21 +893,16 @@ function login() {
   const modal = document.querySelector("#login-modal .modal");
 
   error.style.display = "none";
-
-  // loading
   btn.disabled = true;
   btn.innerHTML = '<span class="spinner"></span> Logging in...';
 
   setTimeout(() => {
     if (user === "GameDeckPH" && pass === "gamedeckph2411@") {
-
       modal.classList.add("success");
       btn.innerHTML = "✔ SUCCESS";
-
       setTimeout(() => {
         window.location.href = "home/home.html";
       }, 1000);
-
     } else {
       error.style.display = "block";
       btn.disabled = false;
@@ -993,11 +917,6 @@ function scrollToTop() {
     behavior: 'smooth'
   });
 }
-
-
-
-
-
 </script>
 </body>
 </html>
