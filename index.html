@@ -307,7 +307,9 @@ nav a.active { color: var(--red); }
   position: relative; height: 280px; overflow: hidden;
   background: #000;
 }
-.package-img-area img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.package-img-area img {
+  width: 100%; height: 100%; object-fit: contain; display: block;
+}
 
 .pkg-featured-badge {
   position: absolute; top: 14px; right: 14px;
@@ -669,9 +671,9 @@ footer { border-top: 1px solid var(--border); padding: 64px 64px 32px; }
       <!-- Steam Package -->
       <div class="package-card featured">
         <div class="package-img-area">
-          <img src="image/package1.png" alt="Steam Package">
-          <span class="pkg-featured-badge">Most Popular</span>
-        </div>
+        <img src="image/package1.png" alt="Steam Package">
+        <span class="pkg-featured-badge">Most Popular</span>
+      </div>
         <div class="package-body">
           <h3>STEAM PACKAGE</h3>
           <div class="package-price"><sup>₱</sup>1,499</div>
@@ -691,8 +693,8 @@ footer { border-top: 1px solid var(--border); padding: 64px 64px 32px; }
       <!-- Software Package -->
       <div class="package-card">
         <div class="package-img-area">
-          <img src="image/package2.png" alt="GDrive Package">
-        </div>
+        <img src="image/package2.png" alt="GDrive Package">
+      </div>
         <div class="package-body">
           <h3>Gdrive PACKAGE</h3>
           <div class="package-price"><sup>₱</sup>499</div>
