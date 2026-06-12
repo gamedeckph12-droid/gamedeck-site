@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Resident Evil Requiem - Guide</title>
+<title>Stellar Blade - Guide</title>
 <link rel="icon" type="image/png" href="../image/logo.png">
 
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Syne:wght@400;600;700&display=swap" rel="stylesheet">
@@ -39,6 +39,7 @@ body{
   padding:8px 14px;
   border-radius:10px;
   cursor:pointer;
+  z-index: 1000;
 }
 .back:hover{
   background:#ff1a4b;
@@ -56,6 +57,15 @@ body{
   color:#ff1a4b;
   font-weight:700;
   margin-bottom:10px;
+}
+
+.note-box {
+  background: rgba(255, 26, 75, 0.1);
+  border-left: 4px solid #ff1a4b;
+  padding: 12px;
+  border-radius: 4px;
+  margin-bottom: 15px;
+  font-size: 14px;
 }
 
 a{
@@ -120,25 +130,30 @@ ol{
 
 <div class="container">
 
-  <div class="title">RESIDENT EVIL REQUIEM</div>
+  <div class="title">Resident Evil Requiem</div>
 
   <!-- GUIDE -->
   <div class="card">
     <div class="section-title">📌 Kindly Follow Steps Below</div>
 
     <p><strong>Download File:</strong></p>
-    <a href="https://1024terabox.com/s/1lNIBmYQhHa59OhhrqAHAGQ" target="_blank">
+    <a href="https://steamunlocked.org/resident-evil-requiem-free-download/" target="_blank">
       Click here to download →
     </a>
 
-    <p style="margin-top:15px;"><strong>Video Guide Installation:</strong></p>
+    <p style="margin-top:25px;"><strong>Video Guide Installation:</strong></p>
+
+    <!-- ENGLISH NOTE PARA SA IBANG GAME -->
+    <div class="note-box">
+      <strong>Note:</strong> The video demonstration features a different game, but the installation procedure remains exactly the same.
+    </div>
 
     <!-- GOOGLE DRIVE VIDEO EMBED -->
     <iframe 
-  src="https://drive.google.com/file/d/1KiXcngAG5vNlRSBq4TIPP2JGkZN76PA0/preview"
-  allow="autoplay; fullscreen"
-  allowfullscreen
-></iframe>
+      src="https://drive.google.com/file/d/1lPjnufZYGZEIjJTZjPb_KuDgIp-16tkA/preview"
+      allow="autoplay; fullscreen"
+      allowfullscreen
+    ></iframe>
 
   </div>
 
@@ -150,8 +165,8 @@ ol{
       <li>Download the file using the link above</li>
       <li>Extract the file</li>
       <li>Open <strong>Resident Evil Requiem Folder</strong></li>
-      <li>When ask for password open the notepad</li>
-      <li>Find <strong>re9.exe</strong></li>
+      <li>When asked for a password, open the notepad</li>
+      <li>Find the main game launcher (e.g., <strong>re9.exe</strong> or similar launcher file)</li>
       <li>Right click → Send to Desktop</li>
       <li>Launch and enjoy 🎮</li>
     </ol>
@@ -174,8 +189,8 @@ ol{
     <p>If you encounter any errors or issues, message us.</p>
 
   <button class="btn" onclick="messageNow()">
-  Message Us on Facebook
-</button>
+    Message Us on Facebook
+  </button>
 
 <div class="success" id="msgSuccess">
   ✔ Redirecting to Facebook...
@@ -208,7 +223,6 @@ function messageNow(){
   },1200);
 }
 
-// ✅ DAPAT NASA LABAS
 function goBack(){
   window.history.back();
 }
