@@ -199,119 +199,6 @@ body::after {
   display:flex; flex-direction:column; gap:22px;
 }
 
-/* ── FEATURED BANNER ── */
-.featured-banner {
-  position:relative; border-radius:16px; overflow:hidden;
-  height:380px; margin-bottom:22px;
-  background:#0d0d14;
-  border:1px solid var(--border-lt);
-}
-
-/* Slides */
-.fb-slide {
-  position:absolute; inset:0;
-  opacity:0;
-  transition:opacity .9s ease;
-  pointer-events:none;
-}
-.fb-slide.active { opacity:1; pointer-events:auto; }
-
-.fb-slide img.fb-img {
-  position:absolute; inset:0;
-  width:100%; height:100%; object-fit:cover;
-  display:block;
-  transition:transform 8s ease;
-   object-fit:contain;
-  background:#000;
-}
-.fb-slide.active img.fb-img { transform:scale(1.04); }
-
-/* Cinematic overlay – stronger left fade, subtle vignette */
-.fb-overlay {
-  position:absolute; inset:0;
-  background:
-    linear-gradient(100deg, rgba(0,0,0,.92) 0%, rgba(0,0,0,.65) 40%, rgba(0,0,0,.2) 70%, transparent 100%),
-    linear-gradient(0deg, rgba(0,0,0,.6) 0%, transparent 50%);
-}
-
-/* Coming soon placeholder */
-.fb-placeholder {
-  position:absolute; inset:0;
-  display:flex; flex-direction:column; align-items:center; justify-content:center; gap:12px;
-}
-.fb-placeholder-icon {
-  width:72px; height:72px; border-radius:50%;
-  background:rgba(255,255,255,.04); border:1px solid var(--border-lt);
-  display:flex; align-items:center; justify-content:center;
-}
-.fb-placeholder span {
-  font-family:'Exo 2',sans-serif; font-size:11px; font-weight:700;
-  letter-spacing:2px; text-transform:uppercase; color:var(--muted);
-}
-
-.fb-badge {
-  position:absolute; top:18px; left:18px; z-index:2;
-  color:#fff;
-  font-family:'Exo 2',sans-serif; font-size:10px; font-weight:700;
-  letter-spacing:1.5px; text-transform:uppercase;
-  padding:5px 14px; border-radius:20px;
-  display:flex; align-items:center; gap:6px;
-}
-.fb-badge-dot {
-  width:5px; height:5px; border-radius:50%; background:#fff; flex-shrink:0;
-  animation:pulse 2s infinite;
-}
-@keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.35;transform:scale(.65)} }
-
-.fb-content {
-  position:absolute; bottom:0; left:0; right:0; padding:22px 26px 26px; z-index:2;
-}
-.fb-title {
-  font-family:'Bebas Neue',sans-serif;
-  font-size:clamp(36px,5vw,54px); letter-spacing:2.5px;
-  color:#fff; line-height:1;
-  text-shadow:0 2px 24px rgba(0,0,0,.5);
-}
-.fb-title em { font-style:normal; color:var(--red); text-shadow:0 0 40px rgba(232,21,42,.5); }
-.fb-subtitle {
-  font-size:11.5px; color:rgba(255,255,255,.5);
-  letter-spacing:.8px; text-transform:uppercase; margin-top:4px;
-}
-.fb-desc {
-  font-size:13px; color:rgba(255,255,255,.55);
-  margin-top:10px; line-height:1.6; max-width:360px;
-}
-
-/* Progress bar */
-.fb-progress {
-  position:absolute; bottom:0; left:0; right:0; height:2px;
-  background:rgba(255,255,255,.08); z-index:3;
-}
-.fb-progress-bar {
-  height:100%; background:var(--red); width:0%;
-  transition:width linear;
-}
-
-/* Dots */
-.fb-dots {
-  position:absolute; bottom:22px; right:20px; z-index:3;
-  display:flex; gap:6px; align-items:center;
-}
-.fb-dot {
-  height:6px; border-radius:3px;
-  background:rgba(255,255,255,.28); width:6px;
-  transition:all .35s ease; cursor:pointer;
-}
-.fb-dot.active { background:#fff; width:20px; }
-.fb-dot:hover:not(.active) { background:rgba(255,255,255,.5); }
-
-/* Slide counter */
-.fb-counter {
-  position:absolute; top:18px; right:20px; z-index:3;
-  font-family:'Exo 2',sans-serif; font-size:11px; font-weight:700;
-  color:rgba(255,255,255,.4); letter-spacing:1px;
-}
-
 /* ── PLATFORM CARDS ── */
 .platform-cards { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:22px; }
 .plat-card {
@@ -375,7 +262,12 @@ body::after {
 .scroll-btn.right { right:-14px; }
 
 /* ── GAME CARD ── */
-.game-card { flex:0 0 148px; cursor:pointer; transition:transform .22s; }
+.game-card {
+  flex:0 0 148px;
+  width:148px;
+  cursor:pointer;
+  transition:transform .22s;
+}
 .game-card:hover { transform:translateY(-5px); }
 .game-card:hover .gc-inner { box-shadow:0 14px 36px rgba(0,0,0,.6); border-color:var(--border-lt); }
 
@@ -383,14 +275,20 @@ body::after {
   border-radius:10px; overflow:hidden;
   background:var(--bg-card); border:1px solid var(--border);
   transition:box-shadow .22s, border-color .22s;
+  display:flex; flex-direction:column;
 }
 .gc-thumb {
-  width:100%; height:188px;
+  width:100%; height:188px; flex:0 0 188px;
   display:flex; align-items:center; justify-content:center;
   background:linear-gradient(145deg,#131316,#0d0d10);
   position:relative; overflow:hidden;
 }
-.gc-thumb img { width:100%; height:100%; object-fit:cover; display:block; transition:transform .3s; }
+.gc-thumb img {
+  position:absolute; inset:0;
+  width:100%; height:100%;
+  object-fit:cover; object-position:center;
+  display:block; transition:transform .3s;
+}
 .game-card:hover .gc-thumb img { transform:scale(1.06); }
 
 .gc-new-badge {
@@ -595,58 +493,11 @@ body::after {
   .nav-item { justify-content:center; padding:12px; }
   .logo-area { justify-content:center; padding:0 8px; }
   .platform-cards { grid-template-columns:1fr; }
-  .featured-banner { height:280px; }
 }
 
 .nav-icon {
   width:16px; height:16px; object-fit:contain; flex-shrink:0;
 }
-
-.fb-nav {
-  position:absolute;
-  top:50%;
-  transform:translateY(-50%);
-  width:42px;
-  height:42px;
-  border-radius:50%;
-  border:1px solid rgba(255,255,255,.2);
-  background:rgba(0,0,0,.4);
-  color:#fff;
-  font-size:18px;
-  cursor:pointer;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  z-index:10;
-}
-
-.fb-nav.prev { left:10px; }
-.fb-nav.next { right:10px; }
-
-.fb-nav:hover {
-  background:var(--red);
-}
-
-  .fb-slide {
-  position:relative;
-  width:100%;
-  height:100%;
-  display:flex;
-  align-items:center;
-}
-
-.fb-slide img.fb-img {
-  position:absolute;
-  top:0;
-  left:0;
-
-  width:100%;
-  height:100%;
-
-  object-fit:cover;
-  object-position:center right; /* 🔥 IMPORTANT */
-}
-
 </style>
 </head>
 <body>
@@ -658,7 +509,7 @@ body::after {
   </div>
   <div class="search-wrap">
     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-    <input class="search-input" id="searchInput" type="text" placeholder="Search games..." autocomplete="off">
+    <input class="search-input" id="searchInput" type="text" placeholder="Search games or software..." autocomplete="off">
     <div class="search-dropdown" id="searchDropdown"></div>
   </div>
   <div class="topbar-right">
@@ -690,15 +541,15 @@ body::after {
     <p class="sidebar-section-label">Library</p>
     <div class="nav-item active" data-page="home">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
-      <span>All Games</span>
+      <span>All</span>
     </div>
-    <div class="nav-item" data-page="windows">
-      <img src="../image/windows.png" class="nav-icon" alt="">
-      <span>Windows Games</span>
+    <div class="nav-item" data-page="games">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="6" y1="12" x2="10" y2="12"/><line x1="8" y1="10" x2="8" y2="14"/><circle cx="15" cy="13" r="1"/><circle cx="18" cy="11" r="1"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
+      <span>Games</span>
     </div>
-    <div class="nav-item" data-page="steamos">
-      <img src="../image/steamos.png" class="nav-icon" alt="">
-      <span>SteamOS / Bazzite</span>
+    <div class="nav-item" data-page="software">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="12" rx="2"/><line x1="8" y1="20" x2="16" y2="20"/><line x1="12" y1="16" x2="12" y2="20"/></svg>
+      <span>Software</span>
     </div>
 
     <div class="sidebar-bottom">
@@ -706,7 +557,7 @@ body::after {
         <div class="help-card-icon">🎧</div>
         <h4>NEED HELP?</h4>
         <p>Our support team is here to help you!</p>
-        <a class="help-btn" href="https://www.facebook.com/profile.php?id=61573726553445" target="_blank">
+        <a class="help-btn" href="https://www.facebook.com/GameDeckPH25" target="_blank">
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
           Message Us
         </a>
@@ -714,7 +565,7 @@ body::after {
       <div class="sidebar-footer">
         <p>© 2025 GameDeck PH</p>
         <div class="sidebar-footer-links">
-          <a href="https://www.facebook.com/profile.php?id=61573726553445" target="_blank">Facebook</a>
+          <a href="https://www.facebook.com/GameDeckPH25" target="_blank">Facebook</a>
         </div>
       </div>
     </div>
@@ -726,114 +577,23 @@ body::after {
     <!-- ── HOME PAGE ── -->
     <div class="page active" id="page-home">
 
-      <!-- ── FEATURED BANNER ── -->
-      <div class="featured-banner" id="featuredBanner">
-
-        <!-- ═══════════════════════════════════════════════════
-             SLIDE 1 — Resident Evil Requiem (real game)
-             To change: update src, title, subtitle, desc
-        ════════════════════════════════════════════════════ -->
-        <div class="fb-slide active" id="fb-slide-0">
-          <img class="fb-img" src="../image/bannerr9.png" alt="Resident Evil Requiem"
-               onerror="this.style.display='none'">
-          <div class="fb-overlay"></div>
-          <div class="fb-badge" style="background:var(--red);">
-            <span class="fb-badge-dot"></span>Featured Game
-          </div>
-          <div class="fb-content">
-            <div class="fb-title">RESIDENT EVIL<br><em>REQUIEM</em></div>
-            <div class="fb-subtitle">Capcom &nbsp;·&nbsp; 2025 &nbsp;·&nbsp; Action / Horror</div>
-            <div class="fb-desc">Survive the nightmare. Uncover the truth. A new chapter in the legendary survival horror series.</div>
-          </div>
-        </div>
-
-        <!-- ═══════════════════════════════════════════════════
-             SLIDE 2 — Coming Soon placeholder
-             Replace img src + text when ready
-        ════════════════════════════════════════════════════ -->
-        <div class="fb-slide" id="fb-slide-1">
-          <div class="fb-placeholder">
-            <div class="fb-placeholder-icon">
-              <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#606068" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
-            </div>
-            <span>Coming Soon</span>
-          </div>
-          <div class="fb-overlay" style="background:linear-gradient(100deg,rgba(0,0,0,.7) 0%,rgba(0,0,0,.4) 50%,transparent 100%)"></div>
-          <div class="fb-badge" style="background:#444;">
-            <span class="fb-badge-dot" style="background:rgba(255,255,255,.4);animation:none;"></span>Coming Soon
-          </div>
-          <div class="fb-content">
-            <div class="fb-title" style="opacity:.35;">NEXT GAME<br><em style="color:var(--muted);">TITLE</em></div>
-            <div class="fb-subtitle" style="opacity:.4;">Stay tuned for more updates</div>
-            <div class="fb-desc" style="opacity:.35;">This slot will be filled with a new featured game soon. Follow our Facebook page for the latest announcements.</div>
-          </div>
-        </div>
-
-        <!-- ═══════════════════════════════════════════════════
-             SLIDE 3 — Coming Soon placeholder
-             Replace img src + text when ready
-        ════════════════════════════════════════════════════ -->
-        <div class="fb-slide" id="fb-slide-2">
-          <div class="fb-placeholder">
-            <div class="fb-placeholder-icon">
-              <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#606068" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-            </div>
-            <span>Coming Soon</span>
-          </div>
-          <div class="fb-overlay" style="background:linear-gradient(100deg,rgba(0,0,0,.7) 0%,rgba(0,0,0,.4) 50%,transparent 100%)"></div>
-          <div class="fb-badge" style="background:#444;">
-            <span class="fb-badge-dot" style="background:rgba(255,255,255,.4);animation:none;"></span>Coming Soon
-          </div>
-          <div class="fb-content">
-            <div class="fb-title" style="opacity:.35;">COMING<br><em style="color:var(--muted);">SOON</em></div>
-            <div class="fb-subtitle" style="opacity:.4;">More games dropping soon</div>
-            <div class="fb-desc" style="opacity:.35;">We're adding more featured titles to GameDeck PH. Check back soon or follow us for updates.</div>
-          </div>
-        </div>
-
-        <!-- Slide counter -->
-        <div class="fb-counter" id="fbCounter">1 / 3</div>
-
-        <!-- Dots -->
-        <div class="fb-dots" id="fbDots">
-          <div class="fb-dot active" onclick="bannerGoTo(0)"></div>
-          <div class="fb-dot" onclick="bannerGoTo(1)"></div>
-          <div class="fb-dot" onclick="bannerGoTo(2)"></div>
-        </div>
-
-        <!-- Progress bar -->
-        <div class="fb-progress">
-          <div class="fb-progress-bar" id="fbProgressBar"></div>
-        </div>
-
-        <!-- NAV BUTTONS -->
-<button class="fb-nav prev" onclick="bannerGoTo(bannerCur - 1)">❮</button>
-<button class="fb-nav next" onclick="bannerGoTo(bannerCur + 1)">❯</button>
-
-      </div>
-      <!-- END FEATURED BANNER -->
-
-      <!-- Platform Cards -->
+      <!-- Category Cards -->
       <div class="platform-cards">
-        <div class="plat-card win" data-page="windows">
-          <div class="plat-icon">
-            <img src="../image/windows.png" style="width:100%;height:100%;object-fit:contain;" alt="">
-          </div>
+        <div class="plat-card win" data-page="games">
+          <div class="plat-icon">🎮</div>
           <div>
-            <div class="plat-name">Windows Games</div>
-            <div class="plat-desc">Explore all Windows compatible games</div>
+            <div class="plat-name">Games</div>
+            <div class="plat-desc">Browse all available games</div>
           </div>
           <div class="plat-arrow">
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
           </div>
         </div>
-        <div class="plat-card steam" data-page="steamos">
-          <div class="plat-icon">
-            <img src="../image/steamos.png" style="width:100%;height:100%;object-fit:contain;" alt="">
-          </div>
+        <div class="plat-card steam" data-page="software">
+          <div class="plat-icon">💾</div>
           <div>
-            <div class="plat-name">SteamOS / Bazzite</div>
-            <div class="plat-desc">Explore all SteamOS & Bazzite compatible games</div>
+            <div class="plat-name">Software</div>
+            <div class="plat-desc">Browse all available software</div>
           </div>
           <div class="plat-arrow">
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
@@ -841,59 +601,59 @@ body::after {
         </div>
       </div>
 
-      <!-- Windows Row -->
+      <!-- Games Row -->
       <div class="games-section">
         <div class="sec-header">
           <div class="sec-title">
             <div class="sec-dot-red"></div>
-            Windows Games
+            Games
           </div>
-          <button class="view-all red" data-page="windows">View All
+          <button class="view-all red" data-page="games">View All
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
           </button>
         </div>
         <div class="row-wrap">
           <button class="scroll-btn left"  onclick="scrollRow(this,-1)"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg></button>
-          <div class="games-row" id="winRow"></div>
+          <div class="games-row" id="gamesRow"></div>
           <button class="scroll-btn right" onclick="scrollRow(this,1)"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg></button>
         </div>
       </div>
 
-      <!-- SteamOS Row -->
+      <!-- Software Row -->
       <div class="games-section">
         <div class="sec-header">
           <div class="sec-title">
             <div class="sec-dot-blue"></div>
-            SteamOS / Bazzite Games
+            Software
           </div>
-          <button class="view-all blue" data-page="steamos">View All
+          <button class="view-all blue" data-page="software">View All
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
           </button>
         </div>
         <div class="row-wrap">
           <button class="scroll-btn left"  onclick="scrollRow(this,-1)"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg></button>
-          <div class="games-row" id="steamRow"></div>
+          <div class="games-row" id="softwareRow"></div>
           <button class="scroll-btn right" onclick="scrollRow(this,1)"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg></button>
         </div>
       </div>
     </div>
 
-    <!-- ── WINDOWS PAGE ── -->
-    <div class="page" id="page-windows">
+    <!-- ── GAMES PAGE ── -->
+    <div class="page" id="page-games">
       <div class="page-header">
-        <h1 class="page-title">WINDOWS GAMES</h1>
-        <p class="page-sub">All Windows compatible games</p>
+        <h1 class="page-title">GAMES</h1>
+        <p class="page-sub">All games, sorted A–Z</p>
       </div>
-      <div class="games-grid" id="winGrid"></div>
+      <div class="games-grid" id="gamesGrid"></div>
     </div>
 
-    <!-- ── STEAMOS PAGE ── -->
-    <div class="page" id="page-steamos">
+    <!-- ── SOFTWARE PAGE ── -->
+    <div class="page" id="page-software">
       <div class="page-header">
-        <h1 class="page-title">STEAMOS / BAZZITE</h1>
-        <p class="page-sub">All SteamOS & Bazzite compatible games</p>
+        <h1 class="page-title">SOFTWARE</h1>
+        <p class="page-sub">All software, sorted A–Z</p>
       </div>
-      <div class="games-grid" id="steamGrid"></div>
+      <div class="games-grid" id="softwareGrid"></div>
     </div>
 
   </main>
@@ -914,7 +674,7 @@ body::after {
           </div>
         </div>
       </div>
-      <a class="view-all-announcements" href="https://www.facebook.com/profile.php?id=61573726553445" target="_blank"></a>
+      <a class="view-all-announcements" href="https://www.facebook.com/GameDeckPH25" target="_blank"></a>
     </div>
 
     <div>
@@ -922,7 +682,7 @@ body::after {
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
         Quick Links
         </div>
-        <div class="ql-item" onclick="window.open('https://www.systemrequirementslab.com/cyri/requirements','_blank')">
+        <div class="ql-item" onclick="window.open('https://www.systemrequirementslab.com/cyri','_blank')">
   <div class="ql-item-left">
     <svg class="ql-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
       <rect x="2" y="3" width="20" height="14" rx="2"/>
@@ -957,517 +717,57 @@ body::after {
 </div>
 
 <script>
-// ─── GAME DATA ────────────────────────────────────────────────────────────────
-// HOW TO ADD A GAME:
-//   name, img, genre, tagClass, platform, page (optional), isNew (true/false),
-//   likes (number, optional), desc, rating, year, dev
+// ─── DATA ────────────────────────────────────────────────────────────────
+// HOW TO ADD A GAME OR SOFTWARE:
+//   Just add a new object to the GAMES array or the SOFTWARE array below.
+//   Fields: name, img, genre, tagClass, page (optional link), isNew (true/false),
+//           desc, rating, year, dev
+//   Everything is sorted alphabetically by "name" automatically — no manual ordering needed.
 //
 // tagClass options: tag-red / tag-blue / tag-orange / tag-green / tag-yellow / tag-cyan / tag-purple
 
-const WIN_GAMES = [
-  {
-    id: 1,
-    name: "Resident Evil Requiem",
-    img: "../image/r9.jpg",
-    genre: "Action / Horror",
-    tagClass: "tag-red",
-    platform: "Windows",
-    page: "../windows/r9.html",
-    isNew: true,
-    desc: "Survive the nightmare. Uncover the truth. A new chapter in the legendary survival horror series.",
-    rating: "18+",
-    year: "2025",
-    dev: "Capcom"
-  },
-  
-  {
-    id: 2,
-    name: "Pragmata",
-    img: "../image/pragmata.jpg",
-    genre: "Action / Sci-fi",
-    tagClass: "tag-blue",
-    platform: "Windows",
-    page: "../windows/pragmata.html",
-    isNew: true,
-    desc: "Survive the nightmare. Uncover the truth. A new chapter in the legendary survival horror series.",
-    rating: "18+",
-    year: "2025",
-    dev: "Capcom"
-  },
-
-   {
-    id: 3,
-    name: "Stellar Blade",
-    img: "../image/stellar.jpg",
-    genre: "Action / Sci-fi",
-    tagClass: "tag-yellow",
-    platform: "Windows",
-    page: "../windows/stellar.html",
-    isNew: true,
-    desc: "Survive the nightmare. Uncover the truth. A new chapter in the legendary survival horror series.",
-    rating: "18+",
-    year: "2025",
-    dev: "Capcom"
-  },
-
-  {
-    id: 4,
-    name: "Tekken 8",
-    img: "../image/Tekken 8.jpg",
-    genre: "Action / PVP",
-    tagClass: "tag-red",
-    platform: "Windows",
-    page: "../windows/tekken8.html",
-    isNew: true,
-    desc: "Survive the nightmare. Uncover the truth. A new chapter in the legendary survival horror series.",
-    rating: "18+",
-    year: "2025",
-    dev: "Capcom"
-  },
-
-  {
-    id: 5,
-    name: "007 First Light",
-    img: "../image/007.jpg",
-    genre: "Action / PVP",
-    tagClass: "tag-yellow",
-    platform: "Windows",
-    page: "../windows/007.html",
-    isNew: true,
-    desc: "Survive the nightmare. Uncover the truth. A new chapter in the legendary survival horror series.",
-    rating: "18+",
-    year: "2025",
-    dev: "Capcom"
-  },
-
-  {
-    id: 6,
-    name: "Undisputed",
-    img: "../image/undisputed.jpg",
-    genre: "Action / PVP",
-    tagClass: "tag-blue",
-    platform: "Windows",
-    page: "../windows/undisputed.html",
-    isNew: true,
-    desc: "Survive the nightmare. Uncover the truth. A new chapter in the legendary survival horror series.",
-    rating: "18+",
-    year: "2025",
-    dev: "Capcom"
-  },
-
-  {
-    id: 7,
-    name: "Mafia The Old Country",
-    img: "../image/mafiaoldcountry.jpg",
-    genre: "Action / PVP",
-    tagClass: "tag-yellow",
-    platform: "Windows",
-    page: "../windows/mafiaoldcountry.html",
-    isNew: true,
-    desc: "Survive the nightmare. Uncover the truth. A new chapter in the legendary survival horror series.",
-    rating: "18+",
-    year: "2025",
-    dev: "Capcom"
-  },
-
-  {
-    id: 8,
-    name: "Assassins Creed 2",
-    img: "../image/ac2.jpg",
-    genre: "Action / PVP",
-    tagClass: "tag-red",
-    platform: "Windows",
-    page: "../windows/ac2.html",
-    isNew: true,
-    desc: "Survive the nightmare. Uncover the truth. A new chapter in the legendary survival horror series.",
-    rating: "18+",
-    year: "2025",
-    dev: "Capcom"
-  },
-
-  {
-    id: 9,
-    name: "Assassins Creed 3",
-    img: "../image/ac3.jpg",
-    genre: "Action / PVP",
-    tagClass: "tag-red",
-    platform: "Windows",
-    page: "../windows/ac3.html",
-    isNew: true,
-    desc: "Survive the nightmare. Uncover the truth. A new chapter in the legendary survival horror series.",
-    rating: "18+",
-    year: "2025",
-    dev: "Capcom"
-  },
-
-   {
-    id: 10,
-    name: "Assassins Creed 4 Black Flag",
-    img: "../image/ac4blackflag.jpg",
-    genre: "Action / PVP",
-    tagClass: "tag-red",
-    platform: "Windows",
-    page: "../windows/ac4blackflag4.html",
-    isNew: true,
-    desc: "Survive the nightmare. Uncover the truth. A new chapter in the legendary survival horror series.",
-    rating: "18+",
-    year: "2025",
-    dev: "Capcom"
-  },
-
-  {
-    id: 11,
-    name: "Assassins Creed Brotherhood",
-    img: "../image/acbrotherhood.jpg",
-    genre: "Action / PVP",
-    tagClass: "tag-red",
-    platform: "Windows",
-    page: "../windows/acbrotherhood.html",
-    isNew: true,
-    desc: "Survive the nightmare. Uncover the truth. A new chapter in the legendary survival horror series.",
-    rating: "18+",
-    year: "2025",
-    dev: "Capcom"
-  },
-
-  {
-    id: 12,
-    name: "Assassins Creed Chronicles China",
-    img: "../image/acchronicles.jpg",
-    genre: "Action / PVP",
-    tagClass: "tag-red",
-    platform: "Windows",
-    page: "../windows/acchronicles.html",
-    isNew: true,
-    desc: "Survive the nightmare. Uncover the truth. A new chapter in the legendary survival horror series.",
-    rating: "18+",
-    year: "2025",
-    dev: "Capcom"
-  },
-
-  {
-    id: 13,
-    name: "Assassins Creed Chronicles India",
-    img: "../image/acchroniclesindia.jpg",
-    genre: "Action / PVP",
-    tagClass: "tag-red",
-    platform: "Windows",
-    page: "../windows/acchroniclesindia.html",
-    isNew: true,
-    desc: "Survive the nightmare. Uncover the truth. A new chapter in the legendary survival horror series.",
-    rating: "18+",
-    year: "2025",
-    dev: "Capcom"
-  },
-
-   {
-    id: 14,
-    name: "Assassins Creed Chronicles Russia",
-    img: "../image/acchroniclesrussia.jpg",
-    genre: "Action / PVP",
-    tagClass: "tag-red",
-    platform: "Windows",
-    page: "../windows/acchroniclesrussia.html",
-    isNew: true,
-    desc: "Survive the nightmare. Uncover the truth. A new chapter in the legendary survival horror series.",
-    rating: "18+",
-    year: "2025",
-    dev: "Capcom"
-  },
-
-    {
-    id: 14,
-    name: "Assassins Creed",
-    img: "../image/ac1.jpg",
-    genre: "Action / PVP",
-    tagClass: "tag-red",
-    platform: "Windows",
-    page: "../windows/ac1.html",
-    isNew: true,
-    desc: "Survive the nightmare. Uncover the truth. A new chapter in the legendary survival horror series.",
-    rating: "18+",
-    year: "2025",
-    dev: "Capcom"
-  },
-
-  {
-    id: 15,
-    name: "Assassins Creed III Remastered",
-    img: "../image/ac3remastered.jpg",
-    genre: "Action / PVP",
-    tagClass: "tag-red",
-    platform: "Windows",
-    page: "../windows/ac3remastered.html",
-    isNew: true,
-    desc: "Survive the nightmare. Uncover the truth. A new chapter in the legendary survival horror series.",
-    rating: "18+",
-    year: "2025",
-    dev: "Capcom"
-  },
-
-  {
-    id: 16,
-    name: "Assassins Creed Liberation HD",
-    img: "../image/acliberation.jpg",
-    genre: "Action / PVP",
-    tagClass: "tag-red",
-    platform: "Windows",
-    page: "../windows/acliberation.html",
-    isNew: true,
-    desc: "Survive the nightmare. Uncover the truth. A new chapter in the legendary survival horror series.",
-    rating: "18+",
-    year: "2025",
-    dev: "Capcom"
-  },
-
-  {
-    id: 17,
-    name: "Assassins Creed Shadows",
-    img: "../image/acshadow.png",
-    genre: "Action / PVP",
-    tagClass: "tag-red",
-    platform: "Windows",
-    page: "../windows/acshadow.html",
-    isNew: true,
-    desc: "Survive the nightmare. Uncover the truth. A new chapter in the legendary survival horror series.",
-    rating: "18+",
-    year: "2025",
-    dev: "Capcom"
-  },
-
-  {
-    id: 18,
-    name: "Assassins Creed Freedom Cry",
-    img: "../image/acfreedom.jpg",
-    genre: "Action / PVP",
-    tagClass: "tag-red",
-    platform: "Windows",
-    page: "../windows/acfreedom.html",
-    isNew: true,
-    desc: "Survive the nightmare. Uncover the truth. A new chapter in the legendary survival horror series.",
-    rating: "18+",
-    year: "2025",
-    dev: "Capcom"
-  },
-
-  {
-    id: 19,
-    name: "Assassins Creed Rouge",
-    img: "../image/acrouge.jpg",
-    genre: "Action / PVP",
-    tagClass: "tag-red",
-    platform: "Windows",
-    page: "../windows/acrouge.html",
-    isNew: true,
-    desc: "Survive the nightmare. Uncover the truth. A new chapter in the legendary survival horror series.",
-    rating: "18+",
-    year: "2025",
-    dev: "Capcom"
-  },
-
-  {
-    id: 20,
-    name: "Assassins Creed Mirage",
-    img: "../image/acmirage.jpg",
-    genre: "Action / PVP",
-    tagClass: "tag-red",
-    platform: "Windows",
-    page: "../windows/acmirage.html",
-    isNew: true,
-    desc: "Survive the nightmare. Uncover the truth. A new chapter in the legendary survival horror series.",
-    rating: "18+",
-    year: "2025",
-    dev: "Capcom"
-  },
-
-  {
-    id: 21,
-    name: "Assassins Creed Syndicate",
-    img: "../image/acsyndicate.jpg",
-    genre: "Action / PVP",
-    tagClass: "tag-red",
-    platform: "Windows",
-    page: "../windows/acsyndicate.html",
-    isNew: true,
-    desc: "Survive the nightmare. Uncover the truth. A new chapter in the legendary survival horror series.",
-    rating: "18+",
-    year: "2025",
-    dev: "Capcom"
-  },
-
-  {
-    id: 22,
-    name: "Assassins Creed Origins",
-    img: "../image/acorigins.jpg",
-    genre: "Action / PVP",
-    tagClass: "tag-red",
-    platform: "Windows",
-    page: "../windows/acorigins.html",
-    isNew: true,
-    desc: "Survive the nightmare. Uncover the truth. A new chapter in the legendary survival horror series.",
-    rating: "18+",
-    year: "2025",
-    dev: "Capcom"
-  },
-
-  {
-    id: 23,
-    name: "Assassins Creed Unity",
-    img: "../image/acunity.jpg",
-    genre: "Action / PVP",
-    tagClass: "tag-red",
-    platform: "Windows",
-    page: "../windows/acunity.html",
-    isNew: true,
-    desc: "Survive the nightmare. Uncover the truth. A new chapter in the legendary survival horror series.",
-    rating: "18+",
-    year: "2025",
-    dev: "Capcom"
-  },
-
-  {
-    id: 24,
-    name: "Assassins Creed Revelations",
-    img: "../image/acrevelations.jpg",
-    genre: "Action / PVP",
-    tagClass: "tag-red",
-    platform: "Windows",
-    page: "../windows/acrevelations.html",
-    isNew: true,
-    desc: "Survive the nightmare. Uncover the truth. A new chapter in the legendary survival horror series.",
-    rating: "18+",
-    year: "2025",
-    dev: "Capcom"
-  },
-
-  {
-    id: 25,
-    name: "Assassins Creed Valhalla",
-    img: "../image/acvalhala.jpg",
-    genre: "Action / PVP",
-    tagClass: "tag-red",
-    platform: "Windows",
-    page: "../windows/acvalhala.html",
-    isNew: true,
-    desc: "Survive the nightmare. Uncover the truth. A new chapter in the legendary survival horror series.",
-    rating: "18+",
-    year: "2025",
-    dev: "Capcom"
-  },
-
-  {
-    id: 26,
-    name: "Assassins Creed Odyssey",
-    img: "../image/acodyssey.jpg",
-    genre: "Action / PVP",
-    tagClass: "tag-red",
-    platform: "Windows",
-    page: "../windows/acodyssey.html",
-    isNew: true,
-    desc: "Survive the nightmare. Uncover the truth. A new chapter in the legendary survival horror series.",
-    rating: "18+",
-    year: "2025",
-    dev: "Capcom"
-  },
-
-  {
-    id: 27,
-    name: "Call of Duty Modern Warfare 2019",
-    img: "../image/cod2019.jpg",
-    genre: "Action / PVP",
-    tagClass: "tag-red",
-    platform: "Windows",
-    page: "../windows/cod2019.html",
-    isNew: true,
-    desc: "Survive the nightmare. Uncover the truth. A new chapter in the legendary survival horror series.",
-    rating: "18+",
-    year: "2025",
-    dev: "Capcom"
-  },
-
-  {
-    id: 28,
-    name: "Call of Duty Black Ops Cold War",
-    img: "../image/codcold.jpg",
-    genre: "Action / PVP",
-    tagClass: "tag-red",
-    platform: "Windows",
-    page: "../windows/codcold.html",
-    isNew: true,
-    desc: "Survive the nightmare. Uncover the truth. A new chapter in the legendary survival horror series.",
-    rating: "18+",
-    year: "2025",
-    dev: "Capcom"
-  },
-
-   {
-    id: 29,
-    name: "Call of Duty Modern Warfare 2",
-    img: "../image/codmw2.jpg",
-    genre: "Action / PVP",
-    tagClass: "tag-red",
-    platform: "Windows",
-    page: "../windows/codmw2.html",
-    isNew: true,
-    desc: "Survive the nightmare. Uncover the truth. A new chapter in the legendary survival horror series.",
-    rating: "18+",
-    year: "2025",
-    dev: "Capcom"
-  },
-
-  {
-    id: 30,
-    name: "Call of Duty Modern Warfare 3",
-    img: "../image/codmw3.jpg",
-    genre: "Action / PVP",
-    tagClass: "tag-red",
-    platform: "Windows",
-    page: "../windows/codmw3.html",
-    isNew: true,
-    desc: "Survive the nightmare. Uncover the truth. A new chapter in the legendary survival horror series.",
-    rating: "18+",
-    year: "2025",
-    dev: "Capcom"
-  },
-
-  {
-    id: 31,
-    name: "Call of Duty Vanguard",
-    img: "../image/codvanguard.jpg",
-    genre: "Action / PVP",
-    tagClass: "tag-red",
-    platform: "Windows",
-    page: "../windows/codvangurad.html",
-    isNew: true,
-    desc: "Survive the nightmare. Uncover the truth. A new chapter in the legendary survival horror series.",
-    rating: "18+",
-    year: "2025",
-    dev: "Capcom"
-  },
-
-  {
-    id: 32,
-    name: "Call of Duty Black Ops 6",
-    img: "../image/cod6.jpg",
-    genre: "Action / PVP",
-    tagClass: "tag-red",
-    platform: "Windows",
-    page: "../windows/cod6.html",
-    isNew: true,
-    desc: "Survive the nightmare. Uncover the truth. A new chapter in the legendary survival horror series.",
-    rating: "18+",
-    year: "2025",
-    dev: "Capcom"
-  },
+const GAMES = [
+  { id: 1,  name: "Resident Evil Requiem", img: "../image/r9.jpg", genre: "Action / Horror", tagClass: "tag-red", page: "../windows/r9.html", isNew: true, desc: "Survive the nightmare. Uncover the truth. A new chapter in the legendary survival horror series.", rating: "18+", year: "2025", dev: "Capcom" },
+  { id: 2,  name: "Pragmata", img: "../image/pragmata.jpg", genre: "Action / Sci-fi", tagClass: "tag-blue", page: "../windows/pragmata.html", isNew: true, desc: "Survive the nightmare. Uncover the truth. A new chapter in the legendary survival horror series.", rating: "18+", year: "2025", dev: "Capcom" },
+  { id: 3,  name: "Stellar Blade", img: "../image/stellar.jpg", genre: "Action / Sci-fi", tagClass: "tag-yellow", page: "../windows/stellar.html", isNew: true, desc: "Survive the nightmare. Uncover the truth. A new chapter in the legendary survival horror series.", rating: "18+", year: "2025", dev: "Capcom" },
+  { id: 4,  name: "Tekken 8", img: "../image/Tekken 8.jpg", genre: "Action / PVP", tagClass: "tag-red", page: "../windows/tekken8.html", isNew: true, desc: "Survive the nightmare. Uncover the truth. A new chapter in the legendary survival horror series.", rating: "18+", year: "2025", dev: "Capcom" },
+  { id: 5,  name: "007 First Light", img: "../image/007.jpg", genre: "Action / PVP", tagClass: "tag-yellow", page: "../windows/007.html", isNew: true, desc: "Survive the nightmare. Uncover the truth. A new chapter in the legendary survival horror series.", rating: "18+", year: "2025", dev: "Capcom" },
+  { id: 6,  name: "Undisputed", img: "../image/undisputed.jpg", genre: "Action / PVP", tagClass: "tag-blue", page: "../windows/undisputed.html", isNew: true, desc: "Survive the nightmare. Uncover the truth. A new chapter in the legendary survival horror series.", rating: "18+", year: "2025", dev: "Capcom" },
+  { id: 7,  name: "Mafia The Old Country", img: "../image/mafiaoldcountry.jpg", genre: "Action / PVP", tagClass: "tag-yellow", page: "../windows/mafiaoldcountry.html", isNew: true, desc: "Survive the nightmare. Uncover the truth. A new chapter in the legendary survival horror series.", rating: "18+", year: "2025", dev: "Capcom" },
+  { id: 8,  name: "Assassins Creed 2", img: "../image/ac2.jpg", genre: "Action / PVP", tagClass: "tag-red", page: "../windows/ac2.html", isNew: true, desc: "Survive the nightmare. Uncover the truth. A new chapter in the legendary survival horror series.", rating: "18+", year: "2025", dev: "Capcom" },
+  { id: 9,  name: "Assassins Creed 3", img: "../image/ac3.jpg", genre: "Action / PVP", tagClass: "tag-red", page: "../windows/ac3.html", isNew: true, desc: "Survive the nightmare. Uncover the truth. A new chapter in the legendary survival horror series.", rating: "18+", year: "2025", dev: "Capcom" },
+  { id: 10, name: "Assassins Creed 4 Black Flag", img: "../image/ac4blackflag.jpg", genre: "Action / PVP", tagClass: "tag-red", page: "../windows/ac4blackflag4.html", isNew: true, desc: "Survive the nightmare. Uncover the truth. A new chapter in the legendary survival horror series.", rating: "18+", year: "2025", dev: "Capcom" },
+  { id: 11, name: "Assassins Creed Brotherhood", img: "../image/acbrotherhood.jpg", genre: "Action / PVP", tagClass: "tag-red", page: "../windows/acbrotherhood.html", isNew: true, desc: "Survive the nightmare. Uncover the truth. A new chapter in the legendary survival horror series.", rating: "18+", year: "2025", dev: "Capcom" },
+  { id: 12, name: "Assassins Creed Chronicles China", img: "../image/acchronicles.jpg", genre: "Action / PVP", tagClass: "tag-red", page: "../windows/acchronicles.html", isNew: true, desc: "Survive the nightmare. Uncover the truth. A new chapter in the legendary survival horror series.", rating: "18+", year: "2025", dev: "Capcom" },
+  { id: 13, name: "Assassins Creed Chronicles India", img: "../image/acchroniclesindia.jpg", genre: "Action / PVP", tagClass: "tag-red", page: "../windows/acchroniclesindia.html", isNew: true, desc: "Survive the nightmare. Uncover the truth. A new chapter in the legendary survival horror series.", rating: "18+", year: "2025", dev: "Capcom" },
+  { id: 14, name: "Assassins Creed Chronicles Russia", img: "../image/acchroniclesrussia.jpg", genre: "Action / PVP", tagClass: "tag-red", page: "../windows/acchroniclesrussia.html", isNew: true, desc: "Survive the nightmare. Uncover the truth. A new chapter in the legendary survival horror series.", rating: "18+", year: "2025", dev: "Capcom" },
+  { id: 15, name: "Assassins Creed", img: "../image/ac1.jpg", genre: "Action / PVP", tagClass: "tag-red", page: "../windows/ac1.html", isNew: true, desc: "Survive the nightmare. Uncover the truth. A new chapter in the legendary survival horror series.", rating: "18+", year: "2025", dev: "Capcom" },
+  { id: 16, name: "Assassins Creed III Remastered", img: "../image/ac3remastered.jpg", genre: "Action / PVP", tagClass: "tag-red", page: "../windows/ac3remastered.html", isNew: true, desc: "Survive the nightmare. Uncover the truth. A new chapter in the legendary survival horror series.", rating: "18+", year: "2025", dev: "Capcom" },
+  { id: 17, name: "Assassins Creed Liberation HD", img: "../image/acliberation.jpg", genre: "Action / PVP", tagClass: "tag-red", page: "../windows/acliberation.html", isNew: true, desc: "Survive the nightmare. Uncover the truth. A new chapter in the legendary survival horror series.", rating: "18+", year: "2025", dev: "Capcom" },
+  { id: 18, name: "Assassins Creed Shadows", img: "../image/acshadow.png", genre: "Action / PVP", tagClass: "tag-red", page: "../windows/acshadow.html", isNew: true, desc: "Survive the nightmare. Uncover the truth. A new chapter in the legendary survival horror series.", rating: "18+", year: "2025", dev: "Capcom" },
+  { id: 19, name: "Assassins Creed Freedom Cry", img: "../image/acfreedom.jpg", genre: "Action / PVP", tagClass: "tag-red", page: "../windows/acfreedom.html", isNew: true, desc: "Survive the nightmare. Uncover the truth. A new chapter in the legendary survival horror series.", rating: "18+", year: "2025", dev: "Capcom" },
+  { id: 20, name: "Assassins Creed Rouge", img: "../image/acrouge.jpg", genre: "Action / PVP", tagClass: "tag-red", page: "../windows/acrouge.html", isNew: true, desc: "Survive the nightmare. Uncover the truth. A new chapter in the legendary survival horror series.", rating: "18+", year: "2025", dev: "Capcom" },
+  { id: 21, name: "Assassins Creed Mirage", img: "../image/acmirage.jpg", genre: "Action / PVP", tagClass: "tag-red", page: "../windows/acmirage.html", isNew: true, desc: "Survive the nightmare. Uncover the truth. A new chapter in the legendary survival horror series.", rating: "18+", year: "2025", dev: "Capcom" },
+  { id: 22, name: "Assassins Creed Syndicate", img: "../image/acsyndicate.jpg", genre: "Action / PVP", tagClass: "tag-red", page: "../windows/acsyndicate.html", isNew: true, desc: "Survive the nightmare. Uncover the truth. A new chapter in the legendary survival horror series.", rating: "18+", year: "2025", dev: "Capcom" },
+  { id: 23, name: "Assassins Creed Origins", img: "../image/acorigins.jpg", genre: "Action / PVP", tagClass: "tag-red", page: "../windows/acorigins.html", isNew: true, desc: "Survive the nightmare. Uncover the truth. A new chapter in the legendary survival horror series.", rating: "18+", year: "2025", dev: "Capcom" },
+  { id: 24, name: "Assassins Creed Unity", img: "../image/acunity.jpg", genre: "Action / PVP", tagClass: "tag-red", page: "../windows/acunity.html", isNew: true, desc: "Survive the nightmare. Uncover the truth. A new chapter in the legendary survival horror series.", rating: "18+", year: "2025", dev: "Capcom" },
+  { id: 25, name: "Assassins Creed Revelations", img: "../image/acrevelations.jpg", genre: "Action / PVP", tagClass: "tag-red", page: "../windows/acrevelations.html", isNew: true, desc: "Survive the nightmare. Uncover the truth. A new chapter in the legendary survival horror series.", rating: "18+", year: "2025", dev: "Capcom" },
+  { id: 26, name: "Assassins Creed Valhalla", img: "../image/acvalhala.jpg", genre: "Action / PVP", tagClass: "tag-red", page: "../windows/acvalhala.html", isNew: true, desc: "Survive the nightmare. Uncover the truth. A new chapter in the legendary survival horror series.", rating: "18+", year: "2025", dev: "Capcom" },
+  { id: 27, name: "Assassins Creed Odyssey", img: "../image/acodyssey.jpg", genre: "Action / PVP", tagClass: "tag-red", page: "../windows/acodyssey.html", isNew: true, desc: "Survive the nightmare. Uncover the truth. A new chapter in the legendary survival horror series.", rating: "18+", year: "2025", dev: "Capcom" },
+  { id: 28, name: "Call of Duty Modern Warfare 2019", img: "../image/cod2019.jpg", genre: "Action / PVP", tagClass: "tag-red", page: "../windows/cod2019.html", isNew: true, desc: "Survive the nightmare. Uncover the truth. A new chapter in the legendary survival horror series.", rating: "18+", year: "2025", dev: "Capcom" },
+  { id: 29, name: "Call of Duty Black Ops Cold War", img: "../image/codcold.jpg", genre: "Action / PVP", tagClass: "tag-red", page: "../windows/codcold.html", isNew: true, desc: "Survive the nightmare. Uncover the truth. A new chapter in the legendary survival horror series.", rating: "18+", year: "2025", dev: "Capcom" },
+  { id: 30, name: "Call of Duty Modern Warfare 2", img: "../image/codmw2.jpg", genre: "Action / PVP", tagClass: "tag-red", page: "../windows/codmw2.html", isNew: true, desc: "Survive the nightmare. Uncover the truth. A new chapter in the legendary survival horror series.", rating: "18+", year: "2025", dev: "Capcom" },
+  { id: 31, name: "Call of Duty Modern Warfare 3", img: "../image/codmw3.jpg", genre: "Action / PVP", tagClass: "tag-red", page: "../windows/codmw3.html", isNew: true, desc: "Survive the nightmare. Uncover the truth. A new chapter in the legendary survival horror series.", rating: "18+", year: "2025", dev: "Capcom" },
+  { id: 32, name: "Call of Duty Vanguard", img: "../image/codvanguard.jpg", genre: "Action / PVP", tagClass: "tag-red", page: "../windows/codvangurad.html", isNew: true, desc: "Survive the nightmare. Uncover the truth. A new chapter in the legendary survival horror series.", rating: "18+", year: "2025", dev: "Capcom" },
+  { id: 33, name: "Call of Duty Black Ops 6", img: "../image/cod6.jpg", genre: "Action / PVP", tagClass: "tag-red", page: "../windows/cod6.html", isNew: true, desc: "Survive the nightmare. Uncover the truth. A new chapter in the legendary survival horror series.", rating: "18+", year: "2025", dev: "Capcom" },
+  { id: 34, name: "Red Dead Redemption 2", img: "../image/rdr2.jpg", genre: "Action / PVP", tagClass: "tag-red", page: "../windows/rdr2.html", isNew: true, desc: "Survive the nightmare. Uncover the truth. A new chapter in the legendary survival horror series.", rating: "18+", year: "2025", dev: "Capcom" },
 
 ];
 
-const STEAM_GAMES = [
-  // ── ADD STEAMOS / BAZZITE GAMES BELOW ─────────────────────────────────────
-  // { id:101, name:"Elden Ring", img:"er.jpg", genre:"Action RPG", tagClass:"tag-yellow", platform:"SteamOS / Bazzite", likes:2400, desc:"...", rating:"M", year:"2022", dev:"FromSoftware" },
+const SOFTWARE = [
+  // ── ADD SOFTWARE BELOW, SAME FORMAT AS GAMES ─────────────────────────────
+  // { id: 1001, name: "OBS Studio", img: "../image/obs.jpg", genre: "Recording / Streaming", tagClass: "tag-cyan", page: "../software/obs.html", isNew: true, desc: "Free and open source software for video recording and live streaming.", rating: "Free", year: "2025", dev: "OBS Project" },
 ];
-
-const ALL_GAMES = [...WIN_GAMES, ...STEAM_GAMES];
 
 // ─── CARD BUILDER ────────────────────────────────────────────────────────────
 function createCard(g) {
@@ -1514,96 +814,41 @@ function createCard(g) {
   return div;
 }
 
-function populateRow(id, games) {
+// Sort alphabetically by name (case-insensitive), always applied automatically
+function sortAlpha(list) {
+  return [...list].sort((a, b) => (a.name || '').localeCompare(b.name || '', undefined, { sensitivity: 'base' }));
+}
+
+function populateRow(id, items) {
   const el = document.getElementById(id);
   if (!el) return;
   el.innerHTML = '';
-  const real = games.filter(g => g.name && g.name.trim() !== '');
+  const real = sortAlpha(items.filter(g => g.name && g.name.trim() !== ''));
   if (real.length === 0) {
-    el.innerHTML = `<div class="empty-state">🎮 No games yet — check back soon!</div>`;
+    el.innerHTML = `<div class="empty-state">🎮 No items yet — check back soon!</div>`;
     return;
   }
   real.forEach(g => el.appendChild(createCard(g)));
 }
 
-function populateGrid(id, games) {
+function populateGrid(id, items) {
   const el = document.getElementById(id);
   if (!el) return;
   el.innerHTML = '';
-  const real = games.filter(g => g.name && g.name.trim() !== '');
+  const real = sortAlpha(items.filter(g => g.name && g.name.trim() !== ''));
   if (real.length === 0) {
-    el.innerHTML = `<div class="empty-state" style="width:100%;">🎮 No games yet — check back soon!</div>`;
+    el.innerHTML = `<div class="empty-state" style="width:100%;">🎮 No items yet — check back soon!</div>`;
     return;
   }
   real.forEach(g => el.appendChild(createCard(g)));
 }
 
 function init() {
-  populateRow('winRow',   WIN_GAMES);
-  populateRow('steamRow', STEAM_GAMES);
-  populateGrid('winGrid',   WIN_GAMES);
-  populateGrid('steamGrid', STEAM_GAMES);
+  populateRow('gamesRow',    GAMES);
+  populateRow('softwareRow', SOFTWARE);
+  populateGrid('gamesGrid',    GAMES);
+  populateGrid('softwareGrid', SOFTWARE);
 }
-
-// ─── FEATURED BANNER CAROUSEL ────────────────────────────────────────────────
-const BANNER_INTERVAL = 6000; // ms per slide
-const TOTAL_SLIDES = 3;
-
-let bannerCur = 0;
-let bannerTimer = null;
-let progressTimer = null;
-
-function bannerGoTo(n) {
-  // Remove active from current
-  document.getElementById('fb-slide-' + bannerCur).classList.remove('active');
-  document.querySelectorAll('#fbDots .fb-dot')[bannerCur].classList.remove('active');
-
-  bannerCur = (n + TOTAL_SLIDES) % TOTAL_SLIDES;
-
-  // Add active to new
-  document.getElementById('fb-slide-' + bannerCur).classList.add('active');
-  document.querySelectorAll('#fbDots .fb-dot')[bannerCur].classList.add('active');
-
-  // Update counter
-  document.getElementById('fbCounter').textContent = (bannerCur + 1) + ' / ' + TOTAL_SLIDES;
-
-  // Reset progress bar
-  startProgress();
-}
-
-function startProgress() {
-  const bar = document.getElementById('fbProgressBar');
-  bar.style.transition = 'none';
-  bar.style.width = '0%';
-  // force reflow
-  void bar.offsetWidth;
-  bar.style.transition = 'width ' + BANNER_INTERVAL + 'ms linear';
-  bar.style.width = '100%';
-}
-
-function startBannerAuto() {
-  if (bannerTimer) clearInterval(bannerTimer);
-  bannerTimer = setInterval(() => {
-    bannerGoTo(bannerCur + 1);
-  }, BANNER_INTERVAL);
-  startProgress();
-}
-
-// Pause on hover
-document.getElementById('featuredBanner').addEventListener('mouseenter', () => {
-  if (bannerTimer) clearInterval(bannerTimer);
-  const bar = document.getElementById('fbProgressBar');
-  bar.style.transition = 'none';
-  // Freeze bar width visually
-  const computed = getComputedStyle(bar).width;
-  const parent = bar.parentElement.offsetWidth;
-  const pct = (parseFloat(computed) / parent * 100).toFixed(1);
-  bar.style.width = pct + '%';
-});
-
-document.getElementById('featuredBanner').addEventListener('mouseleave', () => {
-  startBannerAuto();
-});
 
 // ─── MODAL ───────────────────────────────────────────────────────────────────
 function openGameModal(g) {
@@ -1622,7 +867,7 @@ function openGameModal(g) {
   }
 
   mTitle.textContent = g.name || 'Coming Soon';
-  mTags.innerHTML = `<span class="gc-tag ${g.tagClass}">${g.genre}</span><span class="gc-tag tag-blue">${g.platform}</span>`;
+  mTags.innerHTML = `<span class="gc-tag ${g.tagClass}">${g.genre}</span>`;
   mMeta.innerHTML = `
     ${g.rating ? `<div class="mm-item"><div class="mm-label">Rating</div><div class="mm-val">${g.rating}</div></div>` : ''}
     ${g.year   ? `<div class="mm-item"><div class="mm-label">Year</div><div class="mm-val">${g.year}</div></div>` : ''}
@@ -1641,7 +886,7 @@ function openGameModal(g) {
   const guideBtn = document.createElement('button');
   guideBtn.className = 'btn-guide';
   guideBtn.innerHTML = '📖 View Guide';
-  guideBtn.onclick = () => window.open('https://www.facebook.com/profile.php?id=61573726553445','_blank');
+  guideBtn.onclick = () => window.open('https://www.facebook.com/GameDeckPH25','_blank');
   mActions.appendChild(guideBtn);
 
   overlay.classList.add('active');
@@ -1683,7 +928,8 @@ searchInput.addEventListener('input', () => {
   const q = searchInput.value.trim().toLowerCase();
   if (!q) { searchDropdown.classList.remove('active'); return; }
 
-  const res = ALL_GAMES.filter(g => g.name && g.name.toLowerCase().includes(q)).slice(0, 6);
+  const ALL_ITEMS = sortAlpha([...GAMES, ...SOFTWARE]);
+  const res = ALL_ITEMS.filter(g => g.name && g.name.toLowerCase().includes(q)).slice(0, 6);
   if (!res.length) { searchDropdown.classList.remove('active'); return; }
 
   searchDropdown.innerHTML = res.map(g => `
@@ -1693,14 +939,14 @@ searchInput.addEventListener('input', () => {
       </div>
       <div>
         <div class="s-name">${g.name}</div>
-        <div class="s-meta">${g.genre} • ${g.platform}</div>
+        <div class="s-meta">${g.genre}</div>
       </div>
     </div>
   `).join('');
 
   searchDropdown.querySelectorAll('.s-item').forEach(item => {
     item.addEventListener('click', () => {
-      const game = ALL_GAMES.find(g => g.id === +item.dataset.id);
+      const game = ALL_ITEMS.find(g => g.id === +item.dataset.id);
       searchDropdown.classList.remove('active');
       searchInput.value = '';
       if (game) {
@@ -1737,7 +983,6 @@ function scrollRow(btn, dir) {
 
 // ─── INIT ─────────────────────────────────────────────────────────────────────
 init();
-startBannerAuto();
 </script>
 </body>
 </html>
